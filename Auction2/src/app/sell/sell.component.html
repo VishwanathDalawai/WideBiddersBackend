@@ -1,0 +1,136 @@
+<app-header></app-header>
+
+    <div class="container">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="product_name">Product Name</label>
+            <input type="text" class="form-control" [(ngModel)]="product_name" placeholder="Product Name" required>
+          </div>        
+        </div>
+   
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="product_category">Product Category</label>
+            <select class="form-control" [(ngModel)]="product_category">
+                    <option value="car">Car</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="bikes">Bikes</option>
+                    <option value="mobiles">Mobiles</option>
+                    <option value="books">Books</option>                
+                    <option value="electronics">Electronics</option>
+                    <option value="other">Others</option>
+             </select>
+                  
+          </div>        
+        </div>
+
+
+        <div class="form-group  col-md-12">
+            <label for="Product_type">Product Model</label>
+            <input type="text" class="form-control" [(ngModel)]="product_model" placeholder="Product Model" required>
+          </div>
+
+
+        <div class="form-group  col-md-12">
+          <label for="description">Product Description</label>
+          <textarea rows="3"  class="form-control" [(ngModel)]="product_desc" placeholder="Product Desription" required>
+              </textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="year">Year</label>
+            <input type="tel" [(ngModel)]="year" class="form-control" name="year" pattern="([1]{1}[7-9]{1}[0-9]{2})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})" required>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="minimum_price">Minimum Bid Price</label>
+            <input type="text" class="form-control"  [(ngModel)]="min_bid_price" placeholder="Minimum bid price" required>
+          </div>
+          <div class="form-group col-md-2">
+            <label for="increment">Increment</label>
+            <input type="text" class="form-control"  [(ngModel)]="increment" placeholder="Increment" required>
+          </div>
+        </div>
+       
+<!--
+        <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="start_date">Start Date</label>
+                  <input type="date" class="form-control"  [(ngModel)]="start_date" required>
+                </div>
+      
+                <div class="form-group col-md-6">
+                  <label for="end_date">End Date</label>
+                  <input type="date" class="form-control" [(ngModel)]="end_date" required>
+                </div>
+                
+         </div>
+  -->
+
+
+
+  <div class="form-row"><br>
+          
+    <div class="form-group col-md-2">
+        
+        
+    <b> <span>upload files..</span></b>
+
+    <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg" required>
+    </div>      
+    <div class="form-group col-md-2">
+      <label></label>
+      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" value="Upload" accept=".png, .jpg, .jpeg">
+    </div>  
+    <div class="form-group col-md-2">
+     <label></label>
+      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg" >
+    </div>
+    <div class="form-group col-md-2">
+    <label></label>
+      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
+    </div>
+    <div class="form-group col-md-2">
+      <label></label>
+      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
+    
+    </div>
+    
+    
+   </div>
+
+
+
+
+
+
+
+
+         <div class="form-group  col-md-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                  <label class="form-check-label" for="gridCheck">&nbsp;
+                    I confirm
+                  </label>
+                </div>
+         </div>
+
+      
+      
+        <button (click)="post()" class="btn btn-primary  col-md-12">Post Now</button>
+    </div>
+  
+
+<!--
+    <button (click)="getProduct()" value="upload">GetImage</button>
+    <img *ngFor="let item of imageData"  src={{item}} alt="" id="img">
+
+-->
+
+  <app-footer></app-footer>
+
+
+  
