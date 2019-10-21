@@ -36,6 +36,7 @@ public class ProductController {
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public void addProduct(@RequestBody Product product) {
 		idIncreamentForProduct++;
+		logger.info("Adding product"+product.getImg());
 		ProductService.addProduct(idIncreamentForProduct, product);
 		product.setProductId(idIncreamentForProduct);
 	}
@@ -44,7 +45,6 @@ public class ProductController {
 	public void delete(@PathVariable("id") int id) {
 		ProductService.delete(id);
 	}
-
 
 	@RequestMapping(value = "/productUpdate/{id}", method = RequestMethod.PUT)
 	public void updateProduct(@PathVariable("id") int id, @RequestBody Product Product) {

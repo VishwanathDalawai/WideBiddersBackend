@@ -5,7 +5,6 @@ public class Product {
 	private int productId;
 	private String productCategoryName;
 	private String productName;
-	
 	private String description;
 	private int startingBidPrice;
 	private String approvalStatus;
@@ -13,13 +12,22 @@ public class Product {
 	private int incrementPrice;
 	private String year;
 	private String productModel;
+	private String img;
+	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
 	
 	public Product() {
 	}
 	
 	public Product(int productId, String productCategoryName, String productName, String description,
 			int startingBidPrice, String approvalStatus, String reportFlag, int incrementPrice, String year,
-			String productModel) {
+			String productModel, String img) {
 		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
@@ -30,6 +38,7 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 		this.year = year;
 		this.productModel = productModel;
+		this.img = img;
 	}
 
 	

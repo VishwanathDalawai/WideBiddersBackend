@@ -17,7 +17,7 @@ public class ProductService {
 	static int productId = 10;
 	
 	public ProductService() {
-		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8"));
+		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8","img1"));
 	}
 
 	public Map<Integer, Product> getProducts() {
