@@ -1,5 +1,7 @@
 package com.widebidders.models.entities;
 
+import java.util.Set;
+
 public class Product {
 	
 	private int productId;
@@ -12,22 +14,21 @@ public class Product {
 	private int incrementPrice;
 	private String year;
 	private String productModel;
-	private String img;
+	private Set<ProductImage> productImage;
 	
-	public String getImg() {
-		return img;
+	public Set<ProductImage> getProductImage() {
+		return  productImage;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setProductImage(Set<ProductImage> productImage) {
+		this.productImage = productImage;
 	}
-	
+
 	public Product() {
 	}
 	
 	public Product(int productId, String productCategoryName, String productName, String description,
-			int startingBidPrice, String approvalStatus, String reportFlag, int incrementPrice, String year,
-			String productModel, String img) {
+			int startingBidPrice, String approvalStatus, String reportFlag, int incrementPrice, String year,String productModel,Set<ProductImage> ProductImage) {
 		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
@@ -38,7 +39,7 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 		this.year = year;
 		this.productModel = productModel;
-		this.img = img;
+		this.productImage=ProductImage;
 	}
 
 	

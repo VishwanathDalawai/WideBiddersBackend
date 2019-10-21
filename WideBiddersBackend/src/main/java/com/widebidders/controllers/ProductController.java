@@ -36,9 +36,8 @@ public class ProductController {
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public void addProduct(@RequestBody Product product) {
 		idIncreamentForProduct++;
-		logger.info("Adding product"+product.getImg());
 		ProductService.addProduct(idIncreamentForProduct, product);
-		product.setProductId(idIncreamentForProduct);
+		product.setProductId(idIncreamentForProduct); 
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
