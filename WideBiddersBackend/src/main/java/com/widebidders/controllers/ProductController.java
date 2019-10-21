@@ -37,7 +37,7 @@ public class ProductController {
 	public void addProduct(@RequestBody Product product) {
 		idIncreamentForProduct++;
 		ProductService.addProduct(idIncreamentForProduct, product);
-		product.setProductId(idIncreamentForProduct);
+		product.setProductId(idIncreamentForProduct); 
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
