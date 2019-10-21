@@ -1,13 +1,16 @@
 package com.widebidders.models.service;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.widebidders.models.entities.Product;
+import com.widebidders.models.entities.ProductImage;
 
 @Service
 public class ProductService {
@@ -15,9 +18,12 @@ public class ProductService {
 	
 	Map<Integer,Product> ProductMap = new HashMap<Integer, Product>();
 	static int productId = 10;
+	Set<ProductImage> productImages = new HashSet<ProductImage>();
 	
 	public ProductService() {
-		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8"));
+		//productImages.add(new ProductImage("rwysdw",1));
+		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8", productImages));
+		
 	}
 
 	public Map<Integer, Product> getProducts() {
@@ -35,13 +41,8 @@ public class ProductService {
 				return ProductMap.get(key);
 			}
 		}
-		System.out.println("invalid key");
+		logger.info("invalid key");
 		return null;
-	}
-
-	public int generateId() {
-		productId = productId + 1;
-		return productId;
 	}
 
 	public void delete(int id) {
@@ -50,10 +51,18 @@ public class ProductService {
 				ProductMap.remove(key);
 			}
 		}
-		System.out.println("invalid key");
+		logger.info("invalid key");
 	}
 
 	public void updateProduct(int id, Product product) {
 		ProductMap.replace(id, product);
+	}
+
+	public void addImage(ProductImage productImage) {
+		productImages.add(productImage);
+	}
+
+	public Set<ProductImage> getImages() {
+	     return productImages;
 	}
 }
