@@ -63,23 +63,30 @@ a:any;
 
   post(){
 
-
+/*
     this.ProductImages=[
-    { "productImage1":this.Data[0] },
-    { "productImage2":this.Data[1] },
-     { "productImage3":this.Data[2] },
-    { "productImage4":this.Data[3] },
-    {  "productImage5":this.Data[4] }
+    {"productImage":this.Data[0]},
+    {"productImage":this.Data[1]},
+     {"productImage":this.Data[2]},
+    {"productImage":this.Data[3]},
+    {"productImage":this.Data[4]}
     ];
+*/
+    //[{"productImage":"hey"}]
 
     this.product = 
        {
        "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "description":this.product_desc,
-       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "productImages":this.ProductImages
+       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
+       "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
+       //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
+      ]
       };
-      console.log("image passed"+this.Data);
+      
+    
+    console.log("image passed"+this.Data[0]);
    
-       let obs =  this.http.post("http://43.88.107.25:80/addproduct/",this.product);
+       let obs =  this.http.post("http://localhost/addproduct/",this.product);
        obs.subscribe(()=>{
             
            })
