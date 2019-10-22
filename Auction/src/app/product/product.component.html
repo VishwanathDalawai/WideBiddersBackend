@@ -1,3 +1,6 @@
+
+<app-header></app-header>
+<br><br>
 <div class="container">
 
  <!-- 
@@ -22,7 +25,11 @@
           increment:{{data.incrementPrice}},
           <br><br>
           <img src="{{'data:image/png;base64,' + data.productImage[0].productImage}}" /> 
+          <br><br><br>
+          <button (click)="placed()">Place Bid</button>
 
         </div>
           
 </div>
+
+<app-footer></app-footer>

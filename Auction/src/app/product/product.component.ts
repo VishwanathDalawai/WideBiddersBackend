@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,8 +13,9 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient
-
+    private http: HttpClient,
+    private router:Router
+   
   ) { }
 
 
@@ -38,7 +39,10 @@ export class ProductComponent implements OnInit {
 
     )
   }
-
+  placed(){
+    this.router.navigate(["bidplaced"]);
+  }
+ 
 }
 
 
