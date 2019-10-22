@@ -45,6 +45,8 @@
     <div *ngFor="let item of data | keyvalue">
       <!--  {{item.key}}:{{item.value.productName}} -->
       <br>
+      product_ID:{{item.value.productId}}
+      <br>
       product_category:{{item.value.productCategoryName}}
       <br>
       product_model:{{item.value.productModel}}
@@ -65,6 +67,10 @@
          -->
 
          <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
+
+        
+         <a [routerLink]="['product',item.value.productId]">View Product</a>
+
       <br><br><br><br>
 
 

@@ -1,102 +1,28 @@
-<app-header></app-header>
+<div class="container">
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="well"><b><h3>Images</h3></b>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
+ <!-- 
+        <div *ngFor="let item of data | keyvalue">
+          {{item.key}}:{{item.value.productName}}
+-->
+          <br>
+        <div *ngIf="data">
+          <br>
+          product_ID:{{data.productId}}
+          <br>
+          product_category:{{data.productCategoryName}}
+          <br>
+          product_model:{{data.productModel}}
+          <br>
+          product_desc:{{data.description}}
+          <br>
+          year:{{data.year}}
+          <br>
+          min_bid_price:{{data.startingBidPrice}}
+          <br>
+          increment:{{data.incrementPrice}},
+          <br><br>
+          <img src="{{'data:image/png;base64,' + data.productImage[0].productImage}}" /> 
+
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="row">
-           <div class="well"><b><h3>Products</h3></b>
-            <br/> <u>Product name :</u>
-            <br/>   Redmi note 5 pro
-            <br/>   black,4GB,64GB
-            <br/>
-            <br/>   <p>display price  <button type="button">Place bid</button></p>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-			<br/>
-        </div>
-        </div>
-    </div>
-	</div>
-	
-	<div class="row">
-    <div class="col-md-8">
-        <div class="well"><b><h3>Description</h3></b>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-			<br/>
-			<br/>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="row">
-           <div class="well"><b><h3>Seller Description</h3></b>
-            <br/> <u>Seller Description :</u>
-            <br/>  Name: 
-            <br/>  Place:
-            <br/>
-            <br/>   
-			<br/>
-			<br/>
-        </div>
-        </div>
-    </div>
+          
 </div>
-
-	
-<div class="row">
-   <div class="col-md-12">
-	<div class="well"><b><h3>Related Products</h3></b>
-            <br/> Product1 Product2 product3
-		    <br/>
-			<br/> 
-	</div>
-    </div>	
-</div>	
-
-<div class="row">
-   <div class="col-md-8">
-	<div class="well"><b><h3>Previous Bids</h3></b>
-            <br/>
-		    <br/>
-			<br/> 
-	</div>
-    </div>
-
-	<div class="col-md-4">
-	<div class="well"><b><h3>Q&A /comments</h3></b>
-            <br/> 
-		    <br/>
-			<br/> 
-	</div>
-    </div>
-</div>	
-
-
-
-<app-footer></app-footer>
