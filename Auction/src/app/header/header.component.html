@@ -20,14 +20,10 @@
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-              <button class="btn btn-danger navbar-btn" (click)="sell()">Sell</button>
-            </li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span>
-                Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
-                Login</a></li>
+          <ul class="nav navbar-nav navbar-right" style="margin:0px 20px 0px 0px;">
+            <li><button class="btn btn-danger navbar-btn" (click)="sell()">Sell</button></li>
+            <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-user" (click) ="signup()">SignUp</button></li>
+            <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-log-in" (click) ="login()">Login</button></li>
           </ul>
         </div>
       </nav>

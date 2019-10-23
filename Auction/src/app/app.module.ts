@@ -13,6 +13,9 @@ import { HeaderComponent } from './header/header.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { BidPlacedComponent } from './bid-placed/bid-placed.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { UserAddedComponent } from './user-added/user-added.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { BidPlacedComponent } from './bid-placed/bid-placed.component';
     HeaderComponent,
     CategoryComponent,
     ProductComponent,
-    BidPlacedComponent
+    BidPlacedComponent,
+    RegisterComponent,
+    LoginComponent,
+    UserAddedComponent
   ],
   imports: [
     BrowserModule,
