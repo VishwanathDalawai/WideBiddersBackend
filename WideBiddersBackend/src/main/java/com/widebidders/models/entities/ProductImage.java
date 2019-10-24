@@ -1,12 +1,19 @@
 package com.widebidders.models.entities;
 
+import java.io.IOException;
+import java.sql.Blob;
+
+import javax.persistence.Lob;
+
 import org.slf4j.Logger;
 
 import org.slf4j.LoggerFactory;
 
+
 public class ProductImage {
-	private String productImage;
-	private int productId;
+	
+	private Blob productImage;
+	private int productImageId;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductImage.class);
 	
@@ -14,47 +21,45 @@ public class ProductImage {
 		
 	}
 
-	public ProductImage(String productImage, int productId) {
+	public ProductImage(Blob productImage, int productImageId) throws IOException {
 		this.productImage = productImage;
-		this.productId = productId;	
+		this.productImageId = productImageId;
 	}
-	
-	public String getProductImage() {
-		logger.info("Inside Product Image ");
+
+	public Blob getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(String productImage) {
-		logger.info("Inside Product Image ");
-			this.productImage = productImage;
+	public void setProductImage(Blob productImage) {
+		System.out.println("Product Image"+productImage);
+		this.productImage = productImage;
 	}
 
-	public int getProductId() {
-		return productId;
+	public int getProductImageId() {
+		return productImageId;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setProductImageId(int productImageId) {
+		this.productImageId = productImageId;
 	}
 
-	public boolean equals(Object obj) {
+	/*public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
 		if (!this.getClass().equals(obj.getClass()))
 			return false;
 
 		ProductImage obj2 = (ProductImage) obj;
-		if ((this.productImage.equals(obj2.getProductImage()))
-				&& (this.productId==obj2.getProductId())) {
+		if ((this.productImage.equals(obj2.getProductImage()))) {
 			return true;
 		}
 		return false;
-	}
+	}*/
 
-	public int hashCode() {
-		int tmp = 0;
-		tmp = (productImage+productId).hashCode();
-		return tmp;
+	/*public int hashCode() {
+		//int tmp = 0;
+		//tmp = (productImage+productImageId).hashCode();
+		return productImageId;
 	}
-
+*/
 }

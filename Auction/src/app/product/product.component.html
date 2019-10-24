@@ -1,0 +1,35 @@
+
+<app-header></app-header>
+<br><br>
+<div class="container">
+
+ <!-- 
+        <div *ngFor="let item of data | keyvalue">
+          {{item.key}}:{{item.value.productName}}
+-->
+          <br>
+        <div *ngIf="data">
+          <br>
+          product_ID:{{data.productId}}
+          <br>
+          product_category:{{data.productCategoryName}}
+          <br>
+          product_model:{{data.productModel}}
+          <br>
+          product_desc:{{data.description}}
+          <br>
+          year:{{data.year}}
+          <br>
+          min_bid_price:{{data.startingBidPrice}}
+          <br>
+          increment:{{data.incrementPrice}},
+          <br><br>
+          <img src="{{'data:image/png;base64,' + data.productImage[0].productImage}}" /> 
+          <br><br><br>
+          <button (click)="placed()">Place Bid</button>
+
+        </div>
+          
+</div>
+
+<app-footer></app-footer>
