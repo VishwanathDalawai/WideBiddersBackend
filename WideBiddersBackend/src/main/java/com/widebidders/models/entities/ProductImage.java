@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 public class ProductImage {
 	
-	private Blob productImage;
+	private String productImage;
 	private int productImageId;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductImage.class);
@@ -21,16 +21,16 @@ public class ProductImage {
 		
 	}
 
-	public ProductImage(Blob productImage, int productImageId) throws IOException {
+	public ProductImage(String productImage, int productImageId) throws IOException {
 		this.productImage = productImage;
 		this.productImageId = productImageId;
 	}
 
-	public Blob getProductImage() {
+	public String getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(Blob productImage) {
+	public void setProductImage(String productImage) {
 		System.out.println("Product Image"+productImage);
 		this.productImage = productImage;
 	}

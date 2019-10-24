@@ -44,7 +44,7 @@
          </generator>
       </id>
      
-     <property name = "productImage" column = "Product_Image" type="blob"/>
+     <property name = "productImage" column = "Product_Image" type="string"/>
    
    </class>
    <class name = "com.widebidders.models.entities.Customer" table = "Customer">
