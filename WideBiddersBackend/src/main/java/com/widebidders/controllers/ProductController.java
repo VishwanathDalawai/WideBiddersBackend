@@ -1,6 +1,7 @@
 package com.widebidders.controllers;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class ProductController {
 	public ProductServiceImpl ProductService;
 	
 	@RequestMapping(value = "/products")
-	public Map<Integer, Product> getProducts() {
+	public List getProducts() {
 		return ProductService.getProducts();
 	}
 

@@ -1,5 +1,8 @@
 package com.widebidders.models.db;
 
+import java.util.Iterator;
+import java.util.List;
+
 import java.util.Map;
 import java.util.Set;
 
@@ -39,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
 	    Integer productId = null;
 	    try {
 	         tx = session.beginTransaction();
-	         productId = (Integer) session.save(product);
+	         session.save(product);
 	         tx.commit();
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
@@ -51,7 +54,21 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public void deleteProduct(int productId) {
-		// TODO Auto-generated method stub
+		
+		   Session session = factory.openSession();
+		      Transaction tx = null;
+		      
+		      try {
+		         tx = session.beginTransaction();
+		         Product employee = (Product)session.get(Product.class, productId); 
+		         session.delete(employee); 
+		         tx.commit();
+		      } catch (HibernateException e) {
+		         if (tx!=null) tx.rollback();
+		         e.printStackTrace(); 
+		      } finally {
+		         session.close(); 
+		      }
 		
 	}
 
@@ -61,10 +78,41 @@ public class ProductDaoImpl implements ProductDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Map<Integer, Product> getProducts() {
-		// TODO Auto-generated method stub
-		return null;
+	public List getProducts() {
+		Session session = factory.openSession();
+	      Transaction tx = null;
+	      List products = null;
+	      try {
+	         tx = session.beginTransaction();
+	 		 products = session.createQuery("FROM Product").list();
+	         for (Iterator iterator1 = products.iterator(); iterator1.hasNext();){
+	            Product product = (Product) iterator1.next(); 
+	            System.out.print("First Name: " + product.getProductId()); 
+	            System.out.print("  Last Name: " + product.getProductName()); 
+	            System.out.println("  Salary: " + product.getProductDescription());
+	            System.out.println("  Salary: " + product.getProductBougthYear());
+	            System.out.println("  Salary: " + product.getProductCategoryName());
+	            System.out.println("  Salary: " + product.getProductModel());
+	            System.out.println("  Salary: " + product.getProductDescription());
+	            System.out.println("  Salary: " + product.getApprovalStatus());
+	            System.out.println("  Salary: " + product.getStartingBidPrice());
+	            System.out.println("  Salary: " + product.getIncrementPrice());
+	            Set<ProductImage> images = product.getProductImage();
+	            for (Iterator iterator2 = images.iterator(); iterator2.hasNext();){
+	            	ProductImage certName = (ProductImage) iterator2.next(); 
+	               System.out.println("images: " + certName.getProductImage());
+	               System.out.println("images: " + certName.getProductImageId());
+	            }
+	         }	         
+	      } catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      } finally {
+	         session.close(); 
+	      }
+	      return products;
 	}
 
 	@Override

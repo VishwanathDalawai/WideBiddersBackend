@@ -2,6 +2,7 @@ package com.widebidders.models.service;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class ProductServiceImpl implements ProductService{
 		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8 Model"));
 	}
 
-	public Map<Integer, Product> getProducts() {
+	public List getProducts() {
 		return productDboImpl.getProducts();
 		//return ProductMap;
 	}
