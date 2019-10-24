@@ -57,11 +57,11 @@ public class ProductDaoImpl implements ProductDao {
 		
 		   Session session = factory.openSession();
 		      Transaction tx = null;
-		      
+
 		      try {
 		         tx = session.beginTransaction();
-		         Product employee = (Product)session.get(Product.class, productId); 
-		         session.delete(employee); 
+		         Product product = (Product)session.get(Product.class, productId); 
+		         session.delete(product); 
 		         tx.commit();
 		      } catch (HibernateException e) {
 		         if (tx!=null) tx.rollback();
