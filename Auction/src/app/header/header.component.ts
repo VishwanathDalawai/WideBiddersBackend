@@ -17,6 +17,12 @@ export class HeaderComponent implements OnInit {
   sell(){
     this.router.navigate(["sell"]);
   }
+  signup(){
+    this.router.navigate(["register"]);
+  }
+  login(){
+    this.router.navigate(["login"]);
+  }
 
 
 }
