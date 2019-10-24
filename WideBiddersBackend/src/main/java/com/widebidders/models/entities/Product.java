@@ -7,42 +7,31 @@ public class Product {
 	private int productId;
 	private String productCategoryName;
 	private String productName;
-	private String description;
-	private int startingBidPrice;
+	private String productDescription;
+	private double startingBidPrice;
 	private String approvalStatus;
 	private String reportFlag;
-	private int incrementPrice;
-	private String year;
+	private double incrementPrice;
+	private String ProductBougthYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
 	
-	public Set<ProductImage> getProductImage() {
-		return  productImage;
-	}
-
-	public void setProductImage(Set<ProductImage> productImage) {
-		this.productImage = productImage;
-	}
-
 	public Product() {
 	}
 	
-	public Product(int productId, String productCategoryName, String productName, String description,
-			int startingBidPrice, String approvalStatus, String reportFlag, int incrementPrice, String year,String productModel,Set<ProductImage> ProductImage) {
+	public Product(int productId, String productCategoryName, String productName, String productDescription,
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String ProductBougthYear,String productModel) {
 		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
-		this.description = description;
+		this.productDescription = productDescription;
 		this.startingBidPrice = startingBidPrice;
 		this.approvalStatus = approvalStatus;
 		this.reportFlag = reportFlag;
 		this.incrementPrice = incrementPrice;
-		this.year = year;
 		this.productModel = productModel;
-		this.productImage=ProductImage;
 	}
 
-	
 	public int getProductId() {
 		return productId;
 	}
@@ -67,19 +56,19 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getProductDescription() {
+		return productDescription;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
 
-	public int getStartingBidPrice() {
+	public double getStartingBidPrice() {
 		return startingBidPrice;
 	}
 
-	public void setStartingBidPrice(int startingBidPrice) {
+	public void setStartingBidPrice(double startingBidPrice) {
 		this.startingBidPrice = startingBidPrice;
 	}
 
@@ -99,20 +88,20 @@ public class Product {
 		this.reportFlag = reportFlag;
 	}
 
-	public int getIncrementPrice() {
+	public double getIncrementPrice() {
 		return incrementPrice;
 	}
 
-	public void setIncrementPrice(int incrementPrice) {
+	public void setIncrementPrice(double incrementPrice) {
 		this.incrementPrice = incrementPrice;
 	}
 
-	public String getYear() {
-		return year;
+	public String getProductBougthYear() {
+		return ProductBougthYear;
 	}
 
-	public void setYear(String year) {
-		this.year = year;
+	public void setProductBougthYear(String productBougthYear) {
+		ProductBougthYear = productBougthYear;
 	}
 
 	public String getProductModel() {
@@ -123,5 +112,11 @@ public class Product {
 		this.productModel = productModel;
 	}
 
-	
+	public Set<ProductImage> getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(Set<ProductImage> productImage) {
+		this.productImage = productImage;
+	}
 }

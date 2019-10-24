@@ -1,5 +1,6 @@
 package com.widebidders.controllers;
 
+
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.widebidders.models.entities.Product;
-import com.widebidders.models.service.ProductService;
+import com.widebidders.models.service.ProductServiceImpl;
 
 @RestController
 public class ProductController {
@@ -21,7 +22,7 @@ public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@Autowired
-	public ProductService ProductService;
+	public ProductServiceImpl ProductService;
 	
 	@RequestMapping(value = "/products")
 	public Map<Integer, Product> getProducts() {
@@ -36,13 +37,14 @@ public class ProductController {
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public void addProduct(@RequestBody Product product) {
 		idIncreamentForProduct++;
+		logger.error("Inside add product"+product);
 		ProductService.addProduct(idIncreamentForProduct, product);
 		product.setProductId(idIncreamentForProduct); 
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") int id) {
-		ProductService.delete(id);
+		ProductService.deleteProduct(id);
 	}
 
 	@RequestMapping(value = "/productUpdate/{id}", method = RequestMethod.PUT)
