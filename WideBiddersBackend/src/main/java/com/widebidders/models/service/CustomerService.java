@@ -3,7 +3,7 @@ package com.widebidders.models.service;
 import java.util.Map;
 
 import com.widebidders.models.entities.Customer;
-
+ 
 public interface CustomerService {
 	public Map<Integer, Customer> getCustomers();
 	public void addCustomer(Customer customer);
