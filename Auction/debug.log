@@ -13,3 +13,5 @@
 [1022/084319.981:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: The pipe has been ended. (0x6D)
 [1023/115434.038:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: The pipe has been ended. (0x6D)
 >>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
+[1024/103740.060:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: The pipe has been ended. (0x6D)
+[1024/104616.946:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: The pipe has been ended. (0x6D)
