@@ -35,7 +35,7 @@ public class CustomerController {
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
 	public void addCustomer(@RequestBody Customer customer) {
 		idIncreamentForCustomerId++;
-		customerService.addCustomer(idIncreamentForCustomerId, customer);
+		customerService.addCustomer(customer);
 		customer.setCustomerId(idIncreamentForCustomerId);
 	}
 

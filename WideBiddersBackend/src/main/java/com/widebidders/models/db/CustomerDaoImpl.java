@@ -32,7 +32,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public void addCustomer(int id, Customer customer) {
+	public void addCustomer(Customer customer) {
 		// TODO Auto-generated method stub
 
 	}
