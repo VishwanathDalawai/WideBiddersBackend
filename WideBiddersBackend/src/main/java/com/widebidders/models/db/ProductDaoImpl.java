@@ -135,14 +135,15 @@ public class ProductDaoImpl implements ProductDao {
 	      Transaction tx = null;
 	      List<Product> results=new ArrayList<Product>();
 	      try {
-	         tx = session.beginTransaction();
+	         tx = session.beginTransaction(); 
 	 		 String hql=  "FROM Product WHERE productId = :id";
 	 		 System.out.println("ID is "+id);
 	 		 Query query =session.createQuery(hql);
 	 		 query.setParameter("id", id);
 	 		 
 	 		 List<Product> list = query.list();
-	 			 results.addAll(list);
+	 			 results.addAll(list); 
+	 			 
 	      	}    
 	      catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
