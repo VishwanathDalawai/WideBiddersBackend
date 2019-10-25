@@ -9,11 +9,13 @@ import { BidPlacedComponent } from './bid-placed/bid-placed.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserAddedComponent } from './user-added/user-added.component';
+import { HeaderComponent } from './header/header.component';
 
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"home", component:HomeComponent},
+  {path:"home/:email", component:HomeComponent},
   {path:"sell", component:SellComponent},
   {path:"congrats", component:CongratsComponent},
   {path:"category", component:CategoryComponent},

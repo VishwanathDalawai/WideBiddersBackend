@@ -1,5 +1,6 @@
 package com.widebidders.controllers;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ public class CustomerController {
 	public CustomerServiceImpl customerService;
 
 	@RequestMapping(value = "/customer")
-	public Map<Integer, Customer> getCustomers() {
+	public List getCustomers() {
 		logger.info("Inside get customers of CustomerController");
 		return customerService.getCustomers();
 	}
@@ -35,7 +36,7 @@ public class CustomerController {
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
 	public void addCustomer(@RequestBody Customer customer) {
 		idIncreamentForCustomerId++;
-		customerService.addCustomer(idIncreamentForCustomerId, customer);
+		customerService.addCustomer(customer);
 		customer.setCustomerId(idIncreamentForCustomerId);
 	}
 

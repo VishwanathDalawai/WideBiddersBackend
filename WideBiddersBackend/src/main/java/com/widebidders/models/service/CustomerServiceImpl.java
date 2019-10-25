@@ -1,7 +1,10 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap; 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,9 @@ public class CustomerServiceImpl implements CustomerService {
 	Map<Integer, Customer> CustomerMap = new HashMap<Integer, Customer>();
 	static int productId = 10;
 
+	@Autowired
+	HttpSession httpSession;
+	
 	@Autowired(required=true)
     private CustomerDaoImpl customerDboImpl;
 	
@@ -25,14 +31,14 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerMap.put(1, new Customer("anu", "636", "anugmailcom", "anu123", "user", "yes", "img1"));
 	}
 
-	public Map<Integer, Customer> getCustomers() {
+	public List getCustomers() {
 		logger.info("Inside Customer Service get customers");
 		return customerDboImpl.getCustomers();
 	}
 	
-	public void addCustomer(int id, Customer customer) {
+	public void addCustomer(Customer customer) {
 		logger.error("Inside add product Service class"+customer);
-		customerDboImpl.addCustomer(id, customer); 
+		customerDboImpl.addCustomer(customer); 
 	}
 	
 	public Customer getCustomerById(int id) {

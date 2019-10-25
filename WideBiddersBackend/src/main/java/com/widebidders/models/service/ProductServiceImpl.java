@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import com.widebidders.models.entities.ProductImage;
 @Service
 public class ProductServiceImpl implements ProductService{
 	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
+	
+	@Autowired
+	HttpSession httpSession;
 	
 	Map<Integer,Product> ProductMap = new HashMap<Integer, Product>();
 	static int productId = 10;
@@ -35,13 +40,13 @@ public class ProductServiceImpl implements ProductService{
 		//return ProductMap;
 	}
 
-	public void addProduct(int id, Product product) {
+	public void addProduct(Product product) {
 		logger.error("Inside add product Service class"+product);
-		productDboImpl.addProduct(id, product); 
+		productDboImpl.addProduct(product); 
 		//ProductMap.put(id, product);	
 	}
 
-	public Product getProductById(int id){
+	public List getProductById(int id){
 		return productDboImpl.getProductById(id);
 	}
 

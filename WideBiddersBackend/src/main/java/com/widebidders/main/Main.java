@@ -16,4 +16,9 @@ public class Main {
 	    logger.info("Inside main");
 		SpringApplication.run(Main.class, args);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git

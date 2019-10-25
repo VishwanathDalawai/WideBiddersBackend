@@ -82,10 +82,20 @@ a:any;
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
       };
+<<<<<<< HEAD
       console.log(this.Data[0]);
+=======
+      
+    
+    console.log("image passed"+this.Data[0]);
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
    
+<<<<<<< HEAD
 
        let obs =  this.http.post("http://localhost/addproduct/",this.product);
+=======
+       let obs =  this.http.post("http://192.168.2.35:80/addproduct/",this.product);
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
        obs.subscribe(()=>{
             
            })

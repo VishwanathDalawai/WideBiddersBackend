@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,9 @@ export class LoginComponent implements OnInit {
 
   userName:string="";
   password:string="";
+
 credential:any;
-status:boolean=false;
+status:boolean=true;
   constructor(private router: Router,private http:HttpClient) { }
 
   ngOnInit() {
@@ -20,25 +22,43 @@ status:boolean=false;
 
 
   login(){
+   
 this.credential = {
   "userName":this.userName, "password":this.password
 };
 console.log(this.credential);
 
-let obs =  this.http.post("http://192.168.2.35:80/addCustomer/",this.credential);
+let obs =  this.http.post("http://192.168.2.35:80/customerLogin/",this.credential);
+
 obs.subscribe((response)=>{
+  
+  this.status=false;
+  console.log(response);
      if(response!=null){
        if(response==true){
          this.status=true;
+     this.router.navigate(["home",this.credential.userName]);
+    
+
        }
        else{
          this.status=false;
+         this.router.navigate(["login"]);
        }
      }
     })
 
 
-    this.router.navigate(["home"]);
+   
   }
+  /* public getEmail():string{
+    if(this.status==true){
+     // this.credential.stroreData();
+     return this.credential.userName;
+    }
+    else{
+      return "";
+    }
+  } */
 
 }

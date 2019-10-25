@@ -1,12 +1,12 @@
 package com.widebidders.models.db;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -35,7 +35,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public void addProduct(int id, Product product) {
+	public void addProduct(Product product) {
 	    logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 	    Transaction tx = null;
@@ -74,7 +74,21 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public void updateProduct(int productId, Product Product) {
-		// TODO Auto-generated method stub
+		  Session session = factory.openSession();
+		      Transaction tx = null;
+		      
+		      try {
+		         tx = session.beginTransaction();
+		         List<Product> employee = (List)session.get(Product.class, productId); 
+		         employee.set(productId, Product);
+		         session.update(employee);
+		         tx.commit();
+		      } catch (HibernateException e) {
+		         if (tx!=null) tx.rollback();
+		         e.printStackTrace(); 
+		      } finally {
+		         session.close(); 
+		      }
 		
 	}
 
@@ -86,7 +100,7 @@ public class ProductDaoImpl implements ProductDao {
 	      List products = null;
 	      try {
 	         tx = session.beginTransaction();
-	 		 products = session.createQuery("FROM Product").list();
+	 		 products = session.createQuery("FROM Product ").list();
 	         for (Iterator iterator1 = products.iterator(); iterator1.hasNext();){
 	            Product product = (Product) iterator1.next(); 
 	            System.out.print("First Name: " + product.getProductId()); 
@@ -116,9 +130,28 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public Product getProductById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getProductById(int id) {
+		Session session = factory.openSession();
+	      Transaction tx = null;
+	      List<Product> results=new ArrayList<Product>();
+	      try {
+	         tx = session.beginTransaction(); 
+	 		 String hql=  "FROM Product WHERE productId = :id";
+	 		 System.out.println("ID is "+id);
+	 		 Query query =session.createQuery(hql);
+	 		 query.setParameter("id", id);
+	 		 
+	 		 List<Product> list = query.list();
+	 			 results.addAll(list); 
+	 			 
+	      	}    
+	      catch (HibernateException e) {
+	         if (tx!=null) tx.rollback();
+	         e.printStackTrace(); 
+	      } finally {
+	         session.close(); 
+	      }
+	      return results;	
 	}
 
 	@Override
