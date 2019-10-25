@@ -15,6 +15,13 @@
   
       <button type="submit" class="registerbtn" (click)="login()">Login</button>
       <hr>
+
+      <div *ngIf="!status">
+        <div class="alert alert-danger">
+          <strong>Incorrect Username/password!</strong> Please enter proper username or password....
+        </div>
+      </div>
+    
     </div>
 
   </form>

@@ -86,7 +86,7 @@ a:any;
     
     console.log("image passed"+this.Data[0]);
    
-       let obs =  this.http.post("http://localhost/addproduct/",this.product);
+       let obs =  this.http.post("http://192.168.2.35:80/addproduct/",this.product);
        obs.subscribe(()=>{
             
            })
