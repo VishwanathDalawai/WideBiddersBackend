@@ -1,6 +1,7 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap; 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerMap.put(1, new Customer("anu", "636", "anugmailcom", "anu123", "user", "yes", "img1"));
 	}
 
-	public Map<Integer, Customer> getCustomers() {
+	public List getCustomers() {
 		logger.info("Inside Customer Service get customers");
 		return customerDboImpl.getCustomers();
 	}
