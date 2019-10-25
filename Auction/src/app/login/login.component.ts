@@ -37,7 +37,7 @@ obs.subscribe((response)=>{
      if(response!=null){
        if(response==true){
          this.status=true;
-     this.router.navigate(["home",this.credential.userName]);
+     this.router.navigate(["home",this.credential.emailId]);
     
 
        }
