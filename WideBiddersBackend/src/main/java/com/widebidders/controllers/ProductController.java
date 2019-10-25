@@ -31,7 +31,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productId/{id}")
-	public Product getProductById(@PathVariable int id) {
+	public List getProductById(@PathVariable int id) {
 		return ProductService.getProductById(id);
 	}
 
@@ -39,8 +39,8 @@ public class ProductController {
 	public void addProduct(@RequestBody Product product) {
 		idIncreamentForProduct++;
 		logger.error("Inside add product"+product);
-		ProductService.addProduct(idIncreamentForProduct, product);
-		product.setProductId(idIncreamentForProduct); 
+		ProductService.addProduct(product);
+	
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)

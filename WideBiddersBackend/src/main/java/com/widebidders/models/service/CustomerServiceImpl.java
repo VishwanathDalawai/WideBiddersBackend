@@ -30,9 +30,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDboImpl.getCustomers();
 	}
 	
-	public void addCustomer(int id, Customer customer) {
+	public void addCustomer(Customer customer) {
 		logger.error("Inside add product Service class"+customer);
-		customerDboImpl.addCustomer(id, customer); 
+		customerDboImpl.addCustomer(customer); 
 	}
 	
 	public Customer getCustomerById(int id) {

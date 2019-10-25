@@ -8,11 +8,11 @@ import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
 public interface ProductService {
-	public void addProduct(int id, Product product);
+	public void addProduct(Product product);
     public void deleteProduct(int productId);
     public void updateProduct(int productId, Product Product);
     public List getProducts();
-    public Product getProductById(int id);
+    public List<Product> getProductById(int id);
     public void addImage(ProductImage productImage);
     public Set getImages();
 }
