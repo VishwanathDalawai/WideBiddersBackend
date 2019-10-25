@@ -1,5 +1,9 @@
-
-<app-header></app-header>
+<div *ngIf="email">
+<app-header [loggedIn]="email" ></app-header>
+</div>
+<div *ngIf="!email">
+    <app-header ></app-header>
+</div>
  
 <div class="container" style="height:20px;">  
         <div id="myCarousel" class="carousel slide" data-ride="carousel">

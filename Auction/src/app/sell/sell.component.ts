@@ -77,13 +77,26 @@ a:any;
     this.product = 
        {
        "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "description":this.product_desc,
+<<<<<<< HEAD
        "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
        "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
       ]
+=======
+       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "productImage":this.ProductImages
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
       };
       console.log(this.Data[0]);
+<<<<<<< HEAD
 
        let obs =  this.http.post("http://localhost/addproduct/",this.product);
+=======
+   
+
+       let obs =  this.http.post("http://192.168.2.35:80/addproduct/",this.product);
+
+       
+
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
        obs.subscribe(()=>{
             
            })

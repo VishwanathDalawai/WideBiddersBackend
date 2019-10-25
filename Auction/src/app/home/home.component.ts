@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -29,10 +30,12 @@ export class HomeComponent implements OnInit {
 name:any;
 item:any
 imageData=[];
-  constructor(private http:HttpClient) { }
+email:any;
+  constructor(private http:HttpClient,private activate:ActivatedRoute) { }
 
   ngOnInit() {
-    let obs =  this.http.get("http://localhost/products");
+    this.email = this.activate.snapshot.paramMap.get('email');
+    let obs =  this.http.get("http://192.168.2.35:80/products");
     obs.subscribe((response)=>{
         
          this.data = response;
