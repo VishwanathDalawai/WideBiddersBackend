@@ -65,19 +65,11 @@ a:any;
 
 /*
     this.ProductImages=[
-<<<<<<< HEAD
     { "productImage":this.Data[0] },
     { "productImage":this.Data[1] },
      { "productImage":this.Data[2] },
     { "productImage":this.Data[3] },
     {  "productImage":this.Data[4] }
-=======
-    {"productImage":this.Data[0]},
-    {"productImage":this.Data[1]},
-     {"productImage":this.Data[2]},
-    {"productImage":this.Data[3]},
-    {"productImage":this.Data[4]}
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
     ];
 */
     //[{"productImage":"hey"}]
@@ -85,28 +77,13 @@ a:any;
     this.product = 
        {
        "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "description":this.product_desc,
-<<<<<<< HEAD
-       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "productImage":this.ProductImages
-=======
        "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
        "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
-       //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
       };
-<<<<<<< HEAD
       console.log(this.Data[0]);
-=======
-      
-    
-    console.log("image passed"+this.Data[0]);
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
-   
-<<<<<<< HEAD
-       let obs =  this.http.post("http://localhost:80/addproduct/",this.product);
-=======
+
        let obs =  this.http.post("http://localhost/addproduct/",this.product);
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
        obs.subscribe(()=>{
             
            })
