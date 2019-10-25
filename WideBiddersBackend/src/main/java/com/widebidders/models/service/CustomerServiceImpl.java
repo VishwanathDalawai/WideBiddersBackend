@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.widebidders.models.db.CustomerDaoImpl;
 import com.widebidders.models.entities.Customer;
+import com.widebidders.models.entities.LoginEntity;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -36,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDboImpl.addCustomer(customer); 
 	}
 	
-	public Customer getCustomerById(int id) {
+	public List getCustomerById(int id) {
 		return customerDboImpl.getCustomerById(id);
 	}
 
@@ -47,4 +48,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public void updateCustomer(int id, Customer customer) {
 		customerDboImpl.updateCustomer(id, customer);
 	}
+
+	@Override
+	public boolean loginAuthentication(LoginEntity login) {
+		return customerDboImpl.loginAuthentication(login) ;
+	}
+	
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.widebidders.models.db.CustomerDaoImpl;
 import com.widebidders.models.entities.Customer;
+import com.widebidders.models.entities.LoginEntity;
+import com.widebidders.models.service.CustomerService;
 import com.widebidders.models.service.CustomerServiceImpl;
 
 @RestController
@@ -41,7 +43,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customerId/{id}")
-	public Customer getCustomerById(@PathVariable int id) {
+	public List getCustomerById(@PathVariable int id) {
 		return customerService.getCustomerById(id);
 	}
 
@@ -55,4 +57,9 @@ public class CustomerController {
 		customerService.updateCustomer(id, customer);
 	}
 
+	@RequestMapping(value = "/customerLogin", method = RequestMethod.POST)
+	public boolean login(@RequestBody LoginEntity login) {
+		return customerService.loginAuthentication(login);
+
+	}
 }

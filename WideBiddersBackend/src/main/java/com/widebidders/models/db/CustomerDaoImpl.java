@@ -1,9 +1,12 @@
 package com.widebidders.models.db;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.ListIterator;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -13,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.Product;
+import com.widebidders.models.entities.LoginEntity;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -33,7 +36,33 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public List getCustomers() {
 		logger.info("Inside Cusromer Dao ");
-		return null;
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List customers = null;
+		try {
+			tx = session.beginTransaction();
+			customers = session.createQuery("FROM Customer ").list();
+			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+				Customer customer = (Customer) iterator1.next();
+				System.out.print("First Name: " + customer.getCustomerId());
+				System.out.print("  Last Name: " + customer.getCustomerName());
+				System.out.println("  Salary: " + customer.getPhoneNumber());
+				System.out.println("  Salary: " + customer.getEmailId());
+				System.out.println("  Salary: " + customer.getPassword());
+				System.out.println("  Salary: " + customer.getUserStatusActive());
+				System.out.println("  Salary: " + customer.getUserType());
+				System.out.println("  Salary: " + customer.getUserImage());
+
+			}
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return customers;
+
 	}
 
 	@Override
@@ -56,33 +85,88 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public Customer getCustomerById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List getCustomerById(int id) {
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Customer> results = new ArrayList<Customer>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Customer WHERE customerId = :id";
+			System.out.println("ID is " + id);
+			Query query = session.createQuery(hql);
+			query.setParameter("id", id);
+
+			List<Customer> list = query.list();
+			results.addAll(list);
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return results;
 	}
 
 	@Override
 	public void deleteCustomer(int id) {
-		 Session session = factory.openSession();
-	      Transaction tx = null;
+		Session session = factory.openSession();
+		Transaction tx = null;
 
-	      try {
-	         tx = session.beginTransaction();
-	         Customer customer = (Customer)session.get(Customer.class, id); 
-	         session.delete(customer); 
-	         tx.commit();
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
+		try {
+			tx = session.beginTransaction();
+			Customer customer = (Customer) session.get(Customer.class, id);
+			session.delete(customer);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
 	public void updateCustomer(int id, Customer customer) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public boolean loginAuthentication(LoginEntity login) {
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Customer> customers = new ArrayList<Customer>();
+
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Customer";
+
+			customers = session.createQuery("FROM Customer").list();
+			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+				Customer customer = (Customer) iterator1.next();
+				System.out.println("Email ID: " + customer.getEmailId());
+				System.out.println("Password: " + customer.getPassword());
+				System.out.println("login");
+				System.out.println("Email ID: " + login.getEmailId());
+				System.out.print("Password: " + login.getPassword());
+				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
+						&& (login.getPassword().equals(customer.getPassword()))) {
+					System.out.println("Success");
+					return true;
+				}
+			}
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return false;
 	}
 
 }
