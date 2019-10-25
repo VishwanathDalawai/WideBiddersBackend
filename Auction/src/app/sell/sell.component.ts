@@ -65,11 +65,11 @@ a:any;
 
 /*
     this.ProductImages=[
-    { "productImage":this.Data[0] },
-    { "productImage":this.Data[1] },
-     { "productImage":this.Data[2] },
-    { "productImage":this.Data[3] },
-    {  "productImage":this.Data[4] }
+    {"productImage":this.Data[0]},
+    {"productImage":this.Data[1]},
+     {"productImage":this.Data[2]},
+    {"productImage":this.Data[3]},
+    {"productImage":this.Data[4]}
     ];
 */
     //[{"productImage":"hey"}]
@@ -77,15 +77,16 @@ a:any;
     this.product = 
        {
        "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "description":this.product_desc,
-       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "productImage":this.ProductImages
+       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
+       "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
+       //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
+      ]
       };
-      console.log(this.Data[0]);
+      
+    
+    console.log("image passed"+this.Data[0]);
    
-
        let obs =  this.http.post("http://192.168.2.35:80/addproduct/",this.product);
-
-       
-
        obs.subscribe(()=>{
             
            })
