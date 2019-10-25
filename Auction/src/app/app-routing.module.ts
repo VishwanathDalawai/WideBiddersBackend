@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserAddedComponent } from './user-added/user-added.component';
 import { HeaderComponent } from './header/header.component';
+import { MyproductsComponent } from './myproducts/myproducts.component';
 
 
 const routes: Routes = [
@@ -17,10 +18,11 @@ const routes: Routes = [
   {path:"home", component:HomeComponent},
   {path:"home/:email", component:HomeComponent},
   {path:"sell", component:SellComponent},
+  {path:"myproduct", component:MyproductsComponent},
   {path:"congrats", component:CongratsComponent},
   {path:"category", component:CategoryComponent},
   {path:"product/:id", component:ProductComponent},
-  {path:"home/product/:id", component:ProductComponent},
+  {path:"home/:email/product/:id", component:ProductComponent},
   {path:"bidplaced", component:BidPlacedComponent},
   {path:"register", component:RegisterComponent},
   {path:"login", component:LoginComponent},

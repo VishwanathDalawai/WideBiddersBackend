@@ -3,32 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-myproducts',
+  templateUrl: './myproducts.component.html',
+  styleUrls: ['./myproducts.component.css']
 })
-export class HomeComponent implements OnInit {
-
-/*
-  product_name:string="";
-  product_category:string="";
-  product_model:string="";
-  product_desc:string="";
-  year:string="";
-  min_bid_price:string="";
-  increment:string="";
-  
-  product:any;
-  ProductImages:any;
-  image1:any;
-  image2:any;
-  image3:any;
-  image4:any;
-  image5:any;
-*/
-  data:any;
-name:any;
-item:any
+export class MyproductsComponent implements OnInit {
+data:any;
 imageData=[];
 email:any;
   constructor(private http:HttpClient,private activate:ActivatedRoute) { }

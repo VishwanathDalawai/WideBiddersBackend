@@ -24,11 +24,11 @@ status:boolean=true;
   login(){
    
 this.credential = {
-  "userName":this.userName, "password":this.password
+  "emailId":this.userName, "password":this.password
 };
 console.log(this.credential);
 
-let obs =  this.http.post("http://192.168.2.35:80/customerLogin/",this.credential);
+let obs =  this.http.post("http://localhost/customerLogin/",this.credential);
 
 obs.subscribe((response)=>{
   
