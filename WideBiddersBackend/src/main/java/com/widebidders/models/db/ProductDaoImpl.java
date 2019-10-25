@@ -143,6 +143,7 @@ public class ProductDaoImpl implements ProductDao {
 	 		 
 	 		 List<Product> list = query.list();
 	 			 results.addAll(list); 
+	 			 
 	      	}    
 	      catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
