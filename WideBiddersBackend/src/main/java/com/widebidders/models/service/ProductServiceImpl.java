@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.widebidders.models.db.ProductDaoImpl;
+import com.widebidders.models.entities.LoginEntity;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
@@ -67,4 +68,10 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public boolean loginAuthentication(LoginEntity login)
+	{
+		return false;
+		
+	}
+	
 }

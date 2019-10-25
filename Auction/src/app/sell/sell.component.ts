@@ -91,10 +91,14 @@ a:any;
 >>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
    
 <<<<<<< HEAD
+<<<<<<< HEAD
 
        let obs =  this.http.post("http://localhost/addproduct/",this.product);
 =======
        let obs =  this.http.post("http://192.168.2.35:80/addproduct/",this.product);
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
+=======
+       let obs =  this.http.post("http://localhost/addproduct/",this.product);
 >>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
        obs.subscribe(()=>{
             

@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
     
     console.log("image passed"+this.Data);
    
-       let obs =  this.http.post("http://192.168.2.35:80/addCustomer/",this.user);
+       let obs =  this.http.post("http://localhost/addCustomer/",this.user);
        obs.subscribe(()=>{
             
            })
