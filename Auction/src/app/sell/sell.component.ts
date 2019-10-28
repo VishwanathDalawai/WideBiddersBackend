@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sell',
@@ -9,6 +10,7 @@ import { Router} from '@angular/router';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
+url1=environment.apiBaseUrl + "addproduct/";
   product_name:string="";
   product_category:string="";
   product_model:string="";
@@ -74,17 +76,25 @@ a:any;
 */
     //[{"productImage":"hey"}]
 
-    this.product = 
+   this.product = 
        {
-       "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "description":this.product_desc,
-       "year": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
+       "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
+       "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
        "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
       };
+<<<<<<< HEAD
       console.log(this.Data[0]);
 
        let obs =  this.http.post("http://localhost/addproduct/",this.product);
+=======
+      
+    
+    console.log("image passed"+this.Data[0]);
+   
+     let obs =  this.http.post(this.url1,this.product);
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
        obs.subscribe(()=>{
             
            })

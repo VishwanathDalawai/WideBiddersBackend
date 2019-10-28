@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  url1=environment.apiBaseUrl + "customerLogin/";
 
   userName:string="";
   password:string="";
@@ -28,7 +31,7 @@ this.credential = {
 };
 console.log(this.credential);
 
-let obs =  this.http.post("http://localhost/customerLogin/",this.credential);
+let obs =  this.http.post(this.url1,this.credential);
 
 obs.subscribe((response)=>{
   

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-myproducts',
@@ -8,6 +9,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./myproducts.component.css']
 })
 export class MyproductsComponent implements OnInit {
+
+  url1=environment.apiBaseUrl + "products";
+
 data:any;
 imageData=[];
 email:any;
@@ -15,7 +19,7 @@ email:any;
 
   ngOnInit() {
     this.email = this.activate.snapshot.paramMap.get('email');
-    let obs =  this.http.get("http://localhost/products");
+    let obs =  this.http.get(this.url1);
     obs.subscribe((response)=>{
         
          this.data = response;
