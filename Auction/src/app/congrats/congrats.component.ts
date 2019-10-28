@@ -13,7 +13,7 @@ export class CongratsComponent implements OnInit {
   ngOnInit() {
   }
   goHome(){
-    this.router.navigate(["home"]);
+    this.router.navigate([""]);
   }
 
 }

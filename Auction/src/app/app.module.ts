@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { UserAddedComponent } from './user-added/user-added.component';
 import { MyproductsComponent } from './myproducts/myproducts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     LoginComponent,
     UserAddedComponent,
     MyproductsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,

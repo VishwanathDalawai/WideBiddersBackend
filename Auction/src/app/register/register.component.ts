@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +9,8 @@ import { Router} from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  url1=environment.apiBaseUrl + "addCustomer/";
 
   fullName:string="";
   email:string="";
@@ -61,7 +64,7 @@ export class RegisterComponent implements OnInit {
     
     console.log("image passed"+this.Data);
    
-       let obs =  this.http.post("http://localhost/addCustomer/",this.user);
+       let obs =  this.http.post(this.url1,this.user);
        obs.subscribe(()=>{
             
            })

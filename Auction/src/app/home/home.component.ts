@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  url1=environment.apiBaseUrl + "products";
 
 /*
   product_name:string="";
@@ -34,9 +37,9 @@ email:any;
   constructor(private http:HttpClient,private activate:ActivatedRoute) { }
 
   ngOnInit() {
-    console.log("product image1");
+  //  console.log("product image1");
     this.email = this.activate.snapshot.paramMap.get('email');
-    let obs =  this.http.get("http://localhost/products");
+    let obs =  this.http.get(this.url1);
     obs.subscribe((response)=>{
         
          this.data = response;
@@ -49,8 +52,8 @@ email:any;
           this.imageData.push('data:image/png;base64,'+this.data[prop].productImage[0].productImage);
           }
       } */
-      console.log("product image2");
-      console.log(this.data.productImage[0].productImage);
+  //    console.log("product image2");
+  //    console.log(this.data.productImage[0].productImage);
        //  this.imageData.push('data:image/png;base64,' +this.data[11].productImage[0].productImage);
 
      //    this.name =this.data[1].productName
