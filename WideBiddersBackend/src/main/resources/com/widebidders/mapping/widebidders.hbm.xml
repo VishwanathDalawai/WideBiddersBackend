@@ -66,8 +66,8 @@
      
      <property name = "customerName" column = "customer_Name" type="string"/>
      <property name = "phoneNumber" column = "phone_Number" type="string"/>
-     <property name = "userEmailId" column = "user_Email_Id" type="string"/>
-     <property name = "userPassword" column = "user_password" type="string"/>
+     <property name = "emailId" column = "user_Email_Id" type="string"/>
+     <property name = "password" column = "user_password" type="string"/>
      <property name = "userType" column = "user_type" type="string"/>
      <property name = "userStatusActive" column = "user_Status_Active" type="string"/>
      <property name = "userImage" column = "user_Image" type="string"/>

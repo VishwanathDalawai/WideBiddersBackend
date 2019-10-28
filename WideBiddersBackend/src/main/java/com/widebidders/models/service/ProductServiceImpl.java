@@ -1,10 +1,10 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.widebidders.models.db.ProductDaoImpl;
+import com.widebidders.models.entities.LoginEntity;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
@@ -19,15 +20,16 @@ import com.widebidders.models.entities.ProductImage;
 public class ProductServiceImpl implements ProductService{
 	private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 	
-	Map<Integer,Product> ProductMap = new HashMap<Integer, Product>();
-	static int productId = 10;
+	@Autowired
+	HttpSession httpSession;
+	
 	Set productImages = new HashSet();
 	
 	@Autowired
     private ProductDaoImpl productDboImpl;
 	
 	public ProductServiceImpl() {
-		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8 Model"));
+		
 	}
 
 	public List getProducts() {
@@ -62,4 +64,10 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public boolean loginAuthentication(LoginEntity login)
+	{
+		return false;
+		
+	}
+	
 }

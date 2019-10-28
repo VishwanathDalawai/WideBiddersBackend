@@ -6,8 +6,8 @@ public class Customer {
 	private int customerId;
 	private String customerName;
 	private String phoneNumber;
-	private String userEmailId;
-	private String userPassword;
+	private String emailId;
+	private String password;
 	private String userType;
 	private String userStatusActive;
 	private String userImage;
@@ -16,12 +16,12 @@ public class Customer {
 	public Customer(){
 	} 
 	
-	public Customer(String customerName, String phoneNumber, String userEmailId, String userPassword,
+	public Customer(String customerName, String phoneNumber, String emailId, String password,
 			String userType, String userStatusActive, String userImage) {
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;
-		this.userEmailId = userEmailId;
-		this.userPassword = userPassword;
+		this.emailId = emailId;
+		this.password = password;
 		this.userType = userType;
 		this.userStatusActive = userStatusActive;
 		this.userImage = userImage;
@@ -51,20 +51,20 @@ public class Customer {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getUserEmailId() {
-		return userEmailId;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setUserEmailId(String userEmailId) {
-		this.userEmailId = userEmailId;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
-	public String getUserPassword() {
-		return userPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getUserType() {

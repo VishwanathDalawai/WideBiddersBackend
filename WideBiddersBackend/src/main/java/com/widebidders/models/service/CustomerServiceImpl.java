@@ -1,8 +1,8 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,19 +11,19 @@ import org.springframework.stereotype.Service;
 
 import com.widebidders.models.db.CustomerDaoImpl;
 import com.widebidders.models.entities.Customer;
+import com.widebidders.models.entities.LoginEntity;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
-	Map<Integer, Customer> CustomerMap = new HashMap<Integer, Customer>();
-	static int productId = 10;
-
+	@Autowired
+	HttpSession httpSession;
+	
 	@Autowired(required=true)
     private CustomerDaoImpl customerDboImpl;
 	
 	public CustomerServiceImpl() {
-		CustomerMap.put(1, new Customer("anu", "636", "anugmailcom", "anu123", "user", "yes", "img1"));
 	}
 
 	public List getCustomers() {
@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDboImpl.addCustomer(customer); 
 	}
 	
-	public Customer getCustomerById(int id) {
+	public List getCustomerById(int id) {
 		return customerDboImpl.getCustomerById(id);
 	}
 
@@ -46,5 +46,15 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public void updateCustomer(int id, Customer customer) {
 		customerDboImpl.updateCustomer(id, customer);
+	}
+
+	@Override
+	public boolean loginAuthentication(LoginEntity login) {
+		int customerID = customerDboImpl.loginAuthentication(login);	//returns -1 if customerId is not found, else returns customerID
+		if(customerID == -1){		
+			return false;
+		}
+		httpSession.setAttribute("customerID", customerID);
+		return true;
 	}
 }

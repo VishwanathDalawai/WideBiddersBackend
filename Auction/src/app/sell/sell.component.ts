@@ -10,9 +10,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
-
 url1=environment.apiBaseUrl + "addproduct/";
-
   product_name:string="";
   product_category:string="";
   product_model:string="";
@@ -78,7 +76,7 @@ a:any;
 */
     //[{"productImage":"hey"}]
 
-    this.product = 
+   this.product = 
        {
        "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
        "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
@@ -90,7 +88,7 @@ a:any;
     
     console.log("image passed"+this.Data[0]);
    
-       let obs =  this.http.post(this.url1,this.product);
+     let obs =  this.http.post(this.url1,this.product);
        obs.subscribe(()=>{
             
            })
