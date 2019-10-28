@@ -1,8 +1,6 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,9 +17,6 @@ import com.widebidders.models.entities.LoginEntity;
 public class CustomerServiceImpl implements CustomerService {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
-	Map<Integer, Customer> CustomerMap = new HashMap<Integer, Customer>();
-	static int productId = 10;
-
 	@Autowired
 	HttpSession httpSession;
 	
@@ -29,7 +24,6 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDaoImpl customerDboImpl;
 	
 	public CustomerServiceImpl() {
-		CustomerMap.put(1, new Customer("anu", "636", "anugmailcom", "anu123", "user", "yes", "img1"));
 	}
 
 	public List getCustomers() {
@@ -56,7 +50,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public boolean loginAuthentication(LoginEntity login) {
-		return customerDboImpl.loginAuthentication(login) ;
+		int customerID = customerDboImpl.loginAuthentication(login);	//returns -1 if customerId is not found, else returns customerID
+		if(customerID == -1){		
+			return false;
+		}
+		httpSession.setAttribute("customerID", customerID);
+		return true;
 	}
-	
 }

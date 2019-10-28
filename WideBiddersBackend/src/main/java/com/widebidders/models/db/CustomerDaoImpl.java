@@ -135,7 +135,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
-	public boolean loginAuthentication(LoginEntity login) {
+	public int loginAuthentication(LoginEntity login) {
 
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -156,7 +156,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
 						&& (login.getPassword().equals(customer.getPassword()))) {
 					System.out.println("Success");
-					return true;
+					return customer.getCustomerId();
 				}
 			}
 		} catch (HibernateException e) {
@@ -166,7 +166,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-		return false;
+		return -1;
 	}
 
 }

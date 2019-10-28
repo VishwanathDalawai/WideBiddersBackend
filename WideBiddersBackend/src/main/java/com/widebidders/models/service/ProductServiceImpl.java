@@ -1,9 +1,7 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -25,15 +23,13 @@ public class ProductServiceImpl implements ProductService{
 	@Autowired
 	HttpSession httpSession;
 	
-	Map<Integer,Product> ProductMap = new HashMap<Integer, Product>();
-	static int productId = 10;
 	Set productImages = new HashSet();
 	
 	@Autowired
     private ProductDaoImpl productDboImpl;
 	
 	public ProductServiceImpl() {
-		ProductMap.put(1, new Product(1,"electronics", "tv", "battery performance", 20000, "yes", "no",2000,"2000","A8 Model"));
+		
 	}
 
 	public List getProducts() {

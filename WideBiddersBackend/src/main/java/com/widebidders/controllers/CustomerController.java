@@ -60,6 +60,5 @@ public class CustomerController {
 	@RequestMapping(value = "/customerLogin", method = RequestMethod.POST)
 	public boolean login(@RequestBody LoginEntity login) {
 		return customerService.loginAuthentication(login);
-
 	}
 }
