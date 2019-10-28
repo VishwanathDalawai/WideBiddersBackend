@@ -34,20 +34,23 @@ email:any;
   constructor(private http:HttpClient,private activate:ActivatedRoute) { }
 
   ngOnInit() {
+    console.log("product image1");
     this.email = this.activate.snapshot.paramMap.get('email');
     let obs =  this.http.get("http://localhost/products");
     obs.subscribe((response)=>{
         
          this.data = response;
          
-         for (var prop in this.data) {
+     /*    for (var prop in this.data) {
           console.log("Key:" + prop);
           if(this.data[prop].productImage[0]!=undefined)
           {
           console.log("Value:" + this.data[prop].productImage[0].productImage);
           this.imageData.push('data:image/png;base64,'+this.data[prop].productImage[0].productImage);
           }
-      }
+      } */
+      console.log("product image2");
+      console.log(this.data.productImage[0].productImage);
        //  this.imageData.push('data:image/png;base64,' +this.data[11].productImage[0].productImage);
 
      //    this.name =this.data[1].productName
