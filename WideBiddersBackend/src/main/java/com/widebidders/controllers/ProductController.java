@@ -36,7 +36,7 @@ public class ProductController {
 	@RequestMapping(value = "/productId/{id}")
 	public List getProductById(@PathVariable int id) {
 		return ProductService.getProductById(id);
-	}
+	} 
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public void addProduct(@RequestBody Product product, HttpServletRequest request) {
