@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,8 +15,10 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
@@ -35,13 +39,15 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	@Override
-	public void addProduct(Product product) {
+	public void addProduct(Product product, Customer customer) {
 	    logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 	    Transaction tx = null;
-	    Integer productId = null;
+	    List customers = null;
 	    try {
 	         tx = session.beginTransaction();
+	         logger.info("Customer "+(Set<Customer>)customer);
+	    	 product.setCustomer((Set<Customer>) customer);
 	         session.save(product);
 	         tx.commit();
 	      } catch (HibernateException e) {
@@ -106,7 +112,6 @@ public class ProductDaoImpl implements ProductDao {
 	            System.out.print("First Name: " + product.getProductId()); 
 	            System.out.print("  Last Name: " + product.getProductName()); 
 	            System.out.println("  Salary: " + product.getProductDescription());
-	            System.out.println("  Salary: " + product.getProductBougthYear());
 	            System.out.println("  Salary: " + product.getProductCategoryName());
 	            System.out.println("  Salary: " + product.getProductModel());
 	            System.out.println("  Salary: " + product.getProductDescription());

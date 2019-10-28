@@ -16,9 +16,6 @@ import com.widebidders.models.entities.LoginEntity;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
-
-	@Autowired
-	HttpSession httpSession;
 	
 	@Autowired(required=true)
     private CustomerDaoImpl customerDboImpl;
@@ -26,35 +23,35 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerServiceImpl() {
 	}
 
+	@Override
 	public List getCustomers() {
 		logger.info("Inside Customer Service get customers");
 		return customerDboImpl.getCustomers();
 	}
 	
+	@Override
 	public void addCustomer(Customer customer) {
-		logger.error("Inside add product Service class"+customer);
+		logger.error("Inside add Customer Service class"+customer);
 		customerDboImpl.addCustomer(customer); 
 	}
 	
+	@Override
 	public List getCustomerById(int id) {
 		return customerDboImpl.getCustomerById(id);
 	}
 
+	@Override
 	public void deleteCustomer(int id) {
 		customerDboImpl.deleteCustomer(id);
 	}
 
+	@Override
 	public void updateCustomer(int id, Customer customer) {
 		customerDboImpl.updateCustomer(id, customer);
 	}
 
 	@Override
-	public boolean loginAuthentication(LoginEntity login) {
-		int customerID = customerDboImpl.loginAuthentication(login);	//returns -1 if customerId is not found, else returns customerID
-		if(customerID == -1){		
-			return false;
-		}
-		httpSession.setAttribute("customerID", customerID);
-		return true;
-	}
+	public Customer loginAuthentication(LoginEntity login) {
+		return customerDboImpl.loginAuthentication(login);
+	}	
 }

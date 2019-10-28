@@ -11,7 +11,6 @@ public class Customer {
 	private String userType;
 	private String userStatusActive;
 	private String userImage;
-	private Set<Product> products;
 
 	public Customer(){
 	} 
@@ -89,13 +88,5 @@ public class Customer {
 
 	public void setUserImage(String userImage) {
 		this.userImage = userImage;
-	}
-
-	public Set<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = products;
 	}
 }

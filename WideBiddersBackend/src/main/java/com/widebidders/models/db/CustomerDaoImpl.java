@@ -22,7 +22,7 @@ import com.widebidders.models.entities.LoginEntity;
 public class CustomerDaoImpl implements CustomerDao {
 
 	private SessionFactory factory;
-	private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
 	public CustomerDaoImpl() {
 		try {
@@ -135,8 +135,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
-	public int loginAuthentication(LoginEntity login) {
-
+	public Customer loginAuthentication(LoginEntity login) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Customer> customers = new ArrayList<Customer>();
@@ -156,7 +155,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
 						&& (login.getPassword().equals(customer.getPassword()))) {
 					System.out.println("Success");
-					return customer.getCustomerId();
+					return customer;
 				}
 			}
 		} catch (HibernateException e) {
@@ -166,7 +165,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-		return -1;
+		return null;
 	}
 
 }
