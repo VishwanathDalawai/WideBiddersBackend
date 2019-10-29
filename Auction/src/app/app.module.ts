@@ -20,6 +20,8 @@ import { MyproductsComponent } from './myproducts/myproducts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FaqComponent } from './faq/faq.component';
 import { AppService } from './app.service';
+import { CategoryDetailsComponent } from './category-details/category-details.component';
+import { ProductNameComponent } from './product-name/product-name.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { AppService } from './app.service';
     UserAddedComponent,
     MyproductsComponent,
     ContactUsComponent,
-    FaqComponent
+    FaqComponent,
+    CategoryDetailsComponent,
+    ProductNameComponent
   ],
   imports: [
     BrowserModule,

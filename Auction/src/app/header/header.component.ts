@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   param:any;
   userName:any;
   email:any;
+  product_name:string="";
 
   @Input() loggedIn:string;
   
@@ -53,6 +54,39 @@ export class HeaderComponent implements OnInit {
   }
 
 
+search(){
+  this.router.navigate(['productName',this.product_name]);
+}
+
+
+
+
+
+  car(){
+    this.router.navigate(['categoryDetails','car']);
+  }
+  mobile(){
+    this.router.navigate(['categoryDetails','mobile']);
+  }
+  furniture(){
+    this.router.navigate(['categoryDetails','furniture']);
+  }
+
+  fashion(){
+    this.router.navigate(['categoryDetails','fashion']);
+  }
+
+  bikes(){
+    this.router.navigate(['categoryDetails','bikes']);
+  }
+
+  books(){
+    this.router.navigate(['categoryDetails','books']);
+  }
+
+  electronics(){
+    this.router.navigate(['categoryDetails','electronics']);
+  }
 
 
 

@@ -13,6 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { MyproductsComponent } from './myproducts/myproducts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FaqComponent } from './faq/faq.component';
+import { CategoryDetailsComponent } from './category-details/category-details.component';
+import { ProductNameComponent } from './product-name/product-name.component';
 
 
 const routes: Routes = [
@@ -30,10 +32,12 @@ const routes: Routes = [
   {path:"login", component:LoginComponent},
   {path:"userAdded", component:UserAddedComponent},
   {path:"contact", component:ContactUsComponent},
-  {path:"faq", component:FaqComponent}
+  {path:"faq", component:FaqComponent},
+  {path:"categoryDetails/:category", component:CategoryDetailsComponent},
+  {path:"productName/:name", component:ProductNameComponent}
   
   
- 
+  
 ];
 
 @NgModule({
