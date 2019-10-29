@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 
+
+
 @Component({
   selector: 'app-sell',
   templateUrl: './sell.component.html',

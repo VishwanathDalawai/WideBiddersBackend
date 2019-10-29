@@ -12,6 +12,7 @@ import { UserAddedComponent } from './user-added/user-added.component';
 import { HeaderComponent } from './header/header.component';
 import { MyproductsComponent } from './myproducts/myproducts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,9 @@ const routes: Routes = [
   {path:"register", component:RegisterComponent},
   {path:"login", component:LoginComponent},
   {path:"userAdded", component:UserAddedComponent},
-  {path:"contact", component:ContactUsComponent}
+  {path:"contact", component:ContactUsComponent},
+  {path:"faq", component:FaqComponent}
+  
   
  
 ];

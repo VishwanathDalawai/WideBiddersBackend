@@ -7,10 +7,10 @@
 	
 		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 		<property name="hibernate.connection.url">jdbc:oracle:thin:@127.0.0.1:1521:XE</property>
-		<property name="hibernate.connection.username">vishwa</property>
-		<property name="hibernate.connection.password">akheel</property>
+		<property name="hibernate.connection.username">deekshith</property>
+		<property name="hibernate.connection.password">deekshith</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-		<property name="hibernate.default_schema">VISHWA</property>
+		<property name="hibernate.default_schema">deekshith</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">create</property>
 		<mapping resource="com/widebidders/mapping/widebidders.hbm.xml"></mapping>

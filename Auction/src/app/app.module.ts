@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SellComponent } from './sell/sell.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { CongratsComponent } from './congrats/congrats.component';
@@ -19,6 +19,7 @@ import { UserAddedComponent } from './user-added/user-added.component';
 import { MyproductsComponent } from './myproducts/myproducts.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FaqComponent } from './faq/faq.component';
+import { AppService } from './app.service';
 
 
 @NgModule({
@@ -48,4 +49,11 @@ import { FaqComponent } from './faq/faq.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
+
+
+
 export class AppModule { }
+
+
