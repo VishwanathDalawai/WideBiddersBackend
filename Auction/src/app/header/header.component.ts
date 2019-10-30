@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CustomerService } from '../customer.service';
 
 
 @Component({
@@ -12,16 +13,24 @@ export class HeaderComponent implements OnInit {
   userName:any;
   email:any;
   product_name:string="";
+  custId:any;
 
   @Input() loggedIn:string;
   
    //  static counter:number=0;
-  constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute){
+  constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService){
   this.param=this.router.url;
 
   }
 
   ngOnInit() {
+
+    this.custId=this.customerService.getCustomer();
+    console.log("customerId:" + this.custId);
+
+
+
+    
   //  console.log(HeaderComponent.counter);
    /* if(HeaderComponent.counter == 0){
 

@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { CustomerService } from '../customer.service';
 
 
 @Component({
@@ -15,10 +16,13 @@ export class LoginComponent implements OnInit {
 
   userName:string="";
   password:string="";
+custId:any;
+  data:any;
 
 credential:any;
+
 status:boolean=true;
-  constructor(private router: Router,private http:HttpClient) { }
+  constructor(private router: Router,private http:HttpClient,private customerService:CustomerService) { }
 
   ngOnInit() {
   }
@@ -29,25 +33,40 @@ status:boolean=true;
 this.credential = {
   "emailId":this.userName, "password":this.password
 };
+
+
+
+ //  this.customerService.add("16");
+ //  this.customerService.clear();
+
+
 console.log(this.credential);
 
 let obs =  this.http.post(this.url1,this.credential);
 
 obs.subscribe((response)=>{
   
-  this.status=false;
+this.data=response;
+//  this.status=false;
+
   console.log(response);
      if(response!=null){
-       if(response==true){
-         this.status=true;
+      
+    //   if(response==true){
+    //     this.status=true;
+    this.customerService.setCustomer(this.data);
+this.custId=this.customerService.getCustomer();
+
+// console.log(this.custId);
+
      this.router.navigate(["home",this.credential.emailId]);
     
 
-       }
-       else{
+ //      }
+   /*    else{
          this.status=false;
          this.router.navigate(["login"]);
-       }
+       } */
      }
     })
 

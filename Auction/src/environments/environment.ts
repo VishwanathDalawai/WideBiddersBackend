@@ -5,7 +5,10 @@
 export const environment = {
   production: false,
   apiBaseUrl:"http://43.88.107.16/"
+ 
 };
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file
