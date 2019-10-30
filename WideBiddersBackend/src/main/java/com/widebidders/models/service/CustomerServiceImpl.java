@@ -1,8 +1,6 @@
 package com.widebidders.models.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,16 +14,9 @@ import com.widebidders.models.entities.LoginEntity;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
-
-	Map<Integer, Customer> CustomerMap = new HashMap<Integer, Customer>();
-	static int productId = 10;
-
+	
 	@Autowired(required=true)
     private CustomerDaoImpl customerDboImpl;
-	
-	public CustomerServiceImpl() {
-		CustomerMap.put(1, new Customer("anu", "636", "anugmailcom", "anu123", "user", "yes", "img1"));
-	}
 
 	public List getCustomers() {
 		logger.info("Inside Customer Service get customers");

@@ -1,11 +1,12 @@
-package com.widebidders.models.entities;
+package com.widebidders.dto;
 
 import java.util.Set;
 
-import com.widebidders.dto.ProductDto;
+import com.widebidders.models.entities.Product;
+import com.widebidders.models.entities.ProductImage;
 
-public class Product {
-	
+public class ProductDto {
+
 	private int productId;
 	private String productCategoryName;
 	private String productName;
@@ -17,24 +18,12 @@ public class Product {
 	private String ProductBougthYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
-	
-	public Product() {
+
+	public ProductDto() {
+
 	}
-	
-	public Product(int productId, String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String ProductBougthYear,String productModel) {
-		this.productId = productId;
-		this.productCategoryName = productCategoryName;
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.startingBidPrice = startingBidPrice;
-		this.approvalStatus = approvalStatus;
-		this.reportFlag = reportFlag;
-		this.incrementPrice = incrementPrice;
-		this.productModel = productModel;
-		this.ProductBougthYear=ProductBougthYear;
-	}
-	public Product(ProductDto product) {
+
+	public ProductDto(Product product) {
 
 		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
@@ -45,9 +34,23 @@ public class Product {
 		this.reportFlag = product.getReportFlag();
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
+		this.ProductBougthYear=product.getProductBougthYear();
 
 	}
 
+	public ProductDto(int productId, String productCategoryName, String productName, String productDescription,
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice,
+			String ProductBougthYear, String productModel) {
+		this.productId = productId;
+		this.productCategoryName = productCategoryName;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.startingBidPrice = startingBidPrice;
+		this.approvalStatus = approvalStatus;
+		this.reportFlag = reportFlag;
+		this.incrementPrice = incrementPrice;
+		this.productModel = productModel;
+	}
 
 	public int getProductId() {
 		return productId;
@@ -136,4 +139,5 @@ public class Product {
 	public void setProductImage(Set<ProductImage> productImage) {
 		this.productImage = productImage;
 	}
+
 }

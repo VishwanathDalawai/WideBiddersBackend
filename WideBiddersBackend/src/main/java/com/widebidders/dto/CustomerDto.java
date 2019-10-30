@@ -1,10 +1,11 @@
-package com.widebidders.models.entities;
+package com.widebidders.dto;
 
 import java.util.Set;
 
-import com.widebidders.dto.CustomerDto;
+import com.widebidders.models.entities.Customer;
 
-public class Customer {
+public class CustomerDto {
+
 	private int customerId;
 	private String customerName;
 	private String phoneNumber;
@@ -13,22 +14,12 @@ public class Customer {
 	private String userType;
 	private String userStatusActive;
 	private String userImage;
-	private Set<Product> products;
+	private Set<ProductDto> products;
 
-	public Customer(){
-	} 
-	
-	public Customer(String customerName, String phoneNumber, String emailId, String password,
-			String userType, String userStatusActive, String userImage) {
-		this.customerName = customerName;
-		this.phoneNumber = phoneNumber;
-		this.emailId = emailId;
-		this.password = password;
-		this.userType = userType;
-		this.userStatusActive = userStatusActive;
-		this.userImage = userImage;
+	public CustomerDto() {
 	}
-	public Customer(CustomerDto customer) {
+
+	public CustomerDto(Customer customer) {
 		this.customerName = customer.getCustomerName();
 		this.phoneNumber = customer.getPhoneNumber();
 		this.emailId = customer.getEmailId();
@@ -36,6 +27,17 @@ public class Customer {
 		this.userType = customer.getUserType();
 		this.userStatusActive = customer.getUserStatusActive();
 		this.userImage = customer.getUserImage();
+	}
+
+	public CustomerDto(String customerName, String phoneNumber, String emailId, String password, String userType,
+			String userStatusActive, String userImage) {
+		this.customerName = customerName;
+		this.phoneNumber = phoneNumber;
+		this.emailId = emailId;
+		this.password = password;
+		this.userType = userType;
+		this.userStatusActive = userStatusActive;
+		this.userImage = userImage;
 	}
 
 	public int getCustomerId() {
@@ -102,11 +104,12 @@ public class Customer {
 		this.userImage = userImage;
 	}
 
-	public Set<Product> getProducts() {
+	public Set<ProductDto> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Set<Product> products) {
+	public void setProducts(Set<ProductDto> products) {
 		this.products = products;
 	}
+
 }

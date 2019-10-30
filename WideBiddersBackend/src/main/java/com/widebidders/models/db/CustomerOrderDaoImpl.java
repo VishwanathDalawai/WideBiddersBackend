@@ -1,10 +1,7 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
-
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -16,16 +13,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.LoginEntity;
+import com.widebidders.models.entities.CustomerOrders;
+import com.widebidders.models.service.CustomerOrdersService;
 
 @Repository
-public class CustomerDaoImpl implements CustomerDao {
+public class CustomerOrderDaoImpl implements CustomerOrderDao {
 
 	private SessionFactory factory;
-	private static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
-	public CustomerDaoImpl() {
+	private static final Logger logger = LoggerFactory.getLogger(CustomerOrderDaoImpl.class);
+	public CustomerOrderDaoImpl() {
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
@@ -35,35 +32,15 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public List getCustomers() {
-		logger.info("Inside Cusromer Dao ");
+	public void addOrder(CustomerOrdersService order) {
+	
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List customers = null;
 		try {
 			tx = session.beginTransaction();
-			customers = session.createQuery("FROM Customer ").list();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return customers;
-
-	}
-
-	@Override
-	public void addCustomer(Customer customer) {
-		Session session = factory.openSession();
-		Transaction tx = null;
-
-		try {
-			tx = session.beginTransaction();
-			session.save(customer);
+			session.save(order);
 			tx.commit();
-			logger.info("Added Successfully");
+			logger.info(" Order Added successfully");
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -75,19 +52,18 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public List getCustomerById(int id) {
-
+	public List getOrderById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List<Customer> results = new ArrayList<Customer>();
+		List<CustomerOrders> results = new ArrayList<CustomerOrders>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Customer WHERE customerId = :id";
+			String hql = "FROM CustomerOrders WHERE orderId = :id";
 			System.out.println("ID is " + id);
 			Query query = session.createQuery(hql);
 			query.setParameter("id", id);
 
-			List<Customer> list = query.list();
+			List<CustomerOrders> list = query.list();
 			results.addAll(list);
 
 		} catch (HibernateException e) {
@@ -98,19 +74,17 @@ public class CustomerDaoImpl implements CustomerDao {
 			session.close();
 		}
 		return results;
+		
 	}
 
 	@Override
-	public void deleteCustomer(int id) {
+	public List getOrders() {
 		Session session = factory.openSession();
 		Transaction tx = null;
-
+		List orders = null;
 		try {
 			tx = session.beginTransaction();
-			Customer customer = (Customer) session.get(Customer.class, id);
-			session.delete(customer);
-			tx.commit();
-			logger.info("Deleted successfully.... ");
+			orders = session.createQuery("FROM CustomerOrders ").list();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -118,41 +92,37 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
+		return orders;
 	}
 
 	@Override
-	public void updateCustomer(int id, Customer customer) {
+	public void deleteOrder(int id) {
+		
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			CustomerOrdersService order = (CustomerOrdersService) session.get(CustomerOrdersService.class, id);
+			session.delete(order);
+			tx.commit();
+			logger.info(" order deleted successfully");
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+			
+		} finally {
+			session.close();
+		}
+
+	}
+
+	@Override
+	public void updateOrderDetails(int id, CustomerOrdersService order) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public boolean loginAuthentication(LoginEntity login) {
-
-		Session session = factory.openSession();
-		Transaction tx = null;
-		List<Customer> customers = new ArrayList<Customer>();
-
-		try {
-			tx = session.beginTransaction();
-			String hql = "FROM Customer";
-
-			customers = session.createQuery("FROM Customer").list();
-			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
-				Customer customer = (Customer) iterator1.next();
-				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
-						&& (login.getPassword().equals(customer.getPassword()))) {
-					logger.info("login successfull...");
-					return true;
-				}
-			}
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return false;
 	}
 
 }
