@@ -38,7 +38,7 @@ email:any;
 
   ngOnInit() {
   //  console.log("product image1");
-    this.email = this.activate.snapshot.paramMap.get('email');
+  //  this.email = this.activate.snapshot.paramMap.get('email');
     let obs =  this.http.get(this.url1);
     obs.subscribe((response)=>{
         

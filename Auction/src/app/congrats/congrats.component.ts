@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-congrats',
@@ -7,13 +8,16 @@ import { Router} from '@angular/router';
   styleUrls: ['./congrats.component.css']
 })
 export class CongratsComponent implements OnInit {
-
-  constructor(private router:Router) { }
+  custId:any;
+  constructor(private router:Router,private customerService:CustomerService) { }
 
   ngOnInit() {
+    this.custId=this.customerService.getCustomer();
+    console.log("inside congrats" + this.custId);
   }
   goHome(){
-    this.router.navigate([""]);
+    this.router.navigate(["home"]);
+
   }
 
 }

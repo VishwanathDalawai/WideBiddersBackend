@@ -25,7 +25,11 @@
             ],
             "styles": [
               "src/styles.css",
+<<<<<<< HEAD
               "node_modules/ngx-toastr/toastr.css"
+=======
+              "node_modules/ngx-toastr/toastr.css" 
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
             ],
             "scripts": []
           },
@@ -90,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css"            
             ],
             "scripts": []
           }
