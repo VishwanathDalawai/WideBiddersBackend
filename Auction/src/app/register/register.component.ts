@@ -48,12 +48,8 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
-<<<<<<< HEAD
-    
-=======
    
    
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
   }
 
 
@@ -80,11 +76,6 @@ export class RegisterComponent implements OnInit {
             
            })
 
-<<<<<<< HEAD
-          
-   this.router.navigate(["userAdded"]);
-   
-=======
      
            
            this.toastr.success('You have registered successfully', 'Sucess');
@@ -95,7 +86,6 @@ export class RegisterComponent implements OnInit {
 
  /* this.toastr.success('Successful','Success');
    this.router.navigate(["/home"]); */
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
   }
 
 

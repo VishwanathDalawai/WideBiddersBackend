@@ -53,14 +53,9 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-<<<<<<< HEAD
-    FormsModule
-   
-=======
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot() // ToastrModule added
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
   ],
   providers: [],
   bootstrap: [AppComponent]

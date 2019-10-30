@@ -19,10 +19,6 @@
     "@angular/platform-browser": "~8.2.3",
     "@angular/platform-browser-dynamic": "~8.2.3",
     "@angular/router": "~8.2.3",
-<<<<<<< HEAD
-    "ng2-cookies": "^1.0.12",
-=======
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
     "ngx-toastr": "^11.1.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
