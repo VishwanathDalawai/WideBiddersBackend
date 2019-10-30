@@ -47,16 +47,16 @@
           <ul class="nav navbar-nav navbar-right" style="margin:0px 240px 0px 0px;">
             <li><button class="btn btn-danger navbar-btn" (click)="sell()">Sell</button></li>
             </ul>
-         <div *ngIf="!loggedIn"> 
+         <div *ngIf="!emailId"> 
            <ul class="nav navbar-nav navbar-right" style="margin:0px -230px 0px 0px;">
          <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-user" (click) ="signup()">SignUp</button></li>
             <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-log-in" (click) ="login()">Login</button></li>
           </ul>
           </div> 
-          <div *ngIf="loggedIn">
+          <div *ngIf="emailId">
             <ul class="nav navbar-nav navbar-right" style="margin:0px -230px 0px 0px;">
               <li class="dropdown"><a class="dropdown-toggle"
-                data-toggle="dropdown" href="#"> {{loggedIn}} <span class="caret"></span></a>
+                data-toggle="dropdown" href="#"> {{emailId}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a routerLink="/myproduct">My Products</a></li>
                   <li><a href="#">LogOut</a></li>               
