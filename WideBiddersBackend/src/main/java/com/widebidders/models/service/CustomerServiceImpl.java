@@ -1,6 +1,11 @@
 package com.widebidders.models.service;
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+
+import javax.servlet.http.HttpSession;
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,32 +22,42 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired(required=true)
     private CustomerDaoImpl customerDboImpl;
+<<<<<<< HEAD
+=======
+	
+	public CustomerServiceImpl() {
+	}
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 
+	@Override
 	public List getCustomers() {
 		logger.info("Inside Customer Service get customers");
 		return customerDboImpl.getCustomers();
 	}
 	
+	@Override
 	public void addCustomer(Customer customer) {
-		logger.error("Inside add product Service class"+customer);
+		logger.error("Inside add Customer Service class"+customer);
 		customerDboImpl.addCustomer(customer); 
 	}
 	
+	@Override
 	public List getCustomerById(int id) {
 		return customerDboImpl.getCustomerById(id);
 	}
 
+	@Override
 	public void deleteCustomer(int id) {
 		customerDboImpl.deleteCustomer(id);
 	}
 
+	@Override
 	public void updateCustomer(int id, Customer customer) {
 		customerDboImpl.updateCustomer(id, customer);
 	}
 
 	@Override
-	public boolean loginAuthentication(LoginEntity login) {
-		return customerDboImpl.loginAuthentication(login) ;
-	}
-	
+	public Customer loginAuthentication(LoginEntity login) {
+		return customerDboImpl.loginAuthentication(login);
+	}	
 }

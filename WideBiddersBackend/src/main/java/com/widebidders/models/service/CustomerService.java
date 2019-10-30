@@ -12,6 +12,5 @@ public interface CustomerService {
 	public List getCustomerById(int id);
 	public void deleteCustomer(int id);
 	public void updateCustomer(int id, Customer customer);
-	public boolean loginAuthentication(LoginEntity login); 
-	
+	public Customer loginAuthentication(LoginEntity login); 
 }

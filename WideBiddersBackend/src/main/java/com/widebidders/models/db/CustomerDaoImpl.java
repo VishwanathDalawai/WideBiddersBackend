@@ -126,8 +126,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
-	public boolean loginAuthentication(LoginEntity login) {
-
+	public Customer loginAuthentication(LoginEntity login) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Customer> customers = new ArrayList<Customer>();
@@ -141,8 +140,13 @@ public class CustomerDaoImpl implements CustomerDao {
 				Customer customer = (Customer) iterator1.next();
 				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
 						&& (login.getPassword().equals(customer.getPassword()))) {
+<<<<<<< HEAD
 					logger.info("login successfull...");
 					return true;
+=======
+					System.out.println("Success");
+					return customer;
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 				}
 			}
 		} catch (HibernateException e) {
@@ -152,7 +156,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-		return false;
+		return null;
 	}
 
 }

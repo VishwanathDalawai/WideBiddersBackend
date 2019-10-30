@@ -14,15 +14,16 @@ public class Product {
 	private String approvalStatus;
 	private String reportFlag;
 	private double incrementPrice;
-	private String ProductBougthYear;
+	private String productBoughtYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
+	private Set<Customer> customer;
 	
 	public Product() {
 	}
 	
 	public Product(int productId, String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String ProductBougthYear,String productModel) {
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel) {
 		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
@@ -32,7 +33,11 @@ public class Product {
 		this.reportFlag = reportFlag;
 		this.incrementPrice = incrementPrice;
 		this.productModel = productModel;
+<<<<<<< HEAD
 		this.ProductBougthYear=ProductBougthYear;
+=======
+		this.productBoughtYear = productBoughtYear;
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 	public Product(ProductDto product) {
 
@@ -113,12 +118,12 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 	}
 
-	public String getProductBougthYear() {
-		return ProductBougthYear;
+	public String getproductBoughtYear() {
+		return productBoughtYear;
 	}
 
-	public void setProductBougthYear(String productBougthYear) {
-		ProductBougthYear = productBougthYear;
+	public void setproductBoughtYear(String productBoughtYear) {
+		this.productBoughtYear = productBoughtYear;
 	}
 
 	public String getProductModel() {
@@ -135,5 +140,13 @@ public class Product {
 
 	public void setProductImage(Set<ProductImage> productImage) {
 		this.productImage = productImage;
+	}
+
+	public Set<Customer> getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Set<Customer> customer) {
+		this.customer = customer;
 	}
 }

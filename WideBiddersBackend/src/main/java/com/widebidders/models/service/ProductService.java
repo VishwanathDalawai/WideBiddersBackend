@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
 public interface ProductService {
-	public void addProduct(Product product);
+	public void addProduct(Product product, Customer customer);
     public void deleteProduct(int productId);
     public void updateProduct(int productId, Product Product);
     public List getProducts();

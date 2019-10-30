@@ -10,21 +10,23 @@
           <br>
         <div *ngIf="data">
           <br>
-          product_ID:{{data.productId}}
+          product_ID:{{data[0].productId}}
           <br>
-          product_category:{{data.productCategoryName}}
+          product_Name:{{data[0].productName}}
           <br>
-          product_model:{{data.productModel}}
+          product_category:{{data[0].productCategoryName}}
           <br>
-          product_desc:{{data.description}}
+          product_model:{{data[0].productModel}}
           <br>
-          year:{{data.year}}
+          product_desc:{{data[0].productDescription}}
           <br>
-          min_bid_price:{{data.startingBidPrice}}
+          year:{{data[0].productBoughtYear}}
           <br>
-          increment:{{data.incrementPrice}},
+          min_bid_price:{{data[0].startingBidPrice}}
+          <br>
+          increment:{{data[0].incrementPrice}},
           <br><br>
-          <img src="{{'data:image/png;base64,' + data.productImage[0].productImage}}" /> 
+    <!--   <img src="{{'data:image/png;base64,' + data.productImage[0].productImage}}" /> -->
           <br><br><br>
           <button (click)="placed()">Place Bid</button>
 
