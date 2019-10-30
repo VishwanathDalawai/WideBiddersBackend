@@ -48,20 +48,20 @@ public class Product {
 		this.productBoughtYear = product.getProductBougthYear();
 	}
 
-	public String getProductBoughtYear() {
-		return productBoughtYear;
-	}
-
-	public void setProductBoughtYear(String productBoughtYear) {
-		this.productBoughtYear = productBoughtYear;
-	}
-
 	public int getProductId() {
 		return productId;
 	}
 
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+
+	public String getProductBoughtYear() {
+		return productBoughtYear;
+	}
+
+	public void setProductBoughtYear(String productBoughtYear) {
+		this.productBoughtYear = productBoughtYear;
 	}
 
 	public String getProductCategoryName() {

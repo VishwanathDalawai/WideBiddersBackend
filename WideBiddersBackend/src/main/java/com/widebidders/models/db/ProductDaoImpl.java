@@ -42,7 +42,6 @@ public class ProductDaoImpl implements ProductDao {
 	    logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 	    Transaction tx = null;
-	    List customers = null;
 	    try {
 	         tx = session.beginTransaction();
 	         session.save(product);
