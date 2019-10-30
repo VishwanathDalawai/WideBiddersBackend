@@ -1,11 +1,12 @@
-package com.widebidders.models.entities;
+package com.widebidders.dto;
 
 import java.util.Set;
 
-import com.widebidders.dto.ProductDto;
+import com.widebidders.models.entities.Product;
+import com.widebidders.models.entities.ProductImage;
 
-public class Product {
-	
+public class ProductDto {
+
 	private int productId;
 	private String productCategoryName;
 	private String productName;
@@ -14,28 +15,15 @@ public class Product {
 	private String approvalStatus;
 	private String reportFlag;
 	private double incrementPrice;
-	private String productBoughtYear;
+	private String ProductBougthYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
-	private Set<Customer> customer;
-	
-	public Product() {
+
+	public ProductDto() {
+
 	}
-	
-	public Product(int productId, String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel) {
-		this.productId = productId;
-		this.productCategoryName = productCategoryName;
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.startingBidPrice = startingBidPrice;
-		this.approvalStatus = approvalStatus;
-		this.reportFlag = reportFlag;
-		this.incrementPrice = incrementPrice;
-		this.productModel = productModel;
-		this.productBoughtYear = productBoughtYear;
-	}
-	public Product(ProductDto product) {
+
+	public ProductDto(Product product) {
 
 		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
@@ -46,9 +34,23 @@ public class Product {
 		this.reportFlag = product.getReportFlag();
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
+		this.ProductBougthYear=product.getproductBoughtYear();
 
 	}
 
+	public ProductDto(int productId, String productCategoryName, String productName, String productDescription,
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice,
+			String ProductBougthYear, String productModel) {
+		this.productId = productId;
+		this.productCategoryName = productCategoryName;
+		this.productName = productName;
+		this.productDescription = productDescription;
+		this.startingBidPrice = startingBidPrice;
+		this.approvalStatus = approvalStatus;
+		this.reportFlag = reportFlag;
+		this.incrementPrice = incrementPrice;
+		this.productModel = productModel;
+	}
 
 	public int getProductId() {
 		return productId;
@@ -114,12 +116,12 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 	}
 
-	public String getproductBoughtYear() {
-		return productBoughtYear;
+	public String getProductBougthYear() {
+		return ProductBougthYear;
 	}
 
-	public void setproductBoughtYear(String productBoughtYear) {
-		this.productBoughtYear = productBoughtYear;
+	public void setProductBougthYear(String productBougthYear) {
+		ProductBougthYear = productBougthYear;
 	}
 
 	public String getProductModel() {
@@ -138,11 +140,4 @@ public class Product {
 		this.productImage = productImage;
 	}
 
-	public Set<Customer> getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Set<Customer> customer) {
-		this.customer = customer;
-	}
 }

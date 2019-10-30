@@ -1,10 +1,7 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
-
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -16,16 +13,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.LoginEntity;
+import com.widebidders.models.entities.CustomerAddress;
 
 @Repository
-public class CustomerDaoImpl implements CustomerDao {
-
+public class CustomerAdressDaoImpl implements CustomerAdressDao {
 	private SessionFactory factory;
-	private static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
-	public CustomerDaoImpl() {
+	private static final Logger logger = LoggerFactory.getLogger(ProductDaoImpl.class);
+	
+	public CustomerAdressDaoImpl() {
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
@@ -35,35 +31,17 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public List getCustomers() {
-		logger.info("Inside Cusromer Dao ");
-		Session session = factory.openSession();
-		Transaction tx = null;
-		List customers = null;
-		try {
-			tx = session.beginTransaction();
-			customers = session.createQuery("FROM Customer ").list();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return customers;
+	public void deleteAdress(int id) {
 
-	}
-
-	@Override
-	public void addCustomer(Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 
 		try {
 			tx = session.beginTransaction();
-			session.save(customer);
+			CustomerAddress adress = (CustomerAddress) session.get(CustomerAddress.class, id);
+			session.delete(adress);
 			tx.commit();
-			logger.info("Added Successfully");
+			// logger.info("Deleted successfully.... ");
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -71,23 +49,21 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-
 	}
 
 	@Override
-	public List getCustomerById(int id) {
-
+	public List getAdressById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List<Customer> results = new ArrayList<Customer>();
+		List<CustomerAddress> results = new ArrayList<CustomerAddress>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Customer WHERE customerId = :id";
+			String hql = "FROM CustomerAdress WHERE adressId = :id";
 			System.out.println("ID is " + id);
 			Query query = session.createQuery(hql);
 			query.setParameter("id", id);
 
-			List<Customer> list = query.list();
+			List<CustomerAddress> list = query.list();
 			results.addAll(list);
 
 		} catch (HibernateException e) {
@@ -101,16 +77,13 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public void deleteCustomer(int id) {
+	public List getAdress() {
 		Session session = factory.openSession();
 		Transaction tx = null;
-
+		List adress = null;
 		try {
 			tx = session.beginTransaction();
-			Customer customer = (Customer) session.get(Customer.class, id);
-			session.delete(customer);
-			tx.commit();
-			logger.info("Deleted successfully.... ");
+			adress = session.createQuery("FROM CustomerAddress ").list();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -118,32 +91,25 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
+		return adress;
+
 	}
 
 	@Override
-	public void updateCustomer(int id, Customer customer) {
+	public void updateAdress(int id, CustomerAddress adress) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public Customer loginAuthentication(LoginEntity login) {
+	public void addAddress(CustomerAddress adress) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List<Customer> customers = new ArrayList<Customer>();
 
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Customer";
-
-			customers = session.createQuery("FROM Customer").list();
-			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
-				Customer customer = (Customer) iterator1.next();
-				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
-						&& (login.getPassword().equals(customer.getPassword()))) {
-					System.out.println("Success");
-					return customer;
-				}
-			}
+			session.save(adress);
+			tx.commit();
+			// logger.info("Added Successfully");
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -151,7 +117,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-		return null;
+
 	}
 
 }

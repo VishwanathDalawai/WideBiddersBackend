@@ -1,8 +1,11 @@
 package com.widebidders.controllers;
 
-
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.service.ProductServiceImpl;
 
 @RestController
 public class ProductController {
-
-	static int idIncreamentForProduct = 10;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@Autowired
@@ -32,15 +35,16 @@ public class ProductController {
 
 	@RequestMapping(value = "/productId/{id}")
 	public List getProductById(@PathVariable int id) {
-		return ProductService.getProductById(id);
-	}
+		return ProductService.getProductById(id); 
+	} 
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public void addProduct(@RequestBody Product product) {
-		idIncreamentForProduct++;
 		logger.error("Inside add product"+product);
-		ProductService.addProduct(product);
-	
+		//Customer customer = (Customer)request.getAttribute("customer");
+		//logger.info("Inside product Controller"+customer.getCustomerName());
+		Customer customer = new Customer();
+		ProductService.addProduct(product, customer);
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)

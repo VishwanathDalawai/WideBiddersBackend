@@ -1,7 +1,8 @@
 package com.widebidders.controllers;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,23 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.widebidders.models.db.CustomerDaoImpl;
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.LoginEntity;
-import com.widebidders.models.service.CustomerService;
 import com.widebidders.models.service.CustomerServiceImpl;
 
 @RestController
 public class CustomerController {
-	
+		
 	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
-	static int idIncreamentForCustomerId = 10;
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	public CustomerServiceImpl customerService;
 
+	public CustomerController() {
+		logger.info("CustomerContoller is called");
+	}
+	
 	@RequestMapping(value = "/customer")
 	public List getCustomers() {
 		logger.info("Inside get customers of CustomerController");
@@ -37,9 +37,7 @@ public class CustomerController {
 
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
 	public void addCustomer(@RequestBody Customer customer) {
-		idIncreamentForCustomerId++;
 		customerService.addCustomer(customer);
-		customer.setCustomerId(idIncreamentForCustomerId);
 	}
 
 	@RequestMapping(value = "/customerId/{id}")
@@ -58,7 +56,16 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customerLogin", method = RequestMethod.POST)
-	public boolean login(@RequestBody LoginEntity login) {
-		return customerService.loginAuthentication(login);
+	public int login(@RequestBody LoginEntity login, HttpSession httpSession) {
+		Customer customer = customerService.loginAuthentication(login);	//returns null if customerId is not found, else returns customer entity
+		if(customer == null){		
+			return -1;
+		}
+		logger.info(customer.getCustomerName());
+//		httpSession.setMaxInactiveInterval(0);
+//		httpSession.setAttribute("customer", customer);
+		
+		logger.info("CustomerId is "+ customer);
+		return customer.getCustomerId();
 	}
 }
