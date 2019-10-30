@@ -84,17 +84,11 @@ a:any;
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
       };
-<<<<<<< HEAD
-      console.log(this.Data[0]);
-
-       let obs =  this.http.post("http://localhost/addproduct/",this.product);
-=======
       
     
     console.log("image passed"+this.Data[0]);
    
      let obs =  this.http.post(this.url1,this.product);
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
        obs.subscribe(()=>{
             
            })

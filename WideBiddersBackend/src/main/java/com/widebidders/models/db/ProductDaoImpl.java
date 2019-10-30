@@ -38,30 +38,9 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
-	@Override
-<<<<<<< HEAD
-	public void addProduct(Product product) {
-		logger.error("Inside add product DAO " + product.getProductImage());
-=======
 	public void addProduct(Product product, Customer customer) {
 	    logger.error("Inside add product DAO "+product.getProductImage());
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 		Session session = factory.openSession();
-<<<<<<< HEAD
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			session.save(product);
-			tx.commit();
-			logger.info(" Product Added successfully");
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-=======
 	    Transaction tx = null;
 	    List customers = null;
 	    try {
@@ -76,7 +55,6 @@ public class ProductDaoImpl implements ProductDao {
 	      } finally {
 	         session.close(); 
 	      }
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 
 	@Override
@@ -126,7 +104,6 @@ public class ProductDaoImpl implements ProductDao {
 	@Override
 	public List getProducts() {
 		Session session = factory.openSession();
-<<<<<<< HEAD
 		Transaction tx = null;
 		List products = null;
 		try {
@@ -140,38 +117,6 @@ public class ProductDaoImpl implements ProductDao {
 			session.close();
 		}
 		return products;
-=======
-	      Transaction tx = null;
-	      List products = null;
-	      try {
-	         tx = session.beginTransaction();
-	 		 products = session.createQuery("FROM Product ").list();
-	         for (Iterator iterator1 = products.iterator(); iterator1.hasNext();){
-	            Product product = (Product) iterator1.next(); 
-	            System.out.print("First Name: " + product.getProductId()); 
-	            System.out.print("  Last Name: " + product.getProductName()); 
-	            System.out.println("  Salary: " + product.getProductDescription());
-	            System.out.println("  Salary: " + product.getProductCategoryName());
-	            System.out.println("  Salary: " + product.getProductModel());
-	            System.out.println("  Salary: " + product.getProductDescription());
-	            System.out.println("  Salary: " + product.getApprovalStatus());
-	            System.out.println("  Salary: " + product.getStartingBidPrice());
-	            System.out.println("  Salary: " + product.getIncrementPrice());
-	            Set<ProductImage> images = product.getProductImage();
-	            for (Iterator iterator2 = images.iterator(); iterator2.hasNext();){
-	            	ProductImage certName = (ProductImage) iterator2.next(); 
-	               System.out.println("images: " + certName.getProductImage());
-	               System.out.println("images: " + certName.getProductImageId());
-	            }
-	         }	         
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
-	      return products;
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 
 	@Override

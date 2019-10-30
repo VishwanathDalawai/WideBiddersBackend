@@ -34,7 +34,7 @@ public class ProductDto {
 		this.reportFlag = product.getReportFlag();
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
-		this.ProductBougthYear=product.getProductBougthYear();
+		this.ProductBougthYear=product.getproductBoughtYear();
 
 	}
 

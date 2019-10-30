@@ -39,10 +39,11 @@ public class ProductController {
 	} 
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
-	public void addProduct(@RequestBody Product product, HttpServletRequest request) {
+	public void addProduct(@RequestBody Product product) {
 		logger.error("Inside add product"+product);
-		Customer customer = (Customer)request.getAttribute("customer");
-		logger.info("Inside product Controller"+customer.getCustomerName());
+		//Customer customer = (Customer)request.getAttribute("customer");
+		//logger.info("Inside product Controller"+customer.getCustomerName());
+		Customer customer = new Customer();
 		ProductService.addProduct(product, customer);
 	}
 

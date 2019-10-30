@@ -33,11 +33,7 @@ public class Product {
 		this.reportFlag = reportFlag;
 		this.incrementPrice = incrementPrice;
 		this.productModel = productModel;
-<<<<<<< HEAD
-		this.ProductBougthYear=ProductBougthYear;
-=======
 		this.productBoughtYear = productBoughtYear;
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 	public Product(ProductDto product) {
 

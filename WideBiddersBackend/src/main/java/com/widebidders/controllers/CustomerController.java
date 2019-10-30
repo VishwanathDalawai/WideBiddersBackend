@@ -25,6 +25,10 @@ public class CustomerController {
 	@Autowired
 	public CustomerServiceImpl customerService;
 
+	public CustomerController() {
+		logger.info("CustomerContoller is called");
+	}
+	
 	@RequestMapping(value = "/customer")
 	public List getCustomers() {
 		logger.info("Inside get customers of CustomerController");
@@ -52,16 +56,16 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customerLogin", method = RequestMethod.POST)
-	public boolean login(@RequestBody LoginEntity login, HttpSession httpSession) {
+	public int login(@RequestBody LoginEntity login, HttpSession httpSession) {
 		Customer customer = customerService.loginAuthentication(login);	//returns null if customerId is not found, else returns customer entity
 		if(customer == null){		
-			return false;
+			return -1;
 		}
 		logger.info(customer.getCustomerName());
 //		httpSession.setMaxInactiveInterval(0);
-		httpSession.setAttribute("customer", customer);
+//		httpSession.setAttribute("customer", customer);
 		
 		logger.info("CustomerId is "+ customer);
-		return true;
+		return customer.getCustomerId();
 	}
 }

@@ -1,11 +1,8 @@
 package com.widebidders.models.service;
 
 import java.util.List;
-<<<<<<< HEAD
-=======
 
 import javax.servlet.http.HttpSession;
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired(required=true)
     private CustomerDaoImpl customerDboImpl;
-<<<<<<< HEAD
-=======
 	
 	public CustomerServiceImpl() {
 	}
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 
 	@Override
 	public List getCustomers() {
