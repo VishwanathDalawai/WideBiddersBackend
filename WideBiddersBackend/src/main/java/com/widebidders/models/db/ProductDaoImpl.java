@@ -38,15 +38,13 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
-	public void addProduct(Product product, Customer customer) {
+	public void addProduct(Product product) {
 	    logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 	    Transaction tx = null;
 	    List customers = null;
 	    try {
 	         tx = session.beginTransaction();
-	         logger.info("Customer "+(Set<Customer>)customer);
-	    	 product.setCustomer((Set<Customer>) customer);
 	         session.save(product);
 	         tx.commit();
 	      } catch (HibernateException e) {

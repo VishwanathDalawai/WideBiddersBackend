@@ -36,7 +36,6 @@ public class Product {
 		this.productBoughtYear = productBoughtYear;
 	}
 	public Product(ProductDto product) {
-
 		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
@@ -46,9 +45,17 @@ public class Product {
 		this.reportFlag = product.getReportFlag();
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
-
+		this.productBoughtYear = product.getProductBougthYear();
 	}
 
+
+	public String getProductBoughtYear() {
+		return productBoughtYear;
+	}
+
+	public void setProductBoughtYear(String productBoughtYear) {
+		this.productBoughtYear = productBoughtYear;
+	}
 
 	public int getProductId() {
 		return productId;

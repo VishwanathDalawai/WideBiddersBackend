@@ -68,4 +68,10 @@ public class CustomerController {
 		logger.info("CustomerId is "+ customer);
 		return customer.getCustomerId();
 	}
+	
+	@RequestMapping(value = "/getCustEmail/{id}")
+	public String getMailID(@PathVariable int id) {
+		logger.info("Insider Mail Id");
+		return customerService.getMailId(id);
+	}
 }

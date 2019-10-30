@@ -3,6 +3,7 @@ package com.widebidders.controllers;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.widebidders.dto.ProductDto;
+import com.widebidders.models.db.CustomerDao;
+import com.widebidders.models.db.CustomerDaoImpl;
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.service.ProductServiceImpl;
@@ -39,12 +43,17 @@ public class ProductController {
 	} 
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
-	public void addProduct(@RequestBody Product product) {
-		logger.error("Inside add product"+product);
+	public void addProduct(@RequestBody ProductDto productDto) {
+		logger.error("Inside add product"+productDto);
 		//Customer customer = (Customer)request.getAttribute("customer");
-		//logger.info("Inside product Controller"+customer.getCustomerName());
-		Customer customer = new Customer();
-		ProductService.addProduct(product, customer);
+		//logger.info("Inside product Controller"+customer.getCustomerName());=
+		Product product = new Product(productDto);
+		CustomerDaoImpl customerDaoImpl =new CustomerDaoImpl();
+		int customerId = productDto.getCustomerId();
+		logger.info("Inside add product and customerId"+ customerId);
+		List customer = customerDaoImpl.getCustomerById(customerId);
+		product.setCustomer((Set<Customer>) customer);
+		ProductService.addProduct(product);
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
