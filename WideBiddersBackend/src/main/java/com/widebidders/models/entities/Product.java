@@ -48,7 +48,6 @@ public class Product {
 		this.productBoughtYear = product.getProductBougthYear();
 	}
 
-
 	public String getProductBoughtYear() {
 		return productBoughtYear;
 	}
@@ -121,13 +120,6 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 	}
 
-	public String getproductBoughtYear() {
-		return productBoughtYear;
-	}
-
-	public void setproductBoughtYear(String productBoughtYear) {
-		this.productBoughtYear = productBoughtYear;
-	}
 
 	public String getProductModel() {
 		return productModel;

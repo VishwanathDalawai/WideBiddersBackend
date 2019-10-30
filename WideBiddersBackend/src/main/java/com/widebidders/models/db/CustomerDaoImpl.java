@@ -1,13 +1,10 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -75,21 +72,25 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public List getCustomerById(int id) {
-
+	public Customer getCustomerById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List<Customer> results = new ArrayList<Customer>();
+		List<Customer> customers = new ArrayList<Customer>();
+
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Customer WHERE customerId = :id";
-			System.out.println("ID is " + id);
-			Query query = session.createQuery(hql);
-			query.setParameter("id", id);
-
-			List<Customer> list = query.list();
-			results.addAll(list);
-
+			logger.info("Inside getCustomerByID hello1");
+			customers = session.createQuery("FROM Customer").list();
+			logger.info(customers.toString());
+			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+				logger.info("Inside getCustomerByID hello2");
+				Customer customer = (Customer) iterator1.next();
+				if (customer.getCustomerId()==id) {
+					logger.info("Inside getCustomerByID hello3");
+					logger.info("Inside getCustomerById Success"+customer.getEmailId());
+					return customer;
+				}
+			}
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -97,7 +98,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-		return results;
+		return null;
 	}
 
 	@Override
@@ -133,14 +134,12 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Customer";
-
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
 				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
 						&& (login.getPassword().equals(customer.getPassword()))) {
-					System.out.println("Success");
+					logger.info("Login Success"+login.getEmailId()+" "+login.getPassword());
 					return customer;
 				}
 			}
@@ -161,12 +160,11 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Customer";
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
 				if ((id==customer.getCustomerId())) {
-					System.out.println("Success");
+					logger.info("Get mail id");
 					return customer.getEmailId();
 				}
 			}

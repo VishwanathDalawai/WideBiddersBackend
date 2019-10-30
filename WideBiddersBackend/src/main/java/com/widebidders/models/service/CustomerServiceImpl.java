@@ -36,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	@Override
-	public List getCustomerById(int id) {
+	public Customer getCustomerById(int id) {
 		return customerDboImpl.getCustomerById(id);
 	}
 

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -46,6 +47,7 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
+    
   }
 
 
@@ -56,21 +58,25 @@ export class RegisterComponent implements OnInit {
     this.user = 
        {
        "customerName": this.fullName, "phoneNumber": this.phoneNumber , "emailId": this.email ,
-       "password": this.password1,"userImage":this.Data
+       "password": this.password1
+       //"userImage":this.Data
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       
       };
       
     
     console.log("image passed"+this.Data);
-   
+  
+    
        let obs =  this.http.post(this.url1,this.user);
        obs.subscribe(()=>{
             
            })
 
           
-    this.router.navigate(["userAdded"]);
+   this.router.navigate(["userAdded"]);
+   
   }
+
 
 }

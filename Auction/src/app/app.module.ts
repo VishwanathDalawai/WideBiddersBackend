@@ -49,6 +49,7 @@ import { ProductNameComponent } from './product-name/product-name.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
