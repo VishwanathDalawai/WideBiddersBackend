@@ -5,13 +5,13 @@
       <p>Please fill in this form to create an account.</p>
       <hr>
       <label for="fullname"><b>Fullname</b></label>
-      <input type="text" class="form-control" [(ngModel)]="fullName" placeholder="Full Name" name="fullname" required> 
+      <input type="text" value="deekshith" class="form-control" [(ngModel)]="fullName"  name="fullname" required> 
        
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" required>
+      <input type="text" value="sss@gmail.com" placeholder="Enter Email" [(ngModel)]="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" required>
       
       <label for="phoneNumber"><b>Phone Number</b></label>
-      <input type="text" placeholder="Phone Number" [(ngModel)]="phoneNumber" name="phoneNumber" pattern="[1-9]{1}[0-9]{9}" required>
+      <input type="text" value="8976687665" placeholder="Phone Number" [(ngModel)]="phoneNumber" name="phoneNumber" pattern="[1-9]{1}[0-9]{9}" required>
   
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" [(ngModel)]="password1" name="psw" required>

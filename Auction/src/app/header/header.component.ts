@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../customer.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -9,16 +11,23 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  url1=environment.apiBaseUrl + "getCustEmail/";
+  
+
   param:any;
   userName:any;
   email:any;
   product_name:string="";
   custId:any;
+  emailId:string;
+  data:any;
+  Email:any;
 
-  @Input() loggedIn:string;
+
+  // @Input() loggedIn:string;
   
    //  static counter:number=0;
-  constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService){
+  constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService,private http:HttpClient){
   this.param=this.router.url;
 
   }
@@ -27,6 +36,23 @@ export class HeaderComponent implements OnInit {
 
     this.custId=this.customerService.getCustomer();
     console.log("customerId:" + this.custId);
+  
+
+    if(this.custId!=""){
+      
+// let obs =  this.http.get(this.url1 + this.custId);
+
+this.http.post(this.url1 , this.custId).subscribe((Response)=>{
+  console.log(Response);
+  this.data=Response['MailID'];
+
+this.emailId=this.data;
+
+
+  console.log(this.data);
+  
+    })
+   }
 
 
 

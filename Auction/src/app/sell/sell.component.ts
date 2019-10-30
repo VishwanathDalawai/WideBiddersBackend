@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { CustomerService } from '../customer.service';
+
+
 
 
 
@@ -29,12 +32,13 @@ url1=environment.apiBaseUrl + "addproduct/";
   image4:any;
   image5:any;
 
-
+  custId:any;
   Data=[];
   imageData=[];
 a:any;
- 
-  constructor(private http:HttpClient,private router:Router){
+cid:string; 
+
+  constructor(private http:HttpClient,private router:Router,private customerService:CustomerService){
   }
 
 
@@ -77,10 +81,21 @@ a:any;
     ];
 */
     //[{"productImage":"hey"}]
+    this.custId=this.customerService.getCustomer();
+  this.cid =  JSON.stringify(this.custId);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'customerId': this.cid
+      })
+    };
+    httpOptions.headers =
+    httpOptions.headers.set('customerId', this.cid);
 
+    console.log("inside sell" + this.custId);
    this.product = 
        {
-       "productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
+        "customerId": this.custId,"productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
        "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
        "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
@@ -89,8 +104,8 @@ a:any;
       
     
     console.log("image passed"+this.Data[0]);
-   
-     let obs =  this.http.post(this.url1,this.product);
+   console.log(this.product);
+     let obs =  this.http.post(this.url1,this.product,httpOptions);
        obs.subscribe(()=>{
             
            })

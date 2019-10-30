@@ -1,9 +1,13 @@
+<!--
 <div *ngIf="email">
 <app-header [loggedIn]="email" ></app-header>
 </div>
 <div *ngIf="!email">
     <app-header ></app-header>
 </div>
+-->
+<app-header ></app-header>
+
  
 <div class="container" style="height:20px;">  
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -72,8 +76,11 @@
       <img *ngFor="let image of imageData"  src="{{image}}" alt="" id="img">
          -->
 
-         <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
 
+
+         <!-- important
+         <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
+-->
         
          <a [routerLink]="['product',item.value.productId]">View Product</a>
 

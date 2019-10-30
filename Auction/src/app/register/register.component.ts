@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,private router:Router, private toastr: ToastrService) { }
   onUploadChange(evt: any) {
     const file = evt.target.files[0];
   
@@ -47,14 +48,20 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
+<<<<<<< HEAD
     
+=======
+   
+   
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
   }
+
 
 
   register(){
 
 
-
+    
     this.user = 
        {
        "customerName": this.fullName, "phoneNumber": this.phoneNumber , "emailId": this.email ,
@@ -73,9 +80,22 @@ export class RegisterComponent implements OnInit {
             
            })
 
+<<<<<<< HEAD
           
    this.router.navigate(["userAdded"]);
    
+=======
+     
+           
+           this.toastr.success('You have registered successfully', 'Sucess');
+
+           this.router.navigate(["/home"]);
+  //  this.router.navigate(["userAdded"]);
+ 
+
+ /* this.toastr.success('Successful','Success');
+   this.router.navigate(["/home"]); */
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
   }
 
 
