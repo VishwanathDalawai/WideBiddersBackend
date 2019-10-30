@@ -9,7 +9,7 @@ import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
 public interface ProductService {
-	public void addProduct(Product product, Customer customer);
+	public void addProduct(Product product);
     public void deleteProduct(int productId);
     public void updateProduct(int productId, Product Product);
     public List getProducts();

@@ -53,5 +53,9 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer loginAuthentication(LoginEntity login) {
 		return customerDboImpl.loginAuthentication(login);
+	}
+
+	public String getMailId(int id) {
+		return customerDboImpl.getMailId(id);
 	}	
 }

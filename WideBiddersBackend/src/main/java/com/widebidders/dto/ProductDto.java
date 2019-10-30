@@ -1,11 +1,12 @@
 package com.widebidders.dto;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
-public class ProductDto {
+public class ProductDto implements Serializable{
 
 	private int productId;
 	private String productCategoryName;
@@ -18,6 +19,7 @@ public class ProductDto {
 	private String ProductBougthYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
+	private int customerId;
 
 	public ProductDto() {
 
@@ -40,7 +42,7 @@ public class ProductDto {
 
 	public ProductDto(int productId, String productCategoryName, String productName, String productDescription,
 			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice,
-			String ProductBougthYear, String productModel) {
+			String ProductBougthYear, String productModel, int customerId) {
 		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
@@ -50,6 +52,7 @@ public class ProductDto {
 		this.reportFlag = reportFlag;
 		this.incrementPrice = incrementPrice;
 		this.productModel = productModel;
+		this.customerId = customerId;
 	}
 
 	public int getProductId() {
@@ -126,6 +129,14 @@ public class ProductDto {
 
 	public String getProductModel() {
 		return productModel;
+	}
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public void setProductModel(String productModel) {
