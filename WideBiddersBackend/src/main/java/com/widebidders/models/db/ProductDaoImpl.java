@@ -87,6 +87,7 @@ public class ProductDaoImpl implements ProductDao {
 			List<Product> employee = (List) session.get(Product.class, productId);
 			employee.set(productId, Product);
 			session.update(employee);
+			System.out.println(employee);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -166,6 +167,32 @@ public class ProductDaoImpl implements ProductDao {
 	public Set getImages() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List getProductByCategory(String category) {
+		
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Product> results = new ArrayList<Product>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Product WHERE productCategoryName = :category";
+			System.out.println("category is " + category);
+			Query query = session.createQuery(hql);
+			query.setParameter("category", category);
+
+			List<Product> list = query.list();
+			results.addAll(list);
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return results;
 	}
 
 }

@@ -18,4 +18,5 @@ public interface ProductDao {
     public List getProductById(int id);
     public void addImage(ProductImage productImage);
     public Set getImages();
+    public List getProductByCategory(String category);
 }
