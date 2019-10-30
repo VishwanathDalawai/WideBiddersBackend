@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { CustomerService } from '../customer.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -22,7 +23,7 @@ custId:any;
 credential:any;
 
 status:boolean=true;
-  constructor(private router: Router,private http:HttpClient,private customerService:CustomerService) { }
+  constructor(private router: Router,private http:HttpClient,private customerService:CustomerService,private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -60,6 +61,7 @@ this.custId=this.customerService.getCustomer();
 // console.log(this.custId);
 
  //    this.router.navigate(["home",this.credential.emailId]);
+ this.toastr.success('You have loggedin successfully', 'Sucess');
  this.router.navigate([""]);
 
  //      }
@@ -69,6 +71,7 @@ this.custId=this.customerService.getCustomer();
        } */
      }
      else{
+      this.toastr.error('Incorrect Username/Password', 'Error');
       this.router.navigate(["login"]);
      }
     })

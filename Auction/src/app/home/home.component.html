@@ -76,8 +76,11 @@
       <img *ngFor="let image of imageData"  src="{{image}}" alt="" id="img">
          -->
 
-         <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
 
+
+         <!-- important
+         <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
+-->
         
          <a [routerLink]="['product',item.value.productId]">View Product</a>
 

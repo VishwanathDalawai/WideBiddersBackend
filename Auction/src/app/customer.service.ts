@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   customerId:string="";
  // customerId: string[] = [];
@@ -17,7 +18,10 @@ export class CustomerService {
 
   clear() {
   //  this.customerId = [];
+  console.log("clear called");
   this.customerId ="";
+  
+  
   }
   getCustomer():string{
     return this.customerId;

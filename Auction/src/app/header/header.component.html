@@ -59,7 +59,7 @@
                 data-toggle="dropdown" href="#"> {{emailId}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a routerLink="/myproduct">My Products</a></li>
-                  <li><a href="#">LogOut</a></li>               
+                  <li><a (click)="customerService.clear()" routerLink="/home">LogOut</a></li>               
                 </ul></li>
      <!--       <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-user" (click) ="logout()">Logout</button></li> -->
           </ul> 

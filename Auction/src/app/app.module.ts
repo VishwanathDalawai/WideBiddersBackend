@@ -24,6 +24,11 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
 import { ProductNameComponent } from './product-name/product-name.component';
 
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +53,9 @@ import { ProductNameComponent } from './product-name/product-name.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot() // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

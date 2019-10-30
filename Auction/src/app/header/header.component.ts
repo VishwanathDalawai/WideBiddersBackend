@@ -11,14 +11,18 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  url1=environment.apiBaseUrl + "getcustEmail";
+  url1=environment.apiBaseUrl + "getCustEmail/";
+  
 
   param:any;
   userName:any;
   email:any;
   product_name:string="";
   custId:any;
-  emailId:any;
+  emailId:string;
+  data:any;
+  Email:any;
+
 
   // @Input() loggedIn:string;
   
@@ -32,19 +36,23 @@ export class HeaderComponent implements OnInit {
 
     this.custId=this.customerService.getCustomer();
     console.log("customerId:" + this.custId);
+  
 
     if(this.custId!=""){
       
-let obs =  this.http.post(this.url1,this.custId);
+// let obs =  this.http.get(this.url1 + this.custId);
 
-obs.subscribe((response)=>{
-  
-this.emailId=response;
+this.http.post(this.url1 , this.custId).subscribe((Response)=>{
+  console.log(Response);
+  this.data=Response['MailID'];
 
-  console.log(this.emailId);
+this.emailId=this.data;
+
+
+  console.log(this.data);
   
     })
-    }
+   }
 
 
 
