@@ -8,7 +8,7 @@ import com.widebidders.models.entities.Customer;
 public interface CustomerDao {
 	public List getCustomers();
 	public void addCustomer(Customer customer);
-	public List getCustomerById(int id);
+	public Customer getCustomerById(int id);
 	public void deleteCustomer(int id);
 	public void updateCustomer(int id, Customer customer);
 }

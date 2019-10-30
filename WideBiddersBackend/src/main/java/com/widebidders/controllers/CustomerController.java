@@ -1,6 +1,8 @@
 package com.widebidders.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.widebidders.models.entities.Customer;
+import com.widebidders.models.entities.LoggedInUsers;
 import com.widebidders.models.entities.LoginEntity;
 import com.widebidders.models.service.CustomerServiceImpl;
 
@@ -41,7 +44,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customerId/{id}")
-	public List getCustomerById(@PathVariable int id) {
+	public Customer getCustomerById(@PathVariable int id) {
 		return customerService.getCustomerById(id);
 	}
 
@@ -61,7 +64,17 @@ public class CustomerController {
 		if(customer == null){		
 			return -1;
 		}
-		logger.info(customer.getCustomerName());
+		LoggedInUsers loggedInUsers = new LoggedInUsers();
+		int noOfUsersLoggedIn= loggedInUsers.getNoOfUserLoggedIn();
+		loggedInUsers.setNoOfUserLoggedIn(++noOfUsersLoggedIn);
+		
+		int[] customerId = loggedInUsers.getCustomerId();
+		logger.info("Customer id is "+customer.getCustomerId());
+		//customerId[noOfUsersLoggedIn]=customer.getCustomerId();
+		//loggedInUsers.setCustomerId(customerId);
+		
+		logger.info("customer added is "+customerId);
+		logger.info("no of users logged in"+noOfUsersLoggedIn);
 //		httpSession.setMaxInactiveInterval(0);
 //		httpSession.setAttribute("customer", customer);
 		
@@ -69,9 +82,11 @@ public class CustomerController {
 		return customer.getCustomerId();
 	}
 	
-	@RequestMapping(value = "/getCustEmail/{id}")
-	public String getMailID(@PathVariable int id) {
-		logger.info("Insider Mail Id");
-		return customerService.getMailId(id);
+	@RequestMapping(value = "/getCustEmail", method = RequestMethod.POST)
+	public Map<String, String> getMailID(@RequestBody int id) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("MailID",customerService.getMailId(id));
+		logger.info("Inside Get Cust Mail Id "+ id+" "+customerService.getMailId(id));
+		return map;
 	}
 }

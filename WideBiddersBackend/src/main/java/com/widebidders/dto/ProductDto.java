@@ -16,7 +16,7 @@ public class ProductDto implements Serializable{
 	private String approvalStatus;
 	private String reportFlag;
 	private double incrementPrice;
-	private String ProductBougthYear;
+	private String productBougthYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
 	private int customerId;
@@ -36,7 +36,7 @@ public class ProductDto implements Serializable{
 		this.reportFlag = product.getReportFlag();
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
-		this.ProductBougthYear=product.getproductBoughtYear();
+		this.productBougthYear=product.getProductBoughtYear();
 
 	}
 
@@ -120,11 +120,11 @@ public class ProductDto implements Serializable{
 	}
 
 	public String getProductBougthYear() {
-		return ProductBougthYear;
+		return productBougthYear;
 	}
 
 	public void setProductBougthYear(String productBougthYear) {
-		ProductBougthYear = productBougthYear;
+		this.productBougthYear = productBougthYear;
 	}
 
 	public String getProductModel() {
