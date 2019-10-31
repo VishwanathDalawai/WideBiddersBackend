@@ -16,7 +16,7 @@ public interface ProductService {
     public List<Product> getProductById(int id);
     public List<Product> getProductByCategory(String category);
     public List<Product> getProductByProductName(String productName);
-    public List getProductByCustomerId(int id);
+    public List getProductByCustomerId(int customerId);
     public void addImage(ProductImage productImage);
     public Set getImages();
 }

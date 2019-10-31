@@ -75,9 +75,12 @@ public class ProductServiceImpl implements ProductService{
 	  return productDboImpl.getProductProductName(productName);
 	}
 
-	public List getProductByCustomerId(int id) {
-		
-		return  productDboImpl.getProductByCustomerId(id);
+
+	@Override
+	public List getProductByCustomerId(int customerId) {
+		return  productDboImpl.getProductByCustomerId(customerId);
 	}
+
+	
 	
 }
