@@ -74,5 +74,10 @@ public class ProductServiceImpl implements ProductService{
 		
 	  return productDboImpl.getProductProductName(productName);
 	}
+
+	public List getProductByCustomerId(int id) {
+		
+		return  productDboImpl.getProductByCustomerId(id);
+	}
 	
 }

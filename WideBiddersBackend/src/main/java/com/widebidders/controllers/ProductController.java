@@ -85,6 +85,10 @@ public class ProductController {
 	public List getProductByCategory(@PathVariable("category") String category) {
 		 return ProductService.getProductByCategory(category);
 	}
+	@RequestMapping(value = "/productByCustomerId/{id}")
+	public List getProductByCustomerId(@PathVariable("id") int id) {
+		 return ProductService.getProductByCustomerId(id);
+	}
 	
 	@RequestMapping(value = "/productByProductName/{productName}")
 	public List getProductByProductName(@PathVariable("productName") String productName) {

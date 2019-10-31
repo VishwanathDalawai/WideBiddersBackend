@@ -228,4 +228,30 @@ public class ProductDaoImpl implements ProductDao {
 		return results;
 	}
 
+	@Override
+	public List getProductByCustomerId(int customerId) {
+		
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Product> results = new ArrayList<Product>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Product WHERE customerId = :customerId";
+			System.out.println("customerId is " + customerId);
+			Query query = session.createQuery(hql);
+			query.setParameter("customerId", customerId);
+
+			List<Product> list = query.list();
+			results.addAll(list);
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return results;
+	}
+
 }
