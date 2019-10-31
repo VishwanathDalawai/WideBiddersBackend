@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { CustomerService } from '../customer.service';
 
 @Component({
   selector: 'app-myproducts',
@@ -10,35 +11,28 @@ import { environment } from 'src/environments/environment';
 })
 export class MyproductsComponent implements OnInit {
 
-  url1=environment.apiBaseUrl + "products";
+  url1=environment.apiBaseUrl + "productByCustomerId/";
 
 data:any;
-imageData=[];
-email:any;
-  constructor(private http:HttpClient,private activate:ActivatedRoute) { }
+custId:any;
+
+  constructor(private http:HttpClient,private activate:ActivatedRoute, private router:Router,private customerService:CustomerService) { }
 
   ngOnInit() {
-    this.email = this.activate.snapshot.paramMap.get('email');
-    let obs =  this.http.get(this.url1);
-    obs.subscribe((response)=>{
-        
-         this.data = response;
-         
-         for (var prop in this.data) {
-          console.log("Key:" + prop);
-          if(this.data[prop].productImage[0]!=undefined)
-          {
-          console.log("Value:" + this.data[prop].productImage[0].productImage);
-          this.imageData.push('data:image/png;base64,'+this.data[prop].productImage[0].productImage);
-          }
+    this.custId=this.customerService.getCustomer();
+ 
+    console.log(this.custId);
+  
+      let obs = this.http.get(this.url1 + this.custId);
+      obs.subscribe((response) => {
+  
+        this.data = response;
+       
+   
+  
       }
-       //  this.imageData.push('data:image/png;base64,' +this.data[11].productImage[0].productImage);
-
-     //    this.name =this.data[1].productName
-       //  console.log(this.imageData);
-       // console.log(this.data[1].productName);
-        //console.log(this.data[11].productImage[0]);
-        })
+  
+      )
   }
 
 }

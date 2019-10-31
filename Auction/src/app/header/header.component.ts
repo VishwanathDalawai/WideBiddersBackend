@@ -79,7 +79,14 @@ this.emailId=this.data;
   }  */
   }
   sell(){
-    this.router.navigate(["sell"]);
+
+  //  if(this.custId!=""){
+      this.router.navigate(["sell"]);
+
+  //  }
+  //  else{
+  //    this.router.navigate(["login"]);
+  //  }    
   }
   signup(){
     this.router.navigate(["register"]);
