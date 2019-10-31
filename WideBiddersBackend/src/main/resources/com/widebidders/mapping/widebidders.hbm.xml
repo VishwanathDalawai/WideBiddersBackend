@@ -22,7 +22,7 @@
       </set>
       
       <set name = "customer" cascade="all">
-         <key column = "customerId"/>
+         <key column = "customer_id"/>
          <one-to-many class="com.widebidders.models.entities.Product"/>
       </set>
       

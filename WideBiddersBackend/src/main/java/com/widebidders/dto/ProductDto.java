@@ -27,7 +27,6 @@ public class ProductDto implements Serializable{
 
 	public ProductDto(Product product) {
 
-		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();

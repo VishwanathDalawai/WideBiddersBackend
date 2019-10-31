@@ -32,9 +32,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void addProduct(Product product) {
+	public void addProduct(Product product, Customer customer) {
 		logger.error("Inside add product Service class"+product);
-		productDboImpl.addProduct(product);
+		productDboImpl.addProduct(product, customer);
 	}
 
 	@Override

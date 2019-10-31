@@ -22,9 +22,8 @@ public class Product {
 	public Product() {
 	}
 	
-	public Product(int productId, String productCategoryName, String productName, String productDescription,
+	public Product(String productCategoryName, String productName, String productDescription,
 			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel) {
-		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -36,7 +35,6 @@ public class Product {
 		this.productBoughtYear = productBoughtYear;
 	}
 	public Product(ProductDto product) {
-		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();
