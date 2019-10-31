@@ -1,22 +1,19 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.Customer;
@@ -111,8 +108,18 @@ public class ProductDaoImpl implements ProductDao {
 		Transaction tx = null;
 		List products = null;
 		try {
+			
 			tx = session.beginTransaction();
 			products = session.createQuery("FROM Product ").list();
+		
+			/*
+			tx = session.beginTransaction();
+	         String sql = "SELECT * FROM PRODUCT";
+	         SQLQuery query = session.createSQLQuery(sql);
+	         query.addEntity(Product.class);
+	         data = query.list();
+	         */
+	         tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();

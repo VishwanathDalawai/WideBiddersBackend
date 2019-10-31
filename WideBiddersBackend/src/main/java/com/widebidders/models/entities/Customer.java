@@ -1,5 +1,7 @@
 package com.widebidders.models.entities;
 
+import java.util.Set;
+
 import com.widebidders.dto.CustomerDto;
 
 public class Customer {
@@ -25,6 +27,7 @@ public class Customer {
 		this.userStatusActive = userStatusActive;
 		this.userImage = userImage;
 	}
+	
 	public Customer(CustomerDto customer) {
 		this.customerName = customer.getCustomerName();
 		this.phoneNumber = customer.getPhoneNumber();
