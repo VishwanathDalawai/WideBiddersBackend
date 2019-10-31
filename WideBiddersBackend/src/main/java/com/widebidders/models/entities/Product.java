@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.widebidders.dto.ProductDto;
 
+
 public class Product {
 	
 	private int productId;
@@ -17,13 +18,13 @@ public class Product {
 	private String productBoughtYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
-	private Set<Customer> customer;
+	private Customer customer;
 	
 	public Product() {
 	}
 	
 	public Product(String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel) {
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel, Customer customer) {
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -33,7 +34,9 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 		this.productModel = productModel;
 		this.productBoughtYear = productBoughtYear;
+		this.customer = customer;
 	}
+	
 	public Product(ProductDto product) {
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
@@ -52,14 +55,6 @@ public class Product {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-
-	public String getProductBoughtYear() {
-		return productBoughtYear;
-	}
-
-	public void setProductBoughtYear(String productBoughtYear) {
-		this.productBoughtYear = productBoughtYear;
 	}
 
 	public String getProductCategoryName() {
@@ -118,6 +113,13 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 	}
 
+	public String getProductBoughtYear() {
+		return productBoughtYear;
+	}
+
+	public void setProductBoughtYear(String productBoughtYear) {
+		this.productBoughtYear = productBoughtYear;
+	}
 
 	public String getProductModel() {
 		return productModel;
@@ -135,11 +137,11 @@ public class Product {
 		this.productImage = productImage;
 	}
 
-	public Set<Customer> getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Set<Customer> customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 }

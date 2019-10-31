@@ -45,10 +45,13 @@ public class ProductDaoImpl implements ProductDao {
 	    Transaction tx = null;
 	    try {
 	         tx = session.beginTransaction();
+	         product.setCustomer(customer);
 	         session.save(product);
-	         HashSet<Customer> set = new HashSet<Customer>();
+	         /*
+	         Set set = new HashSet<Customer>();
 	         set.add(customer);
 	 		 product.setCustomer(set);
+	 		 */
 	         tx.commit();
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
