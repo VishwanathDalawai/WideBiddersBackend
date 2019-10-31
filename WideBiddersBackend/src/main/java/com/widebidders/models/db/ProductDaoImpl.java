@@ -194,4 +194,31 @@ public class ProductDaoImpl implements ProductDao {
 		return results;
 	}
 
+
+	@Override
+	public List getProductProductName(String productName) {
+	
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Product> results = new ArrayList<Product>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Product WHERE productName = :productName";
+			System.out.println("productName is " + productName);
+			Query query = session.createQuery(hql);
+			query.setParameter("productName", productName);
+
+			List<Product> list = query.list();
+			results.addAll(list);
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return results;
+	}
+
 }

@@ -14,6 +14,8 @@ public interface ProductService {
     public void updateProduct(int productId, Product Product);
     public List getProducts();
     public List<Product> getProductById(int id);
+    public List<Product> getProductByCategory(String category);
+    public List<Product> getProductByProductName(String productName);
     public void addImage(ProductImage productImage);
     public Set getImages();
 }

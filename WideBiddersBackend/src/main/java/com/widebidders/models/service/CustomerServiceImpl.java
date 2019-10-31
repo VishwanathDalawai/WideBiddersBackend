@@ -2,8 +2,6 @@ package com.widebidders.models.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,10 @@ import com.widebidders.models.entities.LoginEntity;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 	private static final Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
-	
-	@Autowired(required=true)
-    private CustomerDaoImpl customerDboImpl;
-	
+
+	@Autowired(required = true)
+	private CustomerDaoImpl customerDboImpl;
+
 	public CustomerServiceImpl() {
 	}
 
@@ -28,13 +26,13 @@ public class CustomerServiceImpl implements CustomerService {
 		logger.info("Inside Customer Service get customers");
 		return customerDboImpl.getCustomers();
 	}
-	
+
 	@Override
 	public void addCustomer(Customer customer) {
-		logger.error("Inside add Customer Service class"+customer);
-		customerDboImpl.addCustomer(customer); 
+		logger.error("Inside add Customer Service class" + customer);
+		customerDboImpl.addCustomer(customer);
 	}
-	
+
 	@Override
 	public Customer getCustomerById(int id) {
 		return customerDboImpl.getCustomerById(id);
@@ -57,5 +55,5 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public String getMailId(int id) {
 		return customerDboImpl.getMailId(id);
-	}	
+	}
 }

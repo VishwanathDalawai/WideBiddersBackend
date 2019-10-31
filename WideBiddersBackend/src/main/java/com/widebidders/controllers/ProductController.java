@@ -83,4 +83,14 @@ public class ProductController {
 	public void updateProduct(@PathVariable("id") int id, @RequestBody Product Product) {
 		ProductService.updateProduct(id, Product);
 	}
+	
+	@RequestMapping(value = "/productByCategory/{category}")
+	public List getProductByCategory(@PathVariable("category") String category) {
+		 return ProductService.getProductByCategory(category);
+	}
+	
+	@RequestMapping(value = "/productByProductName/{productName}")
+	public List getProductByProductName(@PathVariable("productName") String productName) {
+		 return ProductService.getProductByProductName(productName);
+	}
 }

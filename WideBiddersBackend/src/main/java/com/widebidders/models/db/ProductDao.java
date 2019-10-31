@@ -16,6 +16,7 @@ public interface ProductDao {
     public void updateProduct(int productId, Product Product);
     public List getProducts();
     public List getProductById(int id);
+    public List getProductProductName(String productName);
     public void addImage(ProductImage productImage);
     public Set getImages();
     public List getProductByCategory(String category);
