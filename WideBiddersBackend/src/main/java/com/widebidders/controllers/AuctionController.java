@@ -32,9 +32,7 @@ public class AuctionController {
 
 	@RequestMapping(value = "/addAuction", method = RequestMethod.POST)
 	public void addAuction(@RequestBody AuctionMaster auction) {
-		
-		auctionService.addAuction(auction);		
-		
+		auctionService.addAuction(auction);			
 	}
 
 	@RequestMapping(value = "/deleteAuction/{id}", method = RequestMethod.DELETE)

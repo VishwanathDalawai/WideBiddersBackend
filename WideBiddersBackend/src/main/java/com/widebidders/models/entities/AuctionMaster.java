@@ -5,67 +5,70 @@ import java.util.Date;
 import com.widebidders.dto.AuctionMasterDto;
 
 public class AuctionMaster {
-	private int customerId;
-	private int productId;
+	private int auctionId;
 	private float bidPrice;
 	private Date dateTime;
 	private float minBidPrice;
-	private Date auctionStratDate;
+	private Date auctionStartDate;
 	private Date auctionEndDate;
 	private float bidIncrement;
-	private String status;
+	private String productSoldStatus;
 	private String auctionDescription;
+	private Customer customer;
+	private Product product;
 
 	public AuctionMaster() {
-
 	}
 
-	public AuctionMaster(int customerId, int productId, float bidPrice, Date dateTime, float minBidPrice,
-			Date auctionStratDate, Date auctionEndDate, float bidIncrement, String status, String auctionDescription) {
-
-		this.customerId = customerId;
-		this.productId = productId;
+	public AuctionMaster(Customer customer, Product product, float bidPrice, Date dateTime, float minBidPrice,
+			Date auctionStartDate, Date auctionEndDate, float bidIncrement, String productSoldStatus, String auctionDescription) {
+		this.customer = customer;
+		this.product = product;
 		this.bidPrice = bidPrice;
 		this.dateTime = dateTime;
 		this.minBidPrice = minBidPrice;
-		this.auctionStratDate = auctionStratDate;
+		this.auctionStartDate = auctionStartDate;
 		this.auctionEndDate = auctionEndDate;
 		this.bidIncrement = bidIncrement;
-		this.status = status;
+		this.productSoldStatus = productSoldStatus;
 		this.auctionDescription = auctionDescription;
 	}
 	
 	public AuctionMaster(AuctionMasterDto auctionMaster)
 	{
-		this.customerId =auctionMaster.getCustomerId() ;
-		this.productId = auctionMaster.getProductId();
+		this.customer =auctionMaster.getCustomer() ;
+		this.product = auctionMaster.getProduct();
 		this.bidPrice = auctionMaster.getBidPrice();
 		this.dateTime = auctionMaster.getDateTime();
 		this.minBidPrice = auctionMaster.getMinBidPrice();
-		this.auctionStratDate = auctionMaster.getAuctionStratDate();
+		this.auctionStartDate = auctionMaster.getAuctionStartDate();
 		this.auctionEndDate = auctionMaster.getAuctionEndDate();
 		this.bidIncrement =auctionMaster.getBidIncrement();
-		this.status =auctionMaster.getStatus();
+		this.productSoldStatus =auctionMaster.getStatus();
 		this.auctionDescription = auctionMaster.getAuctionDescription();
 	}
-
-	
-	
-
-	public int getCustomerId() {
-		return customerId;
+	public int getAuctionId() {
+		return auctionId;
 	}
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
+	public void setAuctionId(int auctionId) {
+		this.auctionId = auctionId;
 	}
 
-	public int getProductId() {
-		return productId;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setProductId(int productId) {
-		this.productId = productId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public float getBidPrice() {
@@ -92,12 +95,12 @@ public class AuctionMaster {
 		this.minBidPrice = minBidPrice;
 	}
 
-	public Date getAuctionStratDate() {
-		return auctionStratDate;
+	public Date getAuctionStartDate() {
+		return auctionStartDate;
 	}
 
-	public void setAuctionStratDate(Date auctionStratDate) {
-		this.auctionStratDate = auctionStratDate;
+	public void setAuctionStartDate(Date auctionStartDate) {
+		this.auctionStartDate = auctionStartDate;
 	}
 
 	public Date getAuctionEndDate() {
@@ -116,12 +119,12 @@ public class AuctionMaster {
 		this.bidIncrement = bidIncrement;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getProductSoldStatus() {
+		return productSoldStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setProductSoldStatus(String productSoldStatus) {
+		this.productSoldStatus = productSoldStatus;
 	}
 
 	public String getAuctionDescription() {
@@ -131,5 +134,4 @@ public class AuctionMaster {
 	public void setAuctionDescription(String auctionDescription) {
 		this.auctionDescription = auctionDescription;
 	}
-
-}
+}	
