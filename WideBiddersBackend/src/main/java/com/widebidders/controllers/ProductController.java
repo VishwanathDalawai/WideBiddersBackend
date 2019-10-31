@@ -66,11 +66,8 @@ public class ProductController {
 		logger.info("Inside addProduct Hello2");
 		
 		logger.info("Inside addProduct and Customer Name is"+customer.getCustomerName());
-		HashSet<Customer> set = new HashSet<Customer>();
-		set.add(customer);
-		product.setCustomer(set);
 		
-		ProductService.addProduct(product);		
+		ProductService.addProduct(product, customer);		
 		return 0;
 	}
 

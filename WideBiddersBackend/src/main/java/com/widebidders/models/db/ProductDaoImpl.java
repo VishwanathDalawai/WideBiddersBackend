@@ -1,6 +1,7 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -38,13 +39,19 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
-	public void addProduct(Product product) {
-	    logger.error("Inside add product DAO "+product.getProductImage());
+	public void addProduct(Product product, Customer customer) {
+	    //logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 	    Transaction tx = null;
 	    try {
 	         tx = session.beginTransaction();
+	         product.setCustomer(customer);
 	         session.save(product);
+	         /*
+	         Set set = new HashSet<Customer>();
+	         set.add(customer);
+	 		 product.setCustomer(set);
+	 		 */
 	         tx.commit();
 	      } catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();

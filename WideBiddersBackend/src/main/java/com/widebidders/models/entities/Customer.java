@@ -1,7 +1,5 @@
 package com.widebidders.models.entities;
 
-import java.util.Set;
-
 import com.widebidders.dto.CustomerDto;
 
 public class Customer {

@@ -11,7 +11,7 @@ import com.widebidders.models.entities.ProductImage;
 
 
 public interface ProductDao {
-	public void addProduct(Product product);	
+	public void addProduct(Product product, Customer customer);	
     public void deleteProduct(int productId);
     public void updateProduct(int productId, Product Product);
     public List getProducts();
