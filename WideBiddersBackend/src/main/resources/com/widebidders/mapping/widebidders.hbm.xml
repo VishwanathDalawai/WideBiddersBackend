@@ -10,7 +10,7 @@
          This class contains the product detail. 
       </meta>
       
-      <id name = "productId" type = "int" column = "productId">
+      <id name = "productId" column = "productId" type = "int" >
          <generator class="native">
          <param name="sequence">PRODUCT_PRODUCT_ID_SEQ</param>
          </generator>

@@ -29,7 +29,9 @@ export class RegisterComponent implements OnInit {
 
 
 
+
   constructor(private http:HttpClient,private router:Router, private toastr: ToastrService) { }
+
   onUploadChange(evt: any) {
     const file = evt.target.files[0];
   
@@ -48,8 +50,7 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
-   
-   
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
 
