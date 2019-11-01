@@ -1,5 +1,6 @@
 package com.widebidders.controllers;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +34,9 @@ public class ProductController {
 	@Autowired
 	public ProductServiceImpl ProductService;
 	
+	@Autowired
+	public CustomerDaoImpl customerDaoImpl;
+	
 	@RequestMapping(value = "/products")
 	public List getProducts() {
 		return ProductService.getProducts();
@@ -43,17 +48,27 @@ public class ProductController {
 	} 
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
-	public void addProduct(@RequestBody ProductDto productDto) {
-		logger.error("Inside add product"+productDto);
-		//Customer customer = (Customer)request.getAttribute("customer");
-		//logger.info("Inside product Controller"+customer.getCustomerName());=
+	public int addProduct(@RequestBody Product product, @RequestHeader int customerId) {
+		logger.error("Inside add product"+product);
+	/*	int customerId = productDto.getCustomerId();
+		if(customerId==0){
+			logger.info("User not logged in");
+			return -1;
+		}
+		logger.info("Inside addProduct and customerId"+ customerId);
+	
 		Product product = new Product(productDto);
-		CustomerDaoImpl customerDaoImpl =new CustomerDaoImpl();
-		int customerId = productDto.getCustomerId();
-		logger.info("Inside add product and customerId"+ customerId);
-		List customer = customerDaoImpl.getCustomerById(customerId);
-		product.setCustomer((Set<Customer>) customer);
-		ProductService.addProduct(product);
+		*/
+		logger.info("Inside addProduct Hello1");
+		
+		Customer customer = (Customer) customerDaoImpl.getCustomerById(customerId);
+		
+		logger.info("Inside addProduct Hello2");
+		
+		logger.info("Inside addProduct and Customer Name is"+customer.getCustomerName());
+		
+		ProductService.addProduct(product, customer);		
+		return 0;
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
@@ -64,5 +79,20 @@ public class ProductController {
 	@RequestMapping(value = "/productUpdate/{id}", method = RequestMethod.PUT)
 	public void updateProduct(@PathVariable("id") int id, @RequestBody Product Product) {
 		ProductService.updateProduct(id, Product);
+	}
+	
+	@RequestMapping(value = "/productByCategory/{category}")
+	public List getProductByCategory(@PathVariable("category") String category) {
+		 return ProductService.getProductByCategory(category);
+	}
+	@RequestMapping(value = "/productByCustomerId/{id}")
+	public List getProductByCustomerId(@PathVariable int id ) {
+		 return ProductService.getProductByCustomerId(id);
+	}
+	
+	
+	@RequestMapping(value = "/productByProductName/{productName}")
+	public List getProductByProductName(@PathVariable("productName") String productName) {
+		 return ProductService.getProductByProductName(productName);
 	}
 }

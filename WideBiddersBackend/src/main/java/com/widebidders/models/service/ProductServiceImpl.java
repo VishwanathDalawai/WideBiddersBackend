@@ -32,9 +32,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void addProduct(Product product) {
+	public void addProduct(Product product, Customer customer) {
 		logger.error("Inside add product Service class"+product);
-		productDboImpl.addProduct(product);
+		productDboImpl.addProduct(product, customer);
 	}
 
 	@Override
@@ -62,5 +62,25 @@ public class ProductServiceImpl implements ProductService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Product> getProductByCategory(String category) {
+
+	 return productDboImpl.getProductByCategory(category);
+	}
+
+	@Override
+	public List<Product> getProductByProductName(String productName) {
+		
+	  return productDboImpl.getProductProductName(productName);
+	}
+
+
+	@Override
+	public List getProductByCustomerId(int customerId) {
+		return  productDboImpl.getProductByCustomerId(customerId);
+	}
+
+	
 	
 }

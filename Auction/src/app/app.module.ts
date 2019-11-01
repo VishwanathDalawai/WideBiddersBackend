@@ -22,11 +22,11 @@ import { FaqComponent } from './faq/faq.component';
 import { AppService } from './app.service';
 import { CategoryDetailsComponent } from './category-details/category-details.component';
 import { ProductNameComponent } from './product-name/product-name.component';
-
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
+
+
 
 
 @NgModule({

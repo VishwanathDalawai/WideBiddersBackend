@@ -2,11 +2,11 @@ package com.widebidders.models.db;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+//github.com/Vishwanathpd/WideBiddersBackend.git
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
+//github.com/Vishwanathpd/WideBiddersBackend.git
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -15,7 +15,6 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.Customer;
@@ -38,21 +37,26 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
-	public void addProduct(Product product) {
-	    logger.error("Inside add product DAO "+product.getProductImage());
+	public void addProduct(Product product, Customer customer) {
+		// logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
-	    Transaction tx = null;
-	    List customers = null;
-	    try {
-	         tx = session.beginTransaction();
-	         session.save(product);
-	         tx.commit();
-	      } catch (HibernateException e) {
-	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
-	      } finally {
-	         session.close(); 
-	      }
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			product.setCustomer(customer);
+			session.save(product);
+			/*
+			 * Set set = new HashSet<Customer>(); set.add(customer);
+			 * product.setCustomer(set);
+			 */
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 	@Override
@@ -84,9 +88,10 @@ public class ProductDaoImpl implements ProductDao {
 
 		try {
 			tx = session.beginTransaction();
-			List<Product> employee = (List) session.get(Product.class, productId);
-			employee.set(productId, Product);
-			session.update(employee);
+			List<Product> product = (List) session.get(Product.class, productId);
+			product.set(productId, Product);
+			session.update(product);
+			System.out.println(product);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -105,8 +110,18 @@ public class ProductDaoImpl implements ProductDao {
 		Transaction tx = null;
 		List products = null;
 		try {
+			
 			tx = session.beginTransaction();
 			products = session.createQuery("FROM Product ").list();
+		
+			/*
+			tx = session.beginTransaction();
+	         String sql = "SELECT * FROM PRODUCT";
+	         SQLQuery query = session.createSQLQuery(sql);
+	         query.addEntity(Product.class);
+	         data = query.list();
+	         */
+	         tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -168,4 +183,85 @@ public class ProductDaoImpl implements ProductDao {
 		return null;
 	}
 
+	@Override
+	public List getProductByCategory(String category) {
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Product> results = new ArrayList<Product>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Product WHERE productCategoryName = :category";
+			System.out.println("category is " + category);
+			Query query = session.createQuery(hql);
+			query.setParameter("category", category);
+
+			List<Product> list = query.list();
+			results.addAll(list);
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return results;
+	}
+
+	@Override
+	public List getProductProductName(String productName) {
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Product> results = new ArrayList<Product>();
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM Product WHERE productName = :productName";
+			System.out.println("productName is " + productName);
+			Query query = session.createQuery(hql);
+			query.setParameter("productName", productName);
+
+			List<Product> list = query.list();
+			results.addAll(list);
+
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return results;
+	}
+
+	@Override
+	public List getProductByCustomerId(int customerId) {
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Product> results = new ArrayList<Product>();
+		//Integer customerId=customer.getCustomerId();
+		try {
+			tx = session.beginTransaction();
+			List products = session.createQuery("FROM Product").list(); 
+	         for (Iterator iterator = products.iterator(); iterator.hasNext();){
+	            Product product= (Product) iterator.next(); 
+	            Customer customer = product.getCustomer();
+	            if(customer.getCustomerId()==customerId){
+	            	results.add(product);
+	            }
+	        }
+			logger.info("list size is "+results.size());			
+		}
+		catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+	 	} finally {
+			session.close();
+		}
+		return results;
+	}
+			
 }

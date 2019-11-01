@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = { "com.widebidders.controllers", "com.widebidders.models.service", "com.widebidders.models.db" })
 public class Main {
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 	

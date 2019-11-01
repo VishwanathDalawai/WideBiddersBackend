@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.widebidders.dto.ProductDto;
 
+
 public class Product {
 	
 	private int productId;
@@ -17,14 +18,13 @@ public class Product {
 	private String productBoughtYear;
 	private String productModel;
 	private Set<ProductImage> productImage;
-	private Set<Customer> customer;
+	private Customer customer;
 	
 	public Product() {
 	}
 	
-	public Product(int productId, String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel) {
-		this.productId = productId;
+	public Product(String productCategoryName, String productName, String productDescription,
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel, Customer customer) {
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -34,9 +34,10 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 		this.productModel = productModel;
 		this.productBoughtYear = productBoughtYear;
+		this.customer = customer;
 	}
+	
 	public Product(ProductDto product) {
-		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();
@@ -46,15 +47,6 @@ public class Product {
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
 		this.productBoughtYear = product.getProductBougthYear();
-	}
-
-
-	public String getProductBoughtYear() {
-		return productBoughtYear;
-	}
-
-	public void setProductBoughtYear(String productBoughtYear) {
-		this.productBoughtYear = productBoughtYear;
 	}
 
 	public int getProductId() {
@@ -121,11 +113,11 @@ public class Product {
 		this.incrementPrice = incrementPrice;
 	}
 
-	public String getproductBoughtYear() {
+	public String getProductBoughtYear() {
 		return productBoughtYear;
 	}
 
-	public void setproductBoughtYear(String productBoughtYear) {
+	public void setProductBoughtYear(String productBoughtYear) {
 		this.productBoughtYear = productBoughtYear;
 	}
 
@@ -145,11 +137,11 @@ public class Product {
 		this.productImage = productImage;
 	}
 
-	public Set<Customer> getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Set<Customer> customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 }
