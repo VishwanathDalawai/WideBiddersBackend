@@ -35,14 +35,22 @@ export class ProductComponent implements OnInit {
     obs.subscribe((response) => {
 
       this.data = response;
-     
- 
-
-    }
-
+      console.log(this.data[0]);
+      console.log(this.data[0].customer)
+      console.log(this.data[0].customer.customerName);
+      console.log(this.data[0].productModel);
+      console.log(this.data[0].customer.customerName.toLowerCase( ))
+   }
     )
   }
+
+
+
+
   placed(){
+
+
+
     this.router.navigate(["bidplaced"]);
   }
  

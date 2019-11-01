@@ -34,15 +34,26 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
+    /* important
     this.custId=this.customerService.getCustomer();
     console.log("customerId:" + this.custId);
   
+*/
 
-    if(this.custId!=""){
+ this.custId = sessionStorage.getItem('custId');
+
+console.log("header component" + this.custId);
+
+    if(this.custId!=null){
+   //   console.log("header component::::id:" + this.custId);
+      this.emailId = sessionStorage.getItem('emailId');
+   //   console.log("header component::::emailid:" + this.emailId);
+      
       
 // let obs =  this.http.get(this.url1 + this.custId);
-
+/* important important
 this.http.post(this.url1 , this.custId).subscribe((Response)=>{
+  console.log("hey");
   console.log(Response);
   this.data=Response['MailID'];
 
@@ -51,7 +62,7 @@ this.emailId=this.data;
 
   console.log(this.data);
   
-    })
+    })  */
    }
 
 
@@ -79,7 +90,14 @@ this.emailId=this.data;
   }  */
   }
   sell(){
-    this.router.navigate(["sell"]);
+
+    if(this.custId!=null){
+      this.router.navigate(["sell"]);
+
+    }
+    else{
+      this.router.navigate(["login"]);
+    }    
   }
   signup(){
     this.router.navigate(["register"]);
@@ -121,6 +139,11 @@ search(){
 
   electronics(){
     this.router.navigate(['categoryDetails','electronics']);
+  }
+  clear(){
+    sessionStorage.clear();
+ //   console.log("header component::::id:" + this.custId);
+ //  console.log("header component::::emailid:" + this.emailId);
   }
 
 

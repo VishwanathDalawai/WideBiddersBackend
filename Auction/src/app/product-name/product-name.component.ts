@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./product-name.component.css']
 })
 export class ProductNameComponent implements OnInit {
-  url2=environment.apiBaseUrl + "search/";
+  url2=environment.apiBaseUrl + "productByProductName/";
   data:any;
   productName:any;
   

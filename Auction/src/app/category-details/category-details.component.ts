@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CategoryDetailsComponent implements OnInit {
 
-  url2=environment.apiBaseUrl + "category/";
+  url2=environment.apiBaseUrl + "productByCategory/";
 data:any;
 categoty:any;
 

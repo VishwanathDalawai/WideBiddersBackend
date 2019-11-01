@@ -55,7 +55,9 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot({
+      timeOut: 1000
+    }) // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

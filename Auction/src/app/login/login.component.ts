@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   userName:string="";
   password:string="";
-custId:any;
+ custId:any;
   data:any;
 
 credential:any;
@@ -55,8 +55,19 @@ this.data=response;
       
     //   if(response==true){
     //     this.status=true;
+
+
+/* important
+
     this.customerService.setCustomer(this.data);
 this.custId=this.customerService.getCustomer();
+*/
+
+
+sessionStorage.setItem('custId',this.data);
+sessionStorage.setItem('emailId',this.userName);
+// console.log("customer id" + sessionStorage.getItem('custId'));
+
 
 // console.log(this.custId);
 
