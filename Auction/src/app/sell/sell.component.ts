@@ -16,6 +16,8 @@ import { CustomerService } from '../customer.service';
 })
 export class SellComponent implements OnInit {
 url1=environment.apiBaseUrl + "addproduct/";
+url2=environment.apiBaseUrl + "addAuctionMaster/";
+
   product_name:string="";
   product_category:string="";
   product_model:string="";
@@ -23,7 +25,7 @@ url1=environment.apiBaseUrl + "addproduct/";
   year:string="";
   min_bid_price:string="";
   increment:string="";
-  
+  auctionMaster:any;
   product:any;
   ProductImages:any;
   image1:any;
@@ -37,6 +39,9 @@ url1=environment.apiBaseUrl + "addproduct/";
   imageData=[];
 a:any;
 cid:string; 
+startDate:any;
+endDate:any;
+currentDate:any;
 
   constructor(private http:HttpClient,private router:Router,private customerService:CustomerService){
   }
@@ -96,17 +101,28 @@ cid:string;
    this.product = 
        {
         "customerId": this.custId,"productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
-       "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, 
+       "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "approvalStatus": 1, "reportFlag": 0, 
        "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
+      };
+
+      this.auctionMaster =
+      {
+        "customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
+        "productSoldStatus": 1,"auctionDescription":"First Product", "auctionStartDate":this.startDate, "auctionEndDate":this.endDate 
       };
       
     
     console.log("image passed"+this.Data[0]);
    console.log(this.product);
-     let obs =  this.http.post(this.url1,this.product,httpOptions);
-       obs.subscribe(()=>{
+     let obs1 =  this.http.post(this.url1,this.product);
+       obs1.subscribe(()=>{
+            
+           })
+
+           let obs2 =  this.http.post(this.url2,this.auctionMaster);
+       obs2.subscribe(()=>{
             
            })
 

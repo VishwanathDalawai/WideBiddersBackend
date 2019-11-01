@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
 
 
   ngOnInit() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    
   }
 
 
