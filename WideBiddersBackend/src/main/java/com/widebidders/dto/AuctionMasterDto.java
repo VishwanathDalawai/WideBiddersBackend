@@ -8,7 +8,7 @@ import com.widebidders.models.entities.Product;
 public class AuctionMasterDto {
 	
 	private int auctionId;
-	private float bidPrice;
+	private float finalBidPrice;
 	private Date dateTime;
 	private float minBidPrice;
 	private Date auctionStartDate;
@@ -23,11 +23,11 @@ public class AuctionMasterDto {
 
 	}
 
-	public AuctionMasterDto(Customer customer, Product product, float bidPrice, Date dateTime, float minBidPrice,
+	public AuctionMasterDto(Customer customer, Product product, float finalBidPrice, Date dateTime, float minBidPrice,
 			Date auctionStartDate, Date auctionEndDate, float bidIncrement, String status, String auctionDescription) {
 		this.customer = customer;
 		this.product = product;
-		this.bidPrice = bidPrice;
+		this.finalBidPrice = finalBidPrice;
 		this.dateTime = dateTime;
 		this.minBidPrice = minBidPrice;
 		this.auctionStartDate = auctionStartDate;
@@ -61,12 +61,12 @@ public class AuctionMasterDto {
 		this.product = product;
 	}
 
-	public float getBidPrice() {
-		return bidPrice;
+	public float getFinalBidPrice() {
+		return finalBidPrice;
 	}
 
-	public void setBidPrice(float bidPrice) {
-		this.bidPrice = bidPrice;
+	public void setFinalBidPrice(float finalBidPrice) {
+		this.finalBidPrice = finalBidPrice;
 	}
 
 	public Date getDateTime() {

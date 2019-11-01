@@ -6,7 +6,7 @@ import com.widebidders.dto.AuctionMasterDto;
 
 public class AuctionMaster {
 	private int auctionId;
-	private float bidPrice;
+	private float finalBidPrice;
 	private Date dateTime;
 	private float minBidPrice;
 	private Date auctionStartDate;
@@ -14,17 +14,17 @@ public class AuctionMaster {
 	private float bidIncrement;
 	private String productSoldStatus;
 	private String auctionDescription;
-	private Customer customer;
+	private Customer customer; 
 	private Product product;
 
 	public AuctionMaster() {
 	}
 
-	public AuctionMaster(Customer customer, Product product, float bidPrice, Date dateTime, float minBidPrice,
+	public AuctionMaster(Customer customer, Product product, float finalBidPrice, Date dateTime, float minBidPrice,
 			Date auctionStartDate, Date auctionEndDate, float bidIncrement, String productSoldStatus, String auctionDescription) {
 		this.customer = customer;
 		this.product = product;
-		this.bidPrice = bidPrice;
+		this.finalBidPrice = finalBidPrice;
 		this.dateTime = dateTime;
 		this.minBidPrice = minBidPrice;
 		this.auctionStartDate = auctionStartDate;
@@ -38,7 +38,7 @@ public class AuctionMaster {
 	{
 		this.customer =auctionMaster.getCustomer() ;
 		this.product = auctionMaster.getProduct();
-		this.bidPrice = auctionMaster.getBidPrice();
+		this.finalBidPrice = auctionMaster.getFinalBidPrice();
 		this.dateTime = auctionMaster.getDateTime();
 		this.minBidPrice = auctionMaster.getMinBidPrice();
 		this.auctionStartDate = auctionMaster.getAuctionStartDate();
@@ -71,12 +71,12 @@ public class AuctionMaster {
 		this.product = product;
 	}
 
-	public float getBidPrice() {
-		return bidPrice;
+	public float getFinalBidPrice() {
+		return finalBidPrice;
 	}
 
-	public void setBidPrice(float bidPrice) {
-		this.bidPrice = bidPrice;
+	public void setFinalBidPrice(float finalBidPrice) {
+		this.finalBidPrice = finalBidPrice;
 	}
 
 	public Date getDateTime() {
