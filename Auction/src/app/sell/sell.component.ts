@@ -16,7 +16,7 @@ import { CustomerService } from '../customer.service';
 })
 export class SellComponent implements OnInit {
 url1=environment.apiBaseUrl + "addproduct/";
-url2=environment.apiBaseUrl + "auctionMaster/";
+url2=environment.apiBaseUrl + "addAuctionMaster/";
 
   product_name:string="";
   product_category:string="";
@@ -109,19 +109,19 @@ currentDate:any;
 
       this.auctionMaster =
       {
-        "customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "incrementPrice":this.increment,
-        "status": 1,"description":"First Product", "startDate":this.startDate, "endDate":this.endDate 
+        "customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
+        "productSoldStatus": 1,"auctionDescription":"First Product", "auctionStartDate":this.startDate, "auctionEndDate":this.endDate 
       };
       
     
     console.log("image passed"+this.Data[0]);
    console.log(this.product);
-     let obs1 =  this.http.post(this.url1,this.product,httpOptions);
+     let obs1 =  this.http.post(this.url1,this.product);
        obs1.subscribe(()=>{
             
            })
 
-           let obs2 =  this.http.post(this.url2,this.auctionMaster,httpOptions);
+           let obs2 =  this.http.post(this.url2,this.auctionMaster);
        obs2.subscribe(()=>{
             
            })
