@@ -8,28 +8,28 @@ import com.widebidders.models.entities.Product;
 public class AuctionMasterDto {
 	
 	private int auctionId;
-	private float bidPrice;
+	private double finalBidPrice;
 	private Date dateTime;
-	private float minBidPrice;
+	private double startingBidPrice;
 	private Date auctionStartDate;
 	private Date auctionEndDate;
-	private float bidIncrement;
+	private double bidIncrement;
 	private String status;
 	private String auctionDescription;
-	private Customer customer;
-	private Product product;
+	private int customerId;
+	private int productId;
 
 	public AuctionMasterDto() {
 
 	}
 
-	public AuctionMasterDto(Customer customer, Product product, float bidPrice, Date dateTime, float minBidPrice,
-			Date auctionStartDate, Date auctionEndDate, float bidIncrement, String status, String auctionDescription) {
-		this.customer = customer;
-		this.product = product;
-		this.bidPrice = bidPrice;
+	public AuctionMasterDto(int customerId, int productId, double finalBidPrice, Date dateTime, double startingBidPrice,
+			Date auctionStartDate, Date auctionEndDate, double bidIncrement, String status, String auctionDescription) {
+		this.customerId = customerId;
+		this.productId = productId;
+		this.finalBidPrice = finalBidPrice;
 		this.dateTime = dateTime;
-		this.minBidPrice = minBidPrice;
+		this.startingBidPrice = startingBidPrice;
 		this.auctionStartDate = auctionStartDate;
 		this.auctionEndDate = auctionEndDate;
 		this.bidIncrement = bidIncrement;
@@ -44,29 +44,37 @@ public class AuctionMasterDto {
 	public void setAuctionId(int auctionId) {
 		this.auctionId = auctionId;
 	}
-
-	public Customer getCustomer() {
-		return customer;
+	
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public Product getProduct() {
-		return product;
+	public double getStartingBidPrice() {
+		return startingBidPrice;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setStartingBidPrice(double startingBidPrice) {
+		this.startingBidPrice = startingBidPrice;
 	}
 
-	public float getBidPrice() {
-		return bidPrice;
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setBidPrice(float bidPrice) {
-		this.bidPrice = bidPrice;
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public double getFinalBidPrice() {
+		return finalBidPrice;
+	}
+
+	public void setFinalBidPrice(double finalBidPrice) {
+		this.finalBidPrice = finalBidPrice;
 	}
 
 	public Date getDateTime() {
@@ -75,14 +83,6 @@ public class AuctionMasterDto {
 
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
-	}
-
-	public float getMinBidPrice() {
-		return minBidPrice;
-	}
-
-	public void setMinBidPrice(float minBidPrice) {
-		this.minBidPrice = minBidPrice;
 	}
 
 	public Date getAuctionStartDate() {
@@ -101,11 +101,11 @@ public class AuctionMasterDto {
 		this.auctionEndDate = auctionEndDate;
 	}
 
-	public float getBidIncrement() {
+	public double getBidIncrement() {
 		return bidIncrement;
 	}
 
-	public void setBidIncrement(float bidIncrement) {
+	public void setBidIncrement(double bidIncrement) {
 		this.bidIncrement = bidIncrement;
 	}
 

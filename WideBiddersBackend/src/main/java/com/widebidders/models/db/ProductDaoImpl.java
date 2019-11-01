@@ -37,7 +37,7 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
-	public void addProduct(Product product, Customer customer) {
+	public int addProduct(Product product, Customer customer) {
 		// logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -45,11 +45,8 @@ public class ProductDaoImpl implements ProductDao {
 			tx = session.beginTransaction();
 			product.setCustomer(customer);
 			session.save(product);
-			/*
-			 * Set set = new HashSet<Customer>(); set.add(customer);
-			 * product.setCustomer(set);
-			 */
 			tx.commit();
+			return product.getProductId();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -57,6 +54,7 @@ public class ProductDaoImpl implements ProductDao {
 		} finally {
 			session.close();
 		}
+		return -1;
 	}
 
 	@Override
@@ -133,28 +131,27 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public List<Product> getProductById(int id) {
+	public Product getProductById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List<Product> results = new ArrayList<Product>();
+		List<Product> products = new ArrayList<Product>();
 		try {
-			tx = session.beginTransaction();
-			String hql = "FROM Product WHERE productId = :id";
-			System.out.println("ID is " + id);
-			Query query = session.createQuery(hql);
-			query.setParameter("id", id);
-
-			List<Product> list = query.list();
-			results.addAll(list);
-
-		} catch (HibernateException e) {
+			products = session.createQuery("FROM Product").list();
+			for (Iterator iterator1 = products.iterator(); iterator1.hasNext();) {
+				logger.info("Inside getProductByID ");
+				Product product = (Product) iterator1.next();
+				if (product.getProductId()==id) {
+					return product;
+				}
+			}
+		}catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return results;
+		return null;
 	}
 
 	@Override
@@ -237,7 +234,6 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List getProductByCustomerId(int customerId) {
-
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Product> results = new ArrayList<Product>();

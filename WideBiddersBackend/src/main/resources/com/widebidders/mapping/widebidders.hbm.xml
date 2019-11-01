@@ -75,20 +75,38 @@
          This class contains Auction records. 
       </meta>
      
-     <id name = "auctionId" type = "int" column = "customer_id">
+     <id name = "auctionId" type = "int" column = "auction_id">
          <generator class="native">
          <param name="sequence">AUCT_AUCTION_ID_SEQ</param>
          </generator>
       </id>
     
-     <property name = "bidPrice" column = "bid_Price" type="double"/>
+     <property name = "finalBidPrice" column = "final_Bid_Price" type="double"/>
      <property name = "dateTime" column = "date_Time" type="string"/>
-     <property name = "minBidPrice" column = "min_Bid_Price" type="double"/>
+     <property name = "startingBidPrice" column = "starting_Bid_Price" type="double"/>
      <property name = "auctionStartDate" column = "auction_Start_Date" type="string"/>
      <property name = "auctionEndDate" column = "auction_End_Date" type="string"/>
      <property name = "bidIncrement" column = "bid_Increament" type="double"/>
      <property name = "productSoldStatus" column = "product_Sold_Status" type="string"/>
      <property name = "auctionDescription" column = "auction_Description" type="string"/>
+     <many-to-one name = "customer" column = "customer_ID" class="com.widebidders.models.entities.Customer" not-null="true"/>
+     <many-to-one name = "product" column = "product_ID" class="com.widebidders.models.entities.Product" not-null="true"/>
+   </class>
+   <class name = "com.widebidders.models.entities.AuctionTransaction" table = "Auction_Transaction">
+      
+      <meta attribute = "class-description">
+         This class contains Auction records. 
+      </meta>
      
+     <id name = "bidId" type = "int" column = "bidId">
+         <generator class="native">
+         <param name="sequence">AUCT_TRANSC_BID_ID_SEQ</param>
+         </generator>
+      </id>
+    
+     <property name = "bidAmount" column = "bid_Amount" type="double"/>
+     <property name = "dateTime" column = "date_Time" type="string"/>
+     <many-to-one name = "customer" column = "customer_ID" class="com.widebidders.models.entities.Customer" not-null="true"/>
+     <many-to-one name = "auctionMaster" column = "auction_id" class="com.widebidders.models.entities.AuctionMaster" not-null="true"/>
    </class>
 </hibernate-mapping>

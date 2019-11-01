@@ -32,13 +32,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void addProduct(Product product, Customer customer) {
+	public int addProduct(Product product, Customer customer) {
 		logger.error("Inside add product Service class"+product);
-		productDboImpl.addProduct(product, customer);
+		return productDboImpl.addProduct(product, customer);
 	}
 
 	@Override
-	public List getProductById(int id){
+	public Product getProductById(int id){
 		return productDboImpl.getProductById(id);
 	}
 

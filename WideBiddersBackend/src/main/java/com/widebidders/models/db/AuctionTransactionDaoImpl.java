@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,18 +14,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.AuctionMaster;
-import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.Product;
-import com.widebidders.models.service.AuctionMasterService;
+import com.widebidders.models.entities.AuctionTransaction;
 
 @Repository
-public class AuctionMasterDaoImpl implements AuctionMasterService {
+public class AuctionTransactionDaoImpl implements AuctionTransactionDao{
 
 	private SessionFactory factory;
 
 	private static final Logger logger = LoggerFactory.getLogger(AuctionMasterDaoImpl.class);
 
-	public AuctionMasterDaoImpl() {
+	public AuctionTransactionDaoImpl() {
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
@@ -34,62 +31,15 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-
+	
 	@Override
-	public void addAuction(AuctionMaster auctionMaster, Product product, Customer customer) {
-		Session session = factory.openSession();
-		Transaction tx = null;
-		try {
-			tx = session.beginTransaction();
-			auctionMaster.setProduct(product);
-			auctionMaster.setCustomer(customer);
-			session.save(auctionMaster);
-			tx.commit();
-			logger.info(" Auction record added successfully");
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-	}
-
-	@Override
-	public void deleteAuction(int auctionId) {
-		Session session = factory.openSession();
-		Transaction tx = null;
-
-		try {
-			tx = session.beginTransaction();
-			AuctionMaster auctionMaster = (AuctionMaster) session.get(AuctionMaster.class, auctionId);
-			session.delete(auctionMaster);
-			tx.commit();
-			logger.info(" Auction record deleted successfully.... ");
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-
-	}
-
-	@Override
-	public void updateAuction(int auctionId, AuctionMaster auctionRecord) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List getAuction() {
+	public List getAllBids() {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List auction = null;
 		try {
 			tx = session.beginTransaction();
-			auction = session.createQuery("FROM AuctionMaster ").list();
+			auction = session.createQuery("FROM AuctionTransaction").list();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -101,18 +51,18 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 	}
 
 	@Override
-	public List<AuctionMaster> getAuctionById(int id) {
+	public List getBidById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-		List<AuctionMaster> results = new ArrayList<AuctionMaster>();
+		List<AuctionTransaction> results = new ArrayList<AuctionTransaction>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM AuctionMaster WHERE auctionId = :id";
-			System.out.println("ID is " + id);
+			String hql = "FROM AuctionTransaction WHERE bidId = :id";
+			System.out.println("Bid ID is " + id);
 			Query query = session.createQuery(hql);
 			query.setParameter("id", id);
 
-			List<AuctionMaster> list = query.list();
+			List<AuctionTransaction> list = query.list();
 			results.addAll(list);
 
 		} catch (HibernateException e) {
@@ -124,4 +74,43 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 		}
 		return results;
 	}
+
+	@Override
+	public void addBid(AuctionTransaction bid) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			session.save(bid);
+			tx.commit();
+			logger.info(" Auction record added successfully");
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+	}
+
+	@Override
+	public void deleteAuction(int bidId) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			AuctionTransaction auctionTransaction = (AuctionTransaction) session.get(AuctionTransaction.class, bidId);
+			session.delete(auctionTransaction);
+			tx.commit();
+			logger.info(" Auction record deleted successfully.... ");
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}	
 }
