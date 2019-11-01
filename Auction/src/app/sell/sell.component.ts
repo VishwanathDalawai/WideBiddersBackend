@@ -42,6 +42,7 @@ cid:string;
 startDate:any;
 endDate:any;
 currentDate:any;
+productId:any;
 
   constructor(private http:HttpClient,private router:Router,private customerService:CustomerService){
   }
@@ -107,28 +108,66 @@ currentDate:any;
       ]
       };
 
-      this.auctionMaster =
-      {
-        "customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
-        "productSoldStatus": 1,"auctionDescription":"First Product", "auctionStartDate":this.startDate, "auctionEndDate":this.endDate 
-      };
+    
       
     
     console.log("image passed"+this.Data[0]);
    console.log(this.product);
      let obs1 =  this.http.post(this.url1,this.product);
-       obs1.subscribe(()=>{
-            
+       obs1.subscribe((response)=>{
+           console.log("response" + response);
+            this.productId = response;
+            console.log("product id:" +this.productId);
+            this.auction();
+
            })
 
+           console.log("hey");
+
+console.log("product" + this.productId);
+
+
+
+
+/*
+           this.auctionMaster =
+           {
+           "productId":this.productId,"customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
+             "productSoldStatus": 1,"auctionDescription":"First Product", "auctionStartDate":this.startDate, "auctionEndDate":this.endDate 
+           };
+
+
+console.log(this.auctionMaster);
            let obs2 =  this.http.post(this.url2,this.auctionMaster);
+           console.log("calling auctionMaster ");
        obs2.subscribe(()=>{
             
            })
+  */
 
            this.router.navigate(["congrats"]);
 
      }
+
+
+auction(){
+  this.auctionMaster =
+  {
+  "productId":this.productId,"customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
+"productSoldStatus": 1,"auctionDescription":"First Product"  //, "auctionStartDate":"this.startDate", "auctionEndDate":"this.endDate" 
+  };
+
+
+  console.log(this.auctionMaster);
+  let obs2 =  this.http.post(this.url2,this.auctionMaster);
+  console.log("calling auctionMaster ");
+obs2.subscribe(()=>{
+   
+  })
+}
+
+
+
   ngOnInit() {
   }
 
