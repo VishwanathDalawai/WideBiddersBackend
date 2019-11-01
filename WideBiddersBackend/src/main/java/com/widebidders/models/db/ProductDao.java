@@ -11,11 +11,11 @@ import com.widebidders.models.entities.ProductImage;
 
 
 public interface ProductDao {
-	public void addProduct(Product product, Customer customer);	
+	public int addProduct(Product product, Customer customer);	
     public void deleteProduct(int productId);
     public void updateProduct(int productId, Product Product);
     public List getProducts();
-    public List getProductById(int id);
+    public Product getProductById(int id);
     public List getProductProductName(String productName);
     public void addImage(ProductImage productImage);
     public Set getImages();

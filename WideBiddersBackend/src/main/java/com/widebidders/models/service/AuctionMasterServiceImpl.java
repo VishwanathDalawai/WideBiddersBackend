@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.widebidders.models.db.AuctionMasterDaoImpl;
 import com.widebidders.models.entities.AuctionMaster;
+import com.widebidders.models.entities.AuctionTransaction;
+import com.widebidders.models.entities.Customer;
+import com.widebidders.models.entities.Product;
 
 @Service
 public class AuctionMasterServiceImpl implements AuctionMasterService {
@@ -15,8 +18,8 @@ public class AuctionMasterServiceImpl implements AuctionMasterService {
 	private AuctionMasterDaoImpl auctionMasterDaoImpl;
 
 	@Override
-	public void addAuction(AuctionMaster auctionRecord) {
-		auctionMasterDaoImpl.addAuction(auctionRecord);
+	public void addAuction(AuctionMaster auctionRecord, Product product, Customer customer) {
+		auctionMasterDaoImpl.addAuction(auctionRecord, product, customer);
 	}
 
 	@Override

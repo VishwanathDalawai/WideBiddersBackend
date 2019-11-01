@@ -43,13 +43,14 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productId/{id}")
-	public List getProductById(@PathVariable int id) {
+	public Product getProductById(@PathVariable int id) {
 		return ProductService.getProductById(id); 
 	} 
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public int addProduct(@RequestBody ProductDto productDto) {
 		logger.error("Inside add product"+productDto);
+		
 		int customerId = productDto.getCustomerId();
 		if(customerId==0){
 			logger.info("User not logged in");
@@ -57,8 +58,7 @@ public class ProductController {
 		}
 		Product product = new Product(productDto);
 		Customer customer = (Customer) customerDaoImpl.getCustomerById(customerId);
-		ProductService.addProduct(product, customer);		
-		return 0;
+		return ProductService.addProduct(product, customer);		
 	}
 
 	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
