@@ -81,7 +81,7 @@ cid:string;
     ];
 */
     //[{"productImage":"hey"}]
-    this.custId=this.customerService.getCustomer();
+    this.custId=sessionStorage.getItem('custId');
   this.cid =  JSON.stringify(this.custId);
     const httpOptions = {
       headers: new HttpHeaders({

@@ -19,8 +19,8 @@ custId:any;
   constructor(private http:HttpClient,private activate:ActivatedRoute, private router:Router,private customerService:CustomerService) { }
 
   ngOnInit() {
-    this.custId=this.customerService.getCustomer();
- 
+  //  this.custId=this.customerService.getCustomer();
+  this.custId = sessionStorage.getItem('custId');
     console.log(this.custId);
   
       let obs = this.http.get(this.url1 + this.custId);
