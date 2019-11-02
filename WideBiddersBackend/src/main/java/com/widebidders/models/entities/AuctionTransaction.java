@@ -1,9 +1,12 @@
 package com.widebidders.models.entities;
 
+import com.widebidders.dto.AuctionTransactionDto;
+import com.widebidders.models.db.AuctionTransactionDao;
+
 public class AuctionTransaction {
 
 	private int bidId;
-	private Customer customer;
+	private Customer bidderCustomer;
 	private AuctionMaster auctionMaster;
 	private double bidAmount;
 	private String dateTime;
@@ -11,13 +14,20 @@ public class AuctionTransaction {
 	public AuctionTransaction() {
 	}
 	
-	public AuctionTransaction(Customer customer, AuctionMaster auctionMaster, double bidAmount, String dateTime){
-		this.customer = customer;
+	public AuctionTransaction(Customer bidderCustomer, AuctionMaster auctionMaster, double bidAmount, String dateTime){
+		this.bidderCustomer = bidderCustomer;
 		this.auctionMaster = auctionMaster;
 		this.bidAmount = bidAmount;
 		this.dateTime = dateTime;
 	}
 
+	public AuctionTransaction(AuctionTransactionDto auctionTransactionDto){
+		this.bidderCustomer = auctionTransactionDto.getBidderCustomer();
+		this.auctionMaster = auctionTransactionDto.getAuctionMaster();
+		this.bidAmount = auctionTransactionDto.getBidAmount();
+		this.dateTime = auctionTransactionDto.getDateTime();
+	}
+	
 	public int getBidId() {
 		return bidId;
 	}
@@ -25,13 +35,13 @@ public class AuctionTransaction {
 	public void setBidId(int bidId) {
 		this.bidId = bidId;
 	}
-
-	public Customer getCustomer() {
-		return customer;
+	
+	public Customer getBidderCustomer() {
+		return bidderCustomer;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setBidderCustomer(Customer bidderCustomer) {
+		this.bidderCustomer = bidderCustomer;
 	}
 
 	public AuctionMaster getAuctionMaster() {

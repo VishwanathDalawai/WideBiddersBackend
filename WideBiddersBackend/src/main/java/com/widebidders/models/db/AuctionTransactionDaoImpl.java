@@ -76,12 +76,19 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao{
 	}
 
 	@Override
-	public void addBid(AuctionTransaction bid) {
+	public void addBid(AuctionTransaction bid,int productId) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 
 		try {
 			tx = session.beginTransaction();
+			String sql = "SELECT * from AuctionMaster where auctionId in (SELECT max(auctionId) FROM AuctionMaster group by productId having productId ="+productId+")";
+			//String sql = "SELECT * FROM AuctionMaster WHERE productId = "+productId+"having MAX(auctionId)";
+			//String sql = "SELECT MAX(auction.auctionId) FROM AuctionMaster auction WHERE productId = "+productId ;
+			Query query = session.createQuery(sql);
+			AuctionMaster auctionMaster = (AuctionMaster) query.uniqueResult();
+			logger.info("Highest auction id for the product is"+auctionMaster.getAuctionId());
+			bid.setAuctionMaster(auctionMaster);
 			session.save(bid);
 			tx.commit();
 			logger.info(" Auction record added successfully");

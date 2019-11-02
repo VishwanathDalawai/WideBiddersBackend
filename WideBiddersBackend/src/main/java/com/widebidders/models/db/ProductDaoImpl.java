@@ -110,15 +110,7 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 			
 			tx = session.beginTransaction();
-			products = session.createQuery("FROM Product ").list();
-		
-			/*
-			tx = session.beginTransaction();
-	         String sql = "SELECT * FROM PRODUCT";
-	         SQLQuery query = session.createSQLQuery(sql);
-	         query.addEntity(Product.class);
-	         data = query.list();
-	         */
+			products = session.createQuery("FROM Product").list();
 	         tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
