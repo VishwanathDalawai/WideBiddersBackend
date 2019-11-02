@@ -4,7 +4,7 @@ import com.widebidders.models.entities.AuctionMaster;
 import com.widebidders.models.entities.Customer;
 
 public class AuctionTransactionDto {
-		private int bidId;
+		private int bidId; 
 		private int productId;
 		private Customer bidderCustomer;
 		private AuctionMaster auctionMaster;
