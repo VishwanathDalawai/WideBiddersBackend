@@ -7,21 +7,21 @@
           <br>
         <div *ngIf="data">
           <br>
-          product_ID:{{data[0].productId}}
+          product_ID:{{data.productId}}
           <br>
-          product_Name:{{data[0].productName}}
+          product_Name:{{data.productName}}
           <br>
-          product_category:{{data[0].productCategoryName}}
+          product_category:{{data.productCategoryName}}
           <br>
-          product_model:{{data[0].productModel}}
+          product_model:{{data.productModel}}
           <br>
-          product_desc:{{data[0].productDescription}}
+          product_desc:{{data.productDescription}}
           <br>
-          year:{{data[0].productBoughtYear}}
+          year:{{data.productBoughtYear}}
           <br>
-          min_bid_price:{{data[0].startingBidPrice}}
+          min_bid_price:{{data.startingBidPrice}}
           <br>
-          increment:{{data[0].incrementPrice}},
+          increment:{{data.incrementPrice}},
           <br><br>
     
           <br><br><br>
@@ -82,17 +82,17 @@
       <div class="col-md-4">
          
           <div class="well"><b><h3>Product</h3></b>
-              <br/>  <b>Name:</b>{{data[0].productName}}
+              <br/>  <b>Name:</b>{{data.productName}}
               <br/>  
-              <br/>  <b>Basic Price: </b><div class="fa fa-inr" style="font-size:14px"></div> {{data[0].startingBidPrice}}
+              <br/>  <b>Basic Price: </b><div class="fa fa-inr" style="font-size:14px"></div> {{data.startingBidPrice}}
               <br/>
-              <br/>   <b>Model:</b> {{data[0].productModel}}
+              <br/>   <b>Model:</b> {{data.productModel}}
               <br/>
-              <br/>    <b>Minimum Bid increment price : </b><div class="fa fa-inr" style="font-size:14px"></div>{{data[0].incrementPrice}}
+              <br/>    <b>Minimum Bid increment price : </b><div class="fa fa-inr" style="font-size:14px"></div>{{data.incrementPrice}}
               <br/>
               <br/>    <b>Current Bid price : </b> <div class="fa fa-inr" style="font-size:14px"></div> "to b done"
               <br/>
-              <br/>    <input type="text" placeholder="Enter price">  <button type="button">Place bid</button>
+              <br/>    <input type="text" [(ngModel)]="bidAmount" placeholder="Enter price">  <button type="button" (click)="placeBid()">Place bid</button>
               <br/>
               <br/>   
               <br/>
@@ -105,7 +105,7 @@
     <div class="row">
          <div class="col-md-8">
           <div class="well"><b><h3>Description</h3></b>
-              <br/>  {{data[0].productDescription}}
+              <br/>  {{data.productDescription}}
               <br/>
               <br/>
               <br/>
@@ -118,8 +118,8 @@
         
              <div class="well"><b><h3>Seller Description</h3></b>
               <br/> 
-              <br/>  <b>Name: </b>{{data[0].customer.customerName}}
-              <br/>  <b>Email Id: </b>{{data[0].customer.emailId}}
+              <br/>  <b>Name: </b>{{data.customer.customerName}}
+              <br/>  <b>Email Id: </b>{{data.customer.emailId}}
               <br/>
               <br/>   
               <br/>

@@ -12,8 +12,13 @@ export class ProductComponent implements OnInit {
 
   url2=environment.apiBaseUrl + "productId/";
 
+  url1=environment.apiBaseUrl + "placeBid/";
+  
+  custId:any;
   productId: any;
   data: any;
+  bidDetails:any;
+  bidAmount:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,11 +40,11 @@ export class ProductComponent implements OnInit {
     obs.subscribe((response) => {
 
       this.data = response;
-      console.log(this.data[0]);
-      console.log(this.data[0].customer)
-      console.log(this.data[0].customer.customerName);
-      console.log(this.data[0].productModel);
-      console.log(this.data[0].customer.customerName.toLowerCase( ))
+      console.log(this.data);
+      console.log(this.data.customer)
+      console.log(this.data.customer.customerName);
+      console.log(this.data.productModel);
+      console.log(this.data.customer.customerName.toLowerCase( ))
    }
     )
   }
@@ -47,10 +52,22 @@ export class ProductComponent implements OnInit {
 
 
 
-  placed(){
+  placeBid(){
 
 
+    this.custId=sessionStorage.getItem('custId');
 
+
+    this.bidDetails = 
+    {
+     "productId": this.productId,"bidderCustomerId": this.custId,
+      "bidAmount": this.bidAmount , "dateTime": "dateTime"
+
+   };
+let obs1 =  this.http.post(this.url1,this.bidDetails);
+       obs1.subscribe((response)=>{
+
+           })
     this.router.navigate(["bidplaced"]);
   }
  
