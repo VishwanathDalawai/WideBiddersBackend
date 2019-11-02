@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   url1=environment.apiBaseUrl + "products";
 
+  url5=environment.apiBaseUrl + "getBidAmount/";
+
 /*
   product_name:string="";
   product_category:string="";
@@ -34,6 +36,11 @@ name:any;
 item:any
 imageData=[];
 email:any;
+  currentBidPrice: any;
+
+
+
+
   constructor(private http:HttpClient,private activate:ActivatedRoute) { }
 
   ngOnInit() {
@@ -43,6 +50,38 @@ email:any;
     obs.subscribe((response)=>{
         
          this.data = response;
+
+         for(let item of this.data){
+           console.log(item);
+           console.log(item.productId);
+           let obs6 = this.http.get(this.url5 + item.productId);
+         obs6.subscribe((response1) => {
+       console.log("updated" + response1);
+           this.currentBidPrice = response1;
+           if(this.currentBidPrice == 0){
+             this.currentBidPrice = item.startingBidPrice;
+            
+           }
+           else{
+             this.currentBidPrice = response1;
+           }
+           item.startingBidPrice = this.currentBidPrice;
+         
+         // console.log("bid amount is :" +  this.currentBidPrice);
+         
+        }
+         )
+         console.log(this.currentBidPrice);
+         }
+
+     //    console.log(this.data);
+/*
+        
+
+*/
+
+
+     //    console.log(this.data);
          
      /*    for (var prop in this.data) {
           console.log("Key:" + prop);

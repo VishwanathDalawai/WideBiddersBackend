@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SellComponent } from './sell/sell.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { CongratsComponent } from './congrats/congrats.component';
 import { HeaderComponent } from './header/header.component';
@@ -54,6 +54,7 @@ import { ToastrModule } from 'ngx-toastr';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       timeOut: 1000

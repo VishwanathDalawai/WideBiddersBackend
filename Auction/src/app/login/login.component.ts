@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
 
   url1=environment.apiBaseUrl + "customerLogin/";
 
-  userName:string="";
-  password:string="";
+  userName:string="ddd@gmail.com";
+  password:string="dddddd";
  custId:any;
   data:any;
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -12,18 +12,32 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
 
+
+  form = new FormGroup({
+    fullName : new FormControl('',Validators.required),
+    email : new FormControl('',[Validators.required,Validators.email]),
+    phoneNumber : new FormControl('',[Validators.required,Validators.pattern("[789][0-9]{9}")]),
+    password1 : new FormControl('',[Validators.required,Validators.minLength(6)]),
+    password2 : new FormControl('',Validators.required)
+    
+  })
+
+
+
+
+
   url1=environment.apiBaseUrl + "addCustomer/";
 
-  fullName:string="";
-  email:string="";
-  phoneNumber:string="";
-  password1:string="";
-  password2:string="";
+  fullName:string="Deekshith";
+  email:string="ddd@gmail.com";
+  phoneNumber:string="8971158773";
+  password1:string="dddddd";
+  password2:string="dddddd";
   
   user:any;
   a:any;
   Data:any;
-  
+  response:any;
  
   
 
@@ -73,15 +87,25 @@ export class RegisterComponent implements OnInit {
   
     
        let obs =  this.http.post(this.url1,this.user);
-       obs.subscribe(()=>{
+       obs.subscribe((response)=>{
+            this.response = response;
+
+            console.log("response from email" + this.response);
+
+            if(this.response == 0){
+              this.toastr.success('You have registered successfully', 'Sucess');
+  
+              this.router.navigate(["/home"]);
+             }
+             else if (this.response == -1){
+              this.toastr.error('Email id already exists..', 'Error');
+             }
             
+
            })
 
      
-           
-           this.toastr.success('You have registered successfully', 'Sucess');
-
-           this.router.navigate(["/home"]);
+          
   //  this.router.navigate(["userAdded"]);
  
 

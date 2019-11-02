@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../customer.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class HeaderComponent implements OnInit {
   // @Input() loggedIn:string;
   
    //  static counter:number=0;
-  constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService,private http:HttpClient){
+  constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService,private http:HttpClient, private toastr: ToastrService){
   this.param=this.router.url;
 
   }
@@ -96,6 +97,7 @@ this.emailId=this.data;
 
     }
     else{
+      this.toastr.error('You have to be logged in to sell a product', 'Error');
       this.router.navigate(["login"]);
     }    
   }

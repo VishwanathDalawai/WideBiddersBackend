@@ -154,10 +154,10 @@ auction(){
   this.auctionMaster =
   {
   "productId":this.productId,"customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
-"productSoldStatus": 1,"auctionDescription":"First Product"  //, "auctionStartDate":"this.startDate", "auctionEndDate":"this.endDate" 
+"productSoldStatus":"1","auctionDescription":"First Product"  //, "auctionStartDate":"this.startDate", "auctionEndDate":"this.endDate" 
   };
 
-
+     console.log(this.auctionMaster.productSoldStatus);
   console.log(this.auctionMaster);
   let obs2 =  this.http.post(this.url2,this.auctionMaster);
   console.log("calling auctionMaster ");
