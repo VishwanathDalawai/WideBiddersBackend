@@ -3,6 +3,7 @@
   <groupId>com.widebidders.backend</groupId>
   <artifactId>WideBiddersBackend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
    
   <parent>
   		<groupId>org.springframework.boot</groupId>
