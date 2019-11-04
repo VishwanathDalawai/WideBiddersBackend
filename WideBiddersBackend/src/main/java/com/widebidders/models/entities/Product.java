@@ -38,6 +38,7 @@ public class Product {
 	}
 	
 	public Product(ProductDto product) {
+		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();
