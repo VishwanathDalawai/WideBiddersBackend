@@ -128,6 +128,7 @@ public class Product {
 	public void setProductModel(String productModel) {
 		this.productModel = productModel;
 	}
+	
 
 	public Set<ProductImage> getProductImage() {
 		return productImage;

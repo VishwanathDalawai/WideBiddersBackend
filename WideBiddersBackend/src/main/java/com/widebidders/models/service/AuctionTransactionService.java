@@ -2,7 +2,6 @@ package com.widebidders.models.service;
 
 import java.util.List;
 
-import com.widebidders.models.entities.AuctionMaster;
 import com.widebidders.models.entities.AuctionTransaction;
 
 public interface AuctionTransactionService {

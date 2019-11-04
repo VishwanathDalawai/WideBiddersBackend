@@ -42,4 +42,6 @@ public class AuctionMasterServiceImpl implements AuctionMasterService {
 		return auctionMasterDaoImpl.getAuctionById(id);
 	}
 
+	
+
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.LoginEntity;
+import com.widebidders.models.entities.Product;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -140,9 +141,31 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public void updateCustomer(int id, Customer customer) {
-		// TODO Auto-generated method stub
+	public void updateCustomer(Customer customer) {
+		
+		Session session = factory.openSession();
+		Transaction tx = null;
+		 
+		try {
+			tx = session.beginTransaction();
+			Customer previousCustomer = (Customer) session.get(Customer.class, customer.getCustomerId());
+		
+			previousCustomer.setCustomerName(customer.getCustomerName());
+			previousCustomer.setUserImage(customer.getUserImage());
+			
+			session.evict(previousCustomer);
+			session.update(customer);
+			System.out.println(customer);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 
+		
 	}
 
 	public Customer loginAuthentication(LoginEntity login) {

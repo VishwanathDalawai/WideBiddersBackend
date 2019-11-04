@@ -54,8 +54,8 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customerUpdate/{id}", method = RequestMethod.PUT)
-	public void updateCustomer(@PathVariable("id") int id, @RequestBody Customer customer) {
-		customerService.updateCustomer(id, customer);
+	public void updateCustomer( @RequestBody Customer customer) {
+		customerService.updateCustomer(customer);
 	}
 
 	@RequestMapping(value = "/customerLogin", method = RequestMethod.POST)

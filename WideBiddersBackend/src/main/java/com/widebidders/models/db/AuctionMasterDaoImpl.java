@@ -134,4 +134,8 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 		}
 		return results;
 	}
+
+	
+	
+	
 }

@@ -66,9 +66,9 @@ public class ProductController {
 		ProductService.deleteProduct(id);
 	}
 
-	@RequestMapping(value = "/productUpdate/{id}", method = RequestMethod.PUT)
-	public void updateProduct(@PathVariable("id") int id, @RequestBody Product Product) {
-		ProductService.updateProduct(id, Product);
+	@RequestMapping(value = "/productUpdate", method = RequestMethod.PUT)
+	public void updateProduct( @RequestBody Product Product) {
+		ProductService.updateProduct( Product);
 	}
 	
 	@RequestMapping(value = "/productByCategory/{category}")

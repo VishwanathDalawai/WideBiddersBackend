@@ -132,4 +132,4 @@ public class AuctionMaster {
 	public void setAuctionDescription(String auctionDescription) {
 		this.auctionDescription = auctionDescription;
 	}
-}	
+}
