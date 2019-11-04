@@ -50,7 +50,8 @@ email:any;
     obs.subscribe((response)=>{
         
          this.data = response;
-
+console.log("passing object");
+console.log(this.data);
          for(let item of this.data){
            console.log(item);
            console.log(item.productId);

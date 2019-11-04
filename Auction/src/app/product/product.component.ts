@@ -81,8 +81,11 @@ export class ProductComponent implements OnInit {
 
     let obs2 = this.http.get(this.url3 + this.productId);
     obs2.subscribe((response) => {
-
+console.log("printing history");
       this.history = response;
+      
+      console.log(this.history);
+      
      // console.log("history details" + this.history);
       console.log(this.history);
       console.log("bid amount" + this.history[0].bidAmount);

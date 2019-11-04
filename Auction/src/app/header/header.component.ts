@@ -118,29 +118,43 @@ search(){
 
 
   car(){
-    this.router.navigate(['categoryDetails','car']);
+    this.router.navigate(['categoryDetails','car'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
   mobile(){
-    this.router.navigate(['categoryDetails','mobile']);
+    this.router.navigate(['categoryDetails','mobiles'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
   furniture(){
-    this.router.navigate(['categoryDetails','furniture']);
+    this.router.navigate(['categoryDetails','furniture'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
 
   fashion(){
-    this.router.navigate(['categoryDetails','fashion']);
+    this.router.navigate(['categoryDetails','fashion'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
 
   bikes(){
-    this.router.navigate(['categoryDetails','bikes']);
+    this.router.navigate(['categoryDetails','bikes'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
 
   books(){
-    this.router.navigate(['categoryDetails','books']);
+    this.router.navigate(['categoryDetails','books'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
 
   electronics(){
-    this.router.navigate(['categoryDetails','electronics']);
+    this.router.navigate(['categoryDetails','electronics'],{
+      queryParams: {refresh: new Date().getTime()}
+   });
   }
   clear(){
     sessionStorage.clear();

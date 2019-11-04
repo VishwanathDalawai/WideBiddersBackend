@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
@@ -23,7 +23,24 @@ currentBidPrice: any;
   ) { }
 
   ngOnInit() {
-    this.categoty = this.route.snapshot.paramMap.get('category');
+    
+
+    this.route.queryParamMap.subscribe((paramMap: ParamMap) => {
+      const refresh = paramMap.get('refresh');
+      if (refresh) {
+        this.fetchData();
+      }
+    });
+
+
+
+
+   
+}
+
+fetchData(){
+  this.categoty = this.route.snapshot.paramMap.get('category');
+  
  
   console.log(this.categoty);
 
@@ -61,4 +78,7 @@ currentBidPrice: any;
 
 
 }
+
+
+
 }

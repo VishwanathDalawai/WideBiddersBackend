@@ -4,6 +4,7 @@ import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { passValidator } from './validator';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-
+/*
   form = new FormGroup({
     fullName : new FormControl('',Validators.required),
     email : new FormControl('',[Validators.required,Validators.email]),
@@ -22,7 +23,15 @@ export class RegisterComponent implements OnInit {
     
   })
 
+*/
 
+form = new FormGroup({
+  fullName : new FormControl('',Validators.required),
+  email : new FormControl('',[Validators.required,Validators.email]),
+  phoneNumber : new FormControl('',[Validators.required,Validators.pattern("[789][0-9]{9}")]),
+  password : new FormControl('',[Validators.required,Validators.minLength(6)]),
+  cnfpass : new FormControl('',[Validators.required,passValidator])
+})
 
 
 

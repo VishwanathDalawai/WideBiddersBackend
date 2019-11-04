@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CustomerService } from '../customer.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -15,10 +16,24 @@ import { CustomerService } from '../customer.service';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
+
+  form = new FormGroup({
+    productName : new FormControl('',Validators.required),
+    product_category : new FormControl('',Validators.required),
+    product_model : new FormControl('',Validators.required),
+    product_desc :  new FormControl('',Validators.required),
+    year : new FormControl('',Validators.pattern("([1]{1}[7-9]{1}[0-9]{2})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})")),
+    min_bid_price : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
+    increment : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")])
+   // check : new FormControl('',Validators.required)
+   
+  })
+
+
 url1=environment.apiBaseUrl + "addproduct/";
 url2=environment.apiBaseUrl + "addAuctionMaster/";
 
-  product_name:string="";
+  productName:string="";
   product_category:string="";
   product_model:string="";
   product_desc:string="";
@@ -101,7 +116,7 @@ productId:any;
     console.log("inside sell" + this.custId);
    this.product = 
        {
-        "customerId": this.custId,"productName": this.product_name, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
+        "customerId": this.custId,"productName": this.productName, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
        "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "approvalStatus": 1, "reportFlag": 0, 
        "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
