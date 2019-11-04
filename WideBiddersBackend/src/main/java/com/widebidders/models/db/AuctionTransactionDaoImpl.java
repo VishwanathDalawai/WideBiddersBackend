@@ -230,6 +230,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 					results.add(auctionsTransaction);
 				}
 			}
+			
 			return results;
 		}catch (HibernateException e) {
 			if (tx != null)
