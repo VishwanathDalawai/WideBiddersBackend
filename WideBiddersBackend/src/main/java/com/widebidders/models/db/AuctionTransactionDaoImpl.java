@@ -19,6 +19,7 @@ import com.widebidders.models.entities.AuctionMaster;
 import com.widebidders.models.entities.AuctionTransaction;
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
+import com.widebidders.models.service.EmailService;
 
 @Repository
 public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
@@ -32,6 +33,9 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 
 	@Autowired
 	public AuctionMasterDaoImpl auctionMasterDaoImpl;
+	
+	@Autowired
+	public EmailService emailService;
 
 	public AuctionTransactionDaoImpl() {
 		try {
@@ -89,6 +93,8 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		AuctionMaster auctionMaster = null;
+		Product product = null;
+		Customer bidderCustomer = null;
 
 		try {
 			tx = session.beginTransaction();
@@ -97,7 +103,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 
 			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
 				auctionMaster = (AuctionMaster) iterator1.next();
-				Product product = auctionMaster.getProduct();
+				product = auctionMaster.getProduct();
 				if (product.getProductId() == productId) {
 					if(auctionMaster.getFinalBidPrice()<bid.getBidAmount()){
 						logger.info("Final Bid Price is "+auctionMaster.getFinalBidPrice()+" "+"Bid amount id "+bid.getBidAmount());
@@ -108,11 +114,14 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 				}
 				logger.info("Auction id for the product is" + auctionMaster.getAuctionId());
 			}
-			Customer bidderCustomer = customerDaoImpl.getCustomerById(customerId);
+			bidderCustomer = customerDaoImpl.getCustomerById(customerId);
 			logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
 
 			bid.setBidderCustomer(bidderCustomer);
 			session.save(bid);
+			String subject = "Bid Placed!";
+			String message = "You have successfully placed bid on product "+ product.getProductName();
+			emailService.sendEmail(bidderCustomer.getEmailId(), message, subject);
 			tx.commit();
 			logger.info(" Auction record added successfully");
 		} catch (HibernateException e) {
@@ -177,7 +186,6 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		int finalAuctionId = 0;
 		try {
 			auctionTransaction.getBidAmount();
-			
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {

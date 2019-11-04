@@ -11,11 +11,12 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.LoginEntity;
-import com.widebidders.models.entities.Product;
+import com.widebidders.models.service.EmailService;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -23,6 +24,9 @@ public class CustomerDaoImpl implements CustomerDao {
 	private SessionFactory factory;
 	private static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
+	@Autowired
+	public EmailService emailService;
+	
 	public CustomerDaoImpl() {
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
@@ -79,7 +83,9 @@ public class CustomerDaoImpl implements CustomerDao {
 			System.out.println("Saving customer");
 			session.save(customer);
 			tx.commit();
-			logger.info("Added Successfully");
+			String subject = "Welcome "+customer.getCustomerName();
+			String message = "Thank you for registering on website Widebidders. We welcome you";
+			emailService.sendEmail(customer.getEmailId(), message, subject);
 		} catch(HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -90,7 +96,6 @@ public class CustomerDaoImpl implements CustomerDao {
 		return 0;
 	}
 
-	@Override
 	public Customer getCustomerById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;

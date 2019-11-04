@@ -50,7 +50,7 @@ public class AuctionTransactionController {
 		
 		@RequestMapping(value = "/getBidAmount/{id}")
 		public double getBidAmount(@PathVariable("id") int id) {
-			return auctionTransactionService.getBidAmount(id);
+			return auctionTransactionService.getBidAmount(id);	
 		}
 		
 		@RequestMapping(value = "/getBidDetailsByProductId/{productId}")
