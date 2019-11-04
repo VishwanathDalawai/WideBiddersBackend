@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
 
   url5=environment.apiBaseUrl + "getBidAmount/";
 
-  url8=environment.apiBaseUrl + "getProductAddedTime/";
+  url8=environment.apiBaseUrl + "getBidDates/";
   
   custId:any;
   productId: any;
@@ -36,6 +36,16 @@ export class ProductComponent implements OnInit {
   nextBidPrice:any;
   incrementPrice:any;
 time:any;
+productAddedDate:any;
+deadline:any;
+timer:any;
+now:any;
+  difference:any;
+  seconds:any;
+  minutes:any;
+  hours:any;
+  days:any;
+  dateEntered:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,13 +76,23 @@ time:any;
    }
     )
 
-/* timer */
+/*  implemented timer */
 
     let obs8 = this.http.get(this.url8 + this.productId);
     obs8.subscribe((response) => {
-
+      console.log("auction start date:")
       this.time = response;
-    console.log("auction start date:" + this.time);
+  // console.log(this.time.auctionStartDate);
+this.productAddedDate = this.time.auctionStartDate;
+this.deadline = new Date(this.productAddedDate); 
+this.deadline.setDate(this.deadline.getDate() + 7);
+
+this.timer = setInterval(() => {
+  this.timeBetweenDates(this.deadline); 
+}, 1000);
+
+
+
 
    }
     )
@@ -122,6 +142,45 @@ console.log("printing history");
 */
 
   }
+
+
+  timeBetweenDates(toDate) {
+    console.log("inside function");
+    this.dateEntered = toDate;
+  
+    console.log("Entered date:" + this.dateEntered);
+  
+    this.now = new Date();
+  
+    console.log("current date:" + this.now);
+    this.difference = this.dateEntered.getTime() - this.now.getTime();
+  console.log("difference is" + this.difference);
+    if (this.difference <= 0) {
+ // console.log("inside if");
+      // Timer done
+      clearInterval(this.timer);
+    
+    } else {
+  //    console.log("inside else");
+      this.seconds = Math.floor(this.difference / 1000);
+      this.minutes = Math.floor(this.seconds / 60);
+      this.hours = Math.floor(this.minutes / 60);
+      this.days = Math.floor(this.hours / 24);
+  
+  
+  
+  console.log("seconds" + this.seconds);
+  console.log("hours" + this.hours);
+  
+  
+      this.hours %= 24;
+      this.minutes %= 60;
+      this.seconds %= 60;
+ 
+    }
+  }
+
+
 
 
 

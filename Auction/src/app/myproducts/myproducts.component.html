@@ -44,13 +44,13 @@
        <a [routerLink]="['/product',item.value.productId]">View Product</a><br><br>
        -->
 <!---->
-<a [routerLink]="['/product',item.value.productId]">View Product</a>&nbsp;&nbsp;&nbsp;
+<a [routerLink]="['/product',item.value.productId]">View</a>&nbsp;&nbsp;&nbsp;
 <!--
 <a [routerLink]="['/product',item.value.productId]">Update Product</a><br><br>
 -->
 <button data-toggle="modal" style="color:#00AA9E;" data-target="#exampleModal"
                         class="btn btn-link" (click)="update(item.value.productId)">Update</button>
-
+<button style="color:#00AA9E;" class="btn btn-link" (click)="delete(item.value.productId)">Delete</button>
    <br><br><br><br><br>
 
   

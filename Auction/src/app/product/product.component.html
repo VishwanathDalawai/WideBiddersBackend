@@ -82,8 +82,8 @@
       <div class="col-md-4">
          
           <div class="well"><b><h3>Product</h3></b>
-              <br/>  <b>Name:</b>{{data.productName}}
-              <br/>  
+               <b>Name:</b>{{data.productName}}
+             <br/>
               <br/>  <b>Basic Price: </b><div class="fa fa-inr" style="font-size:14px"></div> {{data.startingBidPrice}}
               <br/>
               <br/>   <b>Model:</b> {{data.productModel}}
@@ -93,10 +93,14 @@
               <br/>    <b>Current Bid price : </b> <div class="fa fa-inr" style="font-size:14px"></div> {{currentBidPrice}}
               <br/>
               <br/>    <input type="text" [(ngModel)]="bidAmount" placeholder="Enter price">  <button type="button" (click)="placeBid()">Place bid</button>
-              <br/>
-              <br/>   
-              <br/>
-              <br/>
+                <div id="timer">
+                <span id="days"></span><b>{{days}}&nbsp;</b>days
+                <span id="hours"></span><b>{{hours}}&nbsp;</b>hrs
+                <span id="minutes"></span><b>{{minutes}}&nbsp;</b>mins
+                <span id="seconds"></span><b>{{seconds}}&nbsp;</b>secs
+              </div> 
+              
+              
           </div>
           
       </div> <!--end of col-md-4-->
@@ -156,10 +160,15 @@
     </div>
   </div>
 
+<!--
+  days: {{days}}<br>
+  hour {{hours}}<br>
+  min {{minutes}}<br>
+  second {{seconds}}<br>
+-->
 
 
-
-
+  
 
   
   </div> <!--container end -->

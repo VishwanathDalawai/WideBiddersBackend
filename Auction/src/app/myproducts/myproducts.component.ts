@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CustomerService } from '../customer.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-myproducts',
@@ -15,6 +16,8 @@ export class MyproductsComponent implements OnInit {
   url5=environment.apiBaseUrl + "getBidAmount/";
   url3=environment.apiBaseUrl + "productUpdate/";
   url6=environment.apiBaseUrl + "productId/";
+  url9=environment.apiBaseUrl + "deleteProduct/";
+
  
 details:any;
 data:any;
@@ -38,7 +41,7 @@ updatedProductId:any;
 
 
 
-  constructor(private http:HttpClient,private activate:ActivatedRoute, private router:Router,private customerService:CustomerService) { }
+  constructor(private http:HttpClient,private activate:ActivatedRoute, private router:Router,private customerService:CustomerService,private toastr: ToastrService) { }
 
   ngOnInit() {
   //  this.custId=this.customerService.getCustomer();
@@ -91,6 +94,19 @@ updatedProductId:any;
 
 
   }
+
+
+delete(id:string){
+let obs9 = this.http.delete( this.url9 + id);
+obs9.subscribe((Response) => {
+console.log("product deleted");
+})
+
+}
+
+
+
+
 
   updateProduct(){
     console.log("inside update product: " + this.updatingProductId );
@@ -167,7 +183,8 @@ console.log(this.updatedProduct);
        })
 
 console.log("updated");
-    this.router.navigate(['/']);
+this.toastr.success('Product Detail updated successfully..', 'Sucess');
+  //  this.router.navigate(['/']);
 
 
 
