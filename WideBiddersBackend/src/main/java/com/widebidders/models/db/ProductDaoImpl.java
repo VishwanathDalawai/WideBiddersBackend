@@ -154,6 +154,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	
+	
 	@Override
 	public void addImage(ProductImage productImage) {
 		logger.error("Inside add Image DAO " + productImage);
