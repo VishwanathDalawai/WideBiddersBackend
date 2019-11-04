@@ -83,16 +83,19 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		
+		
 		 int productId=Product.getProductId();
 		 Product.setApprovalStatus(Product.getApprovalStatus());
 		 
 		try {
 			tx = session.beginTransaction();
-			List<Product> products = (List) session.get(Product.class, productId);
+			Product previousProduct = (Product) session.get(Product.class, productId);
 		
-			 Product.setApprovalStatus(Product.getApprovalStatus());
+			previousProduct.setProductModel(Product.getProductModel());
+			previousProduct.setProductModel(Product.getProductDescription());
+			session.evict(previousProduct);
 			session.update(Product);
-			System.out.println(products);
+			System.out.println(Product);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)

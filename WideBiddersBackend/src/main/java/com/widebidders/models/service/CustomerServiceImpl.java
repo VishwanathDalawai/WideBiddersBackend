@@ -44,8 +44,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void updateCustomer(int id, Customer customer) {
-		customerDboImpl.updateCustomer(id, customer);
+	public void updateCustomer(Customer customer) {
+		customerDboImpl.updateCustomer(customer);
 	}
 
 	@Override

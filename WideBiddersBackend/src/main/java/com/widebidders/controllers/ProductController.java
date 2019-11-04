@@ -66,7 +66,7 @@ public class ProductController {
 		ProductService.deleteProduct(id);
 	}
 
-	@RequestMapping(value = "/productUpdate/{Product}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/productUpdate", method = RequestMethod.PUT)
 	public void updateProduct( @RequestBody Product Product) {
 		ProductService.updateProduct( Product);
 	}
