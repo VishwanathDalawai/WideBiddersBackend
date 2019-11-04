@@ -44,7 +44,6 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 		Calendar calendar = Calendar.getInstance();
 		Date currentDate = calendar.getTime();
         Date date = new Date(currentDate.getTime());
-		System.out.println("date :" + date);
 		try {
 			tx = session.beginTransaction();
 			auctionMaster.setProduct(product);

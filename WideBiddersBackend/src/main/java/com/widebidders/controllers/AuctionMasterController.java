@@ -62,7 +62,4 @@ public class AuctionMasterController {
 	public void updateAuction(@PathVariable("id") int id, @RequestBody AuctionMaster auctionrecord) {
 		auctionService.updateAuction(id, auctionrecord);
 	}
-	
-
-
 }
