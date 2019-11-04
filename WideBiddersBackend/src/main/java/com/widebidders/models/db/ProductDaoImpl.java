@@ -20,7 +20,7 @@ import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
-@Repository
+@Repository("ProductDao")
 public class ProductDaoImpl implements ProductDao {
 
 	private SessionFactory factory;
@@ -79,23 +79,24 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void updateProduct(Product Product) {
+	public void updateProduct(Product product) {
+		
 		Session session = factory.openSession();
 		Transaction tx = null;
-		
-		
-		 int productId=Product.getProductId();
-		 Product.setApprovalStatus(Product.getApprovalStatus());
-		 
+
+		int productId = product.getProductId();
+		System.out.println("Product id is "+productId);
+
 		try {
 			tx = session.beginTransaction();
 			Product previousProduct = (Product) session.get(Product.class, productId);
-		
-			previousProduct.setProductModel(Product.getProductModel());
-			previousProduct.setProductModel(Product.getProductDescription());
-			session.evict(previousProduct);
-			session.update(Product);
-			System.out.println(Product);
+			logger.info("productId");
+			//previousProduct.setCustomer(product.getCustomer());
+			previousProduct.setProductDescription(product.getProductDescription());
+			session.evict(product);
+			logger.info("inside update");
+			session.update(previousProduct);
+			logger.info("after everythning");
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -152,6 +153,7 @@ public class ProductDaoImpl implements ProductDao {
 		return null;
 	}
 
+	
 	@Override
 	public void addImage(ProductImage productImage) {
 		logger.error("Inside add Image DAO " + productImage);
@@ -212,12 +214,10 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> results = new ArrayList<Product>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Product WHERE productName = :productName";
-
+			String hql = "FROM Product WHERE lower(productName) like :productName";
 			System.out.println("productName is " + productName);
 			Query query = session.createQuery(hql);
-			query.setParameter("productName", productName);
-
+			query.setParameter("productName" , "%"+productName.toLowerCase()+ "%");
 			List<Product> list = query.list();
 			results.addAll(list);
 

@@ -67,8 +67,11 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productUpdate", method = RequestMethod.PUT)
-	public void updateProduct( @RequestBody Product Product) {
-		ProductService.updateProduct( Product);
+	public void updateProduct( @RequestBody ProductDto productDto) {
+		Product product = new Product(productDto);
+		System.out.println("Product desc is "+product.getProductDescription());
+		System.out.println("Product desc is "+product.getProductId());
+		ProductService.updateProduct(product);
 	}
 	
 	@RequestMapping(value = "/productByCategory/{category}")
