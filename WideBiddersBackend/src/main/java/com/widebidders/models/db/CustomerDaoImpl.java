@@ -52,9 +52,10 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public void addCustomer(Customer customer) {
+	public int addCustomer(Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
+		String emailId = customer.getEmailId();
 
 		try {
 			tx = session.beginTransaction();
@@ -68,6 +69,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
+		return 0;
 
 	}
 
@@ -85,9 +87,9 @@ public class CustomerDaoImpl implements CustomerDao {
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				logger.info("Inside getCustomerByID hello2");
 				Customer customer = (Customer) iterator1.next();
-				if (customer.getCustomerId()==id) {
+				if (customer.getCustomerId() == id) {
 					logger.info("Inside getCustomerByID hello3");
-					logger.info("Inside getCustomerById Success"+customer.getEmailId());
+					logger.info("Inside getCustomerById Success" + customer.getEmailId());
 					return customer;
 				}
 			}
@@ -134,12 +136,13 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		try {
 			tx = session.beginTransaction();
+
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
 				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
 						&& (login.getPassword().equals(customer.getPassword()))) {
-					logger.info("Login Success"+login.getEmailId()+" "+login.getPassword());
+					logger.info("Login Success" + login.getEmailId() + " " + login.getPassword());
 					return customer;
 				}
 			}
@@ -163,7 +166,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
-				if ((id==customer.getCustomerId())) {
+				if ((id == customer.getCustomerId())) {
 					logger.info("Get mail id");
 					return customer.getEmailId();
 				}
@@ -177,4 +180,5 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		return null;
 	}
+
 }

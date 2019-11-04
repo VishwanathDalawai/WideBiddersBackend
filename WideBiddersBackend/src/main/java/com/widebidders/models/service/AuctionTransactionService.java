@@ -10,4 +10,5 @@ public interface AuctionTransactionService {
 	public List getBidById(int id);
 	public void addBid(AuctionTransaction auction,int productId);
 	public void deleteAuction(int id);
+	public AuctionTransaction getBidDeatailsbyProductId(int productId);
 }

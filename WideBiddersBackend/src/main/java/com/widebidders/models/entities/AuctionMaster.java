@@ -1,5 +1,6 @@
 package com.widebidders.models.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.widebidders.dto.AuctionMasterDto;
@@ -14,14 +15,15 @@ public class AuctionMaster {
 	private double bidIncrement;
 	private String productSoldStatus;
 	private String auctionDescription;
-	private Customer customer; 
+	private Customer customer;
 	private Product product;
 
 	public AuctionMaster() {
 	}
 
-	public AuctionMaster(Customer customer, Product product, double finalBidPrice, Date dateTime, double startingBidPrice,
-			Date auctionStartDate, Date auctionEndDate, double bidIncrement, String productSoldStatus, String auctionDescription) {
+	public AuctionMaster(Customer customer, Product product, double finalBidPrice, Date dateTime,
+			double startingBidPrice, Date auctionStartDate, Date auctionEndDate, double bidIncrement,
+			String productSoldStatus, String auctionDescription) {
 		this.customer = customer;
 		this.product = product;
 		this.finalBidPrice = finalBidPrice;
@@ -33,18 +35,18 @@ public class AuctionMaster {
 		this.productSoldStatus = productSoldStatus;
 		this.auctionDescription = auctionDescription;
 	}
-	
-	public AuctionMaster(AuctionMasterDto auctionMaster)
-	{
+
+	public AuctionMaster(AuctionMasterDto auctionMaster) {
 		this.finalBidPrice = auctionMaster.getFinalBidPrice();
 		this.dateTime = auctionMaster.getDateTime();
 		this.startingBidPrice = auctionMaster.getStartingBidPrice();
 		this.auctionStartDate = auctionMaster.getAuctionStartDate();
 		this.auctionEndDate = auctionMaster.getAuctionEndDate();
-		this.bidIncrement =auctionMaster.getBidIncrement();
-		this.productSoldStatus =auctionMaster.getStatus();
+		this.bidIncrement = auctionMaster.getBidIncrement();
+		this.productSoldStatus = auctionMaster.getStatus();
 		this.auctionDescription = auctionMaster.getAuctionDescription();
 	}
+
 	public int getAuctionId() {
 		return auctionId;
 	}
@@ -82,7 +84,12 @@ public class AuctionMaster {
 	}
 
 	public void setDateTime(Date dateTime) {
+		Calendar calendar = Calendar.getInstance();
+
+		dateTime = calendar.getTime();
+        java.sql.Date date = new java.sql.Date(dateTime.getTime());
 		this.dateTime = dateTime;
+		System.out.println("date :" + dateTime);
 	}
 
 	public double getStartingBidPrice() {
@@ -132,4 +139,4 @@ public class AuctionMaster {
 	public void setAuctionDescription(String auctionDescription) {
 		this.auctionDescription = auctionDescription;
 	}
-}	
+}

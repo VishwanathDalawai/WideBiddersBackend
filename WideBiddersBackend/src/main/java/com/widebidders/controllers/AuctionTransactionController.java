@@ -46,4 +46,9 @@ public class AuctionTransactionController {
 		public void deleteBid(@PathVariable("id") int id) {
 			auctionTransactionService.deleteAuction(id);
 		}
+		
+		@RequestMapping(value = "/getBidDetailsByProductId/{productId}")
+		public AuctionTransaction getBidDeatailsbyProductId(@PathVariable("productId") int productId) {
+			 return auctionTransactionService.getBidDeatailsbyProductId(productId);
+		}
 }

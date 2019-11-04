@@ -33,4 +33,9 @@ public class AuctionTransactionServiceImpl implements AuctionTransactionService{
 	public void deleteAuction(int id) {
 		auctionTransactionDaoImpl.deleteAuction(id);		
 	}
+
+	@Override
+	public AuctionTransaction getBidDeatailsbyProductId(int productId) {
+		return auctionTransactionDaoImpl.getBidDeatailsbyProductId(productId);
+	}
 }

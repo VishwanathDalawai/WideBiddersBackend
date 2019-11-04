@@ -48,8 +48,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public void updateProduct(int id, Product product) {
-		productDboImpl.updateProduct(id, product);
+	public void updateProduct(Product product) {
+		productDboImpl.updateProduct( product);
 	}
 
 	@Override
