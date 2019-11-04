@@ -106,7 +106,6 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 					bid.setAuctionMaster(auctionMaster);
 					break;
 				}
-				
 				logger.info("Auction id for the product is" + auctionMaster.getAuctionId());
 			}
 			Customer bidderCustomer = customerDaoImpl.getCustomerById(customerId);
@@ -241,5 +240,4 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		}
 		return null;
 	}
-
 }
