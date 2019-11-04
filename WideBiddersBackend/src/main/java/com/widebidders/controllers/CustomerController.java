@@ -39,8 +39,8 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
-	public void addCustomer(@RequestBody Customer customer) {
-		customerService.addCustomer(customer);
+	public int addCustomer(@RequestBody Customer customer) {
+		return customerService.addCustomer(customer);
 	}
 
 	@RequestMapping(value = "/customerId/{id}")
