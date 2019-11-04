@@ -20,6 +20,8 @@ export class ProductComponent implements OnInit {
   url4=environment.apiBaseUrl + "customerDetails/";
 
   url5=environment.apiBaseUrl + "getBidAmount/";
+
+  url8=environment.apiBaseUrl + "getProductAddedTime/";
   
   custId:any;
   productId: any;
@@ -33,6 +35,7 @@ export class ProductComponent implements OnInit {
   startingProductPrice:any;
   nextBidPrice:any;
   incrementPrice:any;
+time:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,16 +60,23 @@ export class ProductComponent implements OnInit {
       this.data = response;
       this.startingProductPrice = this.data.startingBidPrice;
       this.incrementPrice = this.data.incrementPrice;
- //     console.log(this.data);
-   //   console.log(this.data.customer)
-    //  console.log(this.data.customer.customerName);
-   //   console.log(this.data.productModel);
-  //    console.log(this.data.customer.customerName.toLowerCase( ));
-    //  this.currentBidPrice = this.data.startingBidPrice;
+ 
       this.bidPrice();
 
    }
     )
+
+/* timer */
+
+    let obs8 = this.http.get(this.url8 + this.productId);
+    obs8.subscribe((response) => {
+
+      this.time = response;
+    console.log("auction start date:" + this.time);
+
+   }
+    )
+
 
 
     
