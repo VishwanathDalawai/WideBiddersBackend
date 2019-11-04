@@ -2,9 +2,6 @@ package com.widebidders.dto;
 
 import java.util.Date;
 
-import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.Product;
-
 public class AuctionMasterDto {
 	
 	private int auctionId;

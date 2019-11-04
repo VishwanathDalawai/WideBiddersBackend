@@ -48,13 +48,6 @@ public class AuctionTransactionController {
 			auctionTransactionService.deleteAuction(id);
 		}
 		
-<<<<<<< HEAD
-		@RequestMapping(value = "/getBidDetailsByProductId/{productId}")
-		public AuctionTransaction getBidDeatailsbyProductId(@PathVariable("productId") int productId) {
-			 return auctionTransactionService.getBidDeatailsbyProductId(productId);
-		}
-}
-=======
 		@RequestMapping(value = "/getBidAmount/{id}")
 		public double getBidAmount(@PathVariable("id") int id) {
 			return auctionTransactionService.getBidAmount(id);
@@ -65,4 +58,3 @@ public class AuctionTransactionController {
 			 return auctionTransactionService.getBidDeatailsbyProductId(productId);
 		}
 }
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git

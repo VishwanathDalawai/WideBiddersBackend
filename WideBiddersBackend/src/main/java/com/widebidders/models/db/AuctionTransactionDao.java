@@ -9,9 +9,5 @@ public interface AuctionTransactionDao {
 	public List getBidById(int id);
 	public void addBid(AuctionTransaction auction, int productId, int customerId);
 	public void deleteAuction(int id);
-<<<<<<< HEAD
-	public AuctionTransaction getBidDeatailsbyProductId(int productId);
-=======
 	public List<AuctionTransaction> getBidDeatailsbyProductId(int productId);
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 }

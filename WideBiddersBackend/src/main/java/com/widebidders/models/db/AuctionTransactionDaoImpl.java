@@ -17,10 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.AuctionMaster;
 import com.widebidders.models.entities.AuctionTransaction;
-<<<<<<< HEAD
-=======
 import com.widebidders.models.entities.Customer;
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 import com.widebidders.models.entities.Product;
 
 @Repository
@@ -88,29 +85,13 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public void addBid(AuctionTransaction bid, int productId) {
-=======
 	public void addBid(AuctionTransaction bid, int productId, int customerId) {
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 		Session session = factory.openSession();
 		Transaction tx = null;
 		AuctionMaster auctionMaster = null;
 
 		try {
 			tx = session.beginTransaction();
-<<<<<<< HEAD
-			String sql = "SELECT * from AuctionMaster where auctionId in (SELECT max(auctionId) FROM AuctionMaster group by productId having productId ="
-					+ productId + ")";
-			// String sql = "SELECT * FROM AuctionMaster WHERE productId =
-			// "+productId+"having MAX(auctionId)";
-			// String sql = "SELECT MAX(auction.auctionId) FROM AuctionMaster
-			// auction WHERE productId = "+productId ;
-			Query query = session.createQuery(sql);
-			AuctionMaster auctionMaster = (AuctionMaster) query.uniqueResult();
-			logger.info("Highest auction id for the product is" + auctionMaster.getAuctionId());
-			bid.setAuctionMaster(auctionMaster);
-=======
 
 			List<AuctionMaster> auctionMasterList = session.createQuery("FROM AuctionMaster AM where AM.productSoldStatus=" + 1).list();
 
@@ -132,7 +113,6 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 			logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
 
 			bid.setBidderCustomer(bidderCustomer);
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 			session.save(bid);
 			tx.commit();
 			logger.info(" Auction record added successfully");
@@ -165,67 +145,6 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		}
 	}
 
-<<<<<<< HEAD
-	@Override
-	public AuctionTransaction getBidDeatailsbyProductId(int productId) {
-		logger.info("inside getBidDetailsbyProductId");
-		Session session = factory.openSession();
-		Transaction tx = null;
-		List<AuctionTransaction> results = new ArrayList<AuctionTransaction>();
-
-		try {
-			logger.info("inside try"+productId);
-			tx = session.beginTransaction();
-			int auctionId = getAuctionIdFromProductId(productId);
-			System.out.println("Auction id"+auctionId);
-			
-			List<AuctionTransaction> auctionTransaction = session.createQuery("FROM AuctionTransaction").list();
-			for (Iterator iterator = auctionTransaction.iterator(); iterator.hasNext();) {
-				logger.info("inside for 2");
-				AuctionTransaction auctionsTransaction = (AuctionTransaction) iterator.next();
-				AuctionMaster auctionMaster = auctionsTransaction.getAuctionMaster();
-				if(auctionMaster.getAuctionId()==auctionId){
-					return auctionsTransaction;
-				}
-			}
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	public int getAuctionIdFromProductId(int productId) {
-
-		Session session = factory.openSession();
-		AuctionMaster auctionMaster = null;
-		int finalAuctionId = 0;
-		try {
-			List<AuctionMaster> auctionMasterList = session
-					.createQuery("FROM AuctionMaster AM where AM.productSoldStatus=" + 1).list();
-
-			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
-				auctionMaster = (AuctionMaster) iterator1.next();
-				Product product = auctionMaster.getProduct();
-				if (product.getProductId() == productId) {
-					finalAuctionId = auctionMaster.getAuctionId();
-					logger.info("Auction id is" + finalAuctionId + " for product id " + productId);
-					break;
-				}
-			}
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return finalAuctionId;
-	}
-
-}
-=======
 	public double getBidAmount(int productId) {
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -322,6 +241,4 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		}
 		return null;
 	}
-
 }
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git

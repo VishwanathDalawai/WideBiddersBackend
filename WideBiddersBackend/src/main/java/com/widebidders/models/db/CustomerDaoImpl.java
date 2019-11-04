@@ -68,14 +68,10 @@ public class CustomerDaoImpl implements CustomerDao {
 	public int addCustomer(Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-<<<<<<< HEAD
-		String emailId = customer.getEmailId();
-=======
 		List<Customer> customers = new ArrayList<Customer>();
 
 		if (isUserExists(customer))
 			return -1;
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 
 		try {
 			tx = session.beginTransaction();
@@ -91,10 +87,6 @@ public class CustomerDaoImpl implements CustomerDao {
 			session.close();
 		}
 		return 0;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 
 	@Override
@@ -160,7 +152,6 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		try {
 			tx = session.beginTransaction();
-
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
@@ -204,5 +195,4 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		return null;
 	}
-
 }
