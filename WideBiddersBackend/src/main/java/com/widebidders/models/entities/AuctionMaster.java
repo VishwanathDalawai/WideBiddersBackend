@@ -42,8 +42,13 @@ public class AuctionMaster {
 		this.startingBidPrice = auctionMaster.getStartingBidPrice();
 		this.auctionStartDate = auctionMaster.getAuctionStartDate();
 		this.auctionEndDate = auctionMaster.getAuctionEndDate();
+<<<<<<< HEAD
 		this.bidIncrement = auctionMaster.getBidIncrement();
 		this.productSoldStatus = auctionMaster.getStatus();
+=======
+		this.bidIncrement =auctionMaster.getBidIncrement();
+		this.productSoldStatus =auctionMaster.getproductSoldStatus();
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 		this.auctionDescription = auctionMaster.getAuctionDescription();
 	}
 

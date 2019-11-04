@@ -84,8 +84,13 @@
      <property name = "finalBidPrice" column = "final_Bid_Price" type="double"/>
      <property name = "dateTime" column = "date_Time" type="string"/>
      <property name = "startingBidPrice" column = "starting_Bid_Price" type="double"/>
+<<<<<<< HEAD
      <property name = "auctionStartDate" column = "auction_Start_Date" type="date"/>
      <property name = "auctionEndDate" column = "auction_End_Date" type="date"/>
+=======
+     <property name = "auctionStartDate" column = "auction_Start_Date" type="timestamp"/>
+     <property name = "auctionEndDate" column = "auction_End_Date" type="timestamp"/>
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
      <property name = "bidIncrement" column = "bid_Increament" type="double"/>
      <property name = "productSoldStatus" column = "product_Sold_Status" type="string"/>
      <property name = "auctionDescription" column = "auction_Description" type="string"/>

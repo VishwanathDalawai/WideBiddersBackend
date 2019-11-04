@@ -30,7 +30,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public int addCustomer(Customer customer) {
 		logger.error("Inside add Customer Service class" + customer);
+<<<<<<< HEAD
 		 return customerDboImpl.addCustomer(customer);
+=======
+		return customerDboImpl.addCustomer(customer);
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 
 	@Override

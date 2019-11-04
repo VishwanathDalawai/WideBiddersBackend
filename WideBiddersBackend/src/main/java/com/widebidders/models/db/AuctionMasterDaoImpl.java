@@ -1,11 +1,12 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -18,6 +19,7 @@ import com.widebidders.models.entities.AuctionMaster;
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.service.AuctionMasterService;
+
 
 @Repository
 public class AuctionMasterDaoImpl implements AuctionMasterService {
@@ -39,10 +41,19 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 	public void addAuction(AuctionMaster auctionMaster, Product product, Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
+		Calendar calendar = Calendar.getInstance();
+		Date currentDate = calendar.getTime();
+        Date date = new Date(currentDate.getTime());
+		System.out.println("date :" + date);
 		try {
 			tx = session.beginTransaction();
 			auctionMaster.setProduct(product);
 			auctionMaster.setCustomer(customer);
+			auctionMaster.setAuctionStartDate(date);
+			calendar.add(Calendar.DATE, 7);
+			Date endDate = calendar.getTime();
+			auctionMaster.setAuctionEndDate(endDate);
+			
 			session.save(auctionMaster);
 			tx.commit();
 			logger.info(" Auction record added successfully");
@@ -89,7 +100,7 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 		List auction = null;
 		try {
 			tx = session.beginTransaction();
-			auction = session.createQuery("FROM AuctionMaster ").list();
+			auction = session.createQuery("FROM AuctionMaster").list();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();

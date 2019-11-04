@@ -22,7 +22,6 @@ public class AuctionTransaction {
 	}
 
 	public AuctionTransaction(AuctionTransactionDto auctionTransactionDto){
-		this.bidderCustomer = auctionTransactionDto.getBidderCustomer();
 		this.auctionMaster = auctionTransactionDto.getAuctionMaster();
 		this.bidAmount = auctionTransactionDto.getBidAmount();
 		this.dateTime = auctionTransactionDto.getDateTime();

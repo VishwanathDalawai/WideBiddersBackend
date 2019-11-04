@@ -51,18 +51,39 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
+	private boolean isUserExists(Customer customer) {
+		Session session = factory.openSession();
+		List<Customer> customers = session.createQuery("FROM Customer").list();
+		for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+			Customer existingCustomer = (Customer) iterator1.next();
+			if (customer.getEmailId().equals(existingCustomer.getEmailId())) {
+				System.out.println("Already exists");
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public int addCustomer(Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
+<<<<<<< HEAD
 		String emailId = customer.getEmailId();
+=======
+		List<Customer> customers = new ArrayList<Customer>();
+
+		if (isUserExists(customer))
+			return -1;
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 
 		try {
 			tx = session.beginTransaction();
+			System.out.println("Saving customer");
 			session.save(customer);
 			tx.commit();
 			logger.info("Added Successfully");
-		} catch (HibernateException e) {
+		} catch(HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
@@ -70,7 +91,10 @@ public class CustomerDaoImpl implements CustomerDao {
 			session.close();
 		}
 		return 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 	}
 
 	@Override

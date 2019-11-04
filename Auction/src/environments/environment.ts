@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
+=======
+  apiBaseUrl:"http://localhost/"
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
  
 };
 //http://192.168.2.23/

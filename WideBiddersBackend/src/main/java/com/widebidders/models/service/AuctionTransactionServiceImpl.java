@@ -25,8 +25,8 @@ public class AuctionTransactionServiceImpl implements AuctionTransactionService{
 	}
 
 	@Override
-	public void addBid(AuctionTransaction auction,int productId) {
-		auctionTransactionDaoImpl.addBid(auction, productId);
+	public void addBid(AuctionTransaction auction,int productId, int customerId) {
+		auctionTransactionDaoImpl.addBid(auction, productId, customerId);
 	}
 
 	@Override
@@ -34,8 +34,17 @@ public class AuctionTransactionServiceImpl implements AuctionTransactionService{
 		auctionTransactionDaoImpl.deleteAuction(id);		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public AuctionTransaction getBidDeatailsbyProductId(int productId) {
+=======
+	public double getBidAmount(int productId) {
+		return auctionTransactionDaoImpl.getBidAmount(productId);		
+	}
+
+	@Override
+	public List<AuctionTransaction> getBidDeatailsbyProductId(int productId) {
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 		return auctionTransactionDaoImpl.getBidDeatailsbyProductId(productId);
 	}
 }

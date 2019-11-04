@@ -38,8 +38,9 @@ public class AuctionTransactionController {
 		public void addBid(@RequestBody AuctionTransactionDto auctionTransactionDto) {
 			logger.error("Inside add Bid");
 			int productId = auctionTransactionDto.getProductId();
+			int customerId = auctionTransactionDto.getbidderCustomerId();
 			AuctionTransaction auctionTransaction = new AuctionTransaction(auctionTransactionDto);
-			auctionTransactionService.addBid(auctionTransaction, productId);			
+			auctionTransactionService.addBid(auctionTransaction, productId, customerId);			
 		}
 
 		@RequestMapping(value = "/deleteAuction/{id}", method = RequestMethod.DELETE)
@@ -47,8 +48,21 @@ public class AuctionTransactionController {
 			auctionTransactionService.deleteAuction(id);
 		}
 		
+<<<<<<< HEAD
 		@RequestMapping(value = "/getBidDetailsByProductId/{productId}")
 		public AuctionTransaction getBidDeatailsbyProductId(@PathVariable("productId") int productId) {
 			 return auctionTransactionService.getBidDeatailsbyProductId(productId);
 		}
 }
+=======
+		@RequestMapping(value = "/getBidAmount/{id}")
+		public double getBidAmount(@PathVariable("id") int id) {
+			return auctionTransactionService.getBidAmount(id);
+		}
+		
+		@RequestMapping(value = "/getBidDetailsByProductId/{productId}")
+		public List<AuctionTransaction> getBidDeatailsbyProductId(@PathVariable("productId") int productId) {
+			 return auctionTransactionService.getBidDeatailsbyProductId(productId);
+		}
+}
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git

@@ -6,7 +6,7 @@ import com.widebidders.models.entities.Customer;
 public class AuctionTransactionDto {
 		private int bidId; 
 		private int productId;
-		private Customer bidderCustomer;
+		private int bidderCustomerId;
 		private AuctionMaster auctionMaster;
 		private double bidAmount;
 		private String dateTime;
@@ -14,8 +14,8 @@ public class AuctionTransactionDto {
 		public AuctionTransactionDto() {
 		}
 		
-		public AuctionTransactionDto(int productId, Customer bidderCustomer, AuctionMaster auctionMaster, double bidAmount, String dateTime){
-			this.bidderCustomer = bidderCustomer;
+		public AuctionTransactionDto(int productId, int bidderCustomerId, AuctionMaster auctionMaster, double bidAmount, String dateTime){
+			this.bidderCustomerId = bidderCustomerId;
 			this.auctionMaster = auctionMaster;
 			this.bidAmount = bidAmount;
 			this.dateTime = dateTime;
@@ -37,12 +37,12 @@ public class AuctionTransactionDto {
 			this.productId = productId;
 		}
 
-		public Customer getBidderCustomer() {
-			return bidderCustomer;
+		public int getbidderCustomerId() {
+			return bidderCustomerId;
 		}
 
-		public void setBidderCustomer(Customer bidderCustomer) {
-			this.bidderCustomer = bidderCustomer;
+		public void setbidderCustomerId(int bidderCustomerId) {
+			this.bidderCustomerId = bidderCustomerId;
 		}
 
 		public AuctionMaster getAuctionMaster() {
