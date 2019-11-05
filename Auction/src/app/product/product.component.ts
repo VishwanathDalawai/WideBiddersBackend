@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { HomeComponent } from '../home/home.component';
 
 
 
@@ -54,7 +55,8 @@ now:any;
     private route: ActivatedRoute,
     private http: HttpClient,
     private router:Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private home:HomeComponent
    
   ) { }
 
@@ -238,6 +240,7 @@ this.dateTime = new Date(this.dateTime);
 
    };
 let obs1 =  this.http.post(this.url1,this.bidDetails);
+this.toastr.info('please wait', 'your amount is being bid',{extendedTimeOut: 3000})
        obs1.subscribe((response)=>{
         
 console.log("response for the bid" + response);

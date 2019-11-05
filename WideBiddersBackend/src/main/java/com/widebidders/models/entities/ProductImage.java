@@ -1,12 +1,8 @@
 package com.widebidders.models.entities;
 
 import java.io.IOException;
-import java.sql.Blob;
-
-import javax.persistence.Lob;
 
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
 
 

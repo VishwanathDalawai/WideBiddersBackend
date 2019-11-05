@@ -40,6 +40,11 @@ public class AuctionMasterController {
 	public List getAuctionById(@PathVariable int id) {
 		return auctionService.getAuctionById(id); 
 	} 
+	
+	@RequestMapping(value = "/productId/{id}")
+	public List getBidDetailsById(@PathVariable int id) {
+		return auctionService.getBidDetailsById(id); 
+	} 
 
 	@RequestMapping(value = "/addAuctionMaster", method = RequestMethod.POST)
 	public void addAuction(@RequestBody AuctionMasterDto auctionMasterDto) {

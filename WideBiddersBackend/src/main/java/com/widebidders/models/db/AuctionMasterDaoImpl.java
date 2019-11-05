@@ -23,7 +23,6 @@ import com.widebidders.models.entities.Product;
 import com.widebidders.models.service.AuctionMasterService;
 import com.widebidders.models.service.EmailService;
 
-
 @Repository
 public class AuctionMasterDaoImpl implements AuctionMasterService {
 
@@ -31,10 +30,10 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 
 	@Autowired
 	public AuctionTransactionDaoImpl auctionTransactionDaoImpl;
-	
+
 	@Autowired
 	public EmailService emailService;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(AuctionMasterDaoImpl.class);
 
 	public AuctionMasterDaoImpl() {
@@ -52,7 +51,7 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 		Transaction tx = null;
 		Calendar calendar = Calendar.getInstance();
 		Date currentDate = calendar.getTime();
-        Date date = new Date(currentDate.getTime());
+		Date date = new Date(currentDate.getTime());
 		try {
 			tx = session.beginTransaction();
 			auctionMaster.setProduct(product);
@@ -60,11 +59,13 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 			auctionMaster.setAuctionStartDate(currentDate);
 			calendar.add(Calendar.DATE, 7);
 			Date endDate = calendar.getTime();
-			auctionMaster.setAuctionEndDate(endDate);			
+			auctionMaster.setAuctionEndDate(endDate);
 			session.save(auctionMaster);
-			String subject = "Product added!"; 
-			String message = "You added the product successfully, Woooo....Bidding for your product "+ product.getProductName()+" starts";
-			emailService.sendEmail(customer.getEmailId(), message, subject);
+			String subject = "Product added!";
+			// String message = "You added the product successfully,
+			// Woooo....Bidding for your product "+ product.getProductName()+"
+			// starts";
+			// emailService.sendEmail(customer.getEmailId(), message, subject);
 			tx.commit();
 			logger.info(" Auction record added successfully");
 		} catch (HibernateException e) {
@@ -150,7 +151,7 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		AuctionMaster auctionMaster = null;
-		
+
 		try {
 			tx = session.beginTransaction();
 			String hql = "FROM AuctionMaster";
@@ -160,11 +161,48 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
 				auctionMaster = (AuctionMaster) iterator1.next();
 				Product product = auctionMaster.getProduct();
-				if(product.getProductId()==productId){
+				if (product.getProductId() == productId) {
 					return auctionMaster;
 				}
 			}
-		}catch(HibernateException e) {
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public List getBidDetailsById(int productId) {
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+		AuctionMaster auctionMaster = null;
+		List customer = null;
+		int finalAuctionId = 0;
+		Double finalAmount = (double) 0;
+		try {
+			tx = session.beginTransaction();
+			String hql = "FROM AuctionMaster";
+			Query query = session.createQuery(hql);
+
+			List<AuctionMaster> auctionMasterList = query.list();
+			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
+				auctionMaster = (AuctionMaster) iterator1.next();
+				Product product = auctionMaster.getProduct();
+				if (product.getProductId() == productId) {
+					finalAuctionId = auctionMaster.getAuctionId();
+					finalAmount = auctionMaster.getFinalBidPrice();
+					int customerId = auctionMaster.getCustomer().getCustomerId();
+					System.out.println("Yoooooooo...."+customerId+" you won the bid for the product "+productId);
+				}
+
+				
+			}
+		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();

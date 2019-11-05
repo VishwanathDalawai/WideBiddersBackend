@@ -223,4 +223,33 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		return null;
 	}
+
+	public String getCustomerByEmail(String email) {
+		logger.info("Get mail id");
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Customer> customers = new ArrayList<Customer>();
+
+		try {
+			tx = session.beginTransaction();
+			customers = session.createQuery("FROM Customer").list();
+			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+				Customer customer = (Customer) iterator1.next();
+				System.out.println(customer.getEmailId());
+				System.out.println(email);
+				if ((email.equals(customer.getEmailId()))) {
+				System.out.println(customer.getCustomerName());
+					return customer.getCustomerName();
+				}
+			}
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return null;
+	}
 }

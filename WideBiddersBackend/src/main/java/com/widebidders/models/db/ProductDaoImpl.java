@@ -65,9 +65,9 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 			tx = session.beginTransaction();
 			Product product = (Product) session.get(Product.class, productId);
-			session.delete(product);
+			product.setApprovalStatus("0");
+			session.update(product);
 			tx.commit();
-			logger.info("deleted successfully");
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -117,7 +117,7 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 
 			tx = session.beginTransaction();
-			products = session.createQuery("FROM Product").list();
+			products = session.createQuery("FROM Product where approvalStatus = "+"1").list();
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -135,7 +135,7 @@ public class ProductDaoImpl implements ProductDao {
 		Transaction tx = null;
 		List<Product> products = new ArrayList<Product>();
 		try {
-			products = session.createQuery("FROM Product").list();
+			products = session.createQuery("FROM Product where approvalStatus = "+"1").list();
 			for (Iterator iterator1 = products.iterator(); iterator1.hasNext();) {
 				logger.info("Inside getProductByID ");
 				Product product = (Product) iterator1.next();
@@ -157,7 +157,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public void addImage(ProductImage productImage) {
-		logger.error("Inside add Image DAO " + productImage);
+		//logger.error("Inside add Image DAO " + productImage);
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer productId = null;
@@ -189,7 +189,7 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> results = new ArrayList<Product>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Product WHERE productCategoryName = :category";
+			String hql = "FROM Product WHERE productCategoryName = :category and approvalStatus = "+"1";
 			System.out.println("category is " + category);
 			Query query = session.createQuery(hql);
 			query.setParameter("category", category);
@@ -215,7 +215,7 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> results = new ArrayList<Product>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Product WHERE lower(productName) like :productName";
+			String hql = "FROM Product WHERE lower(productName) like :productName and approvalStatus = "+"1";
 			System.out.println("productName is " + productName);
 			Query query = session.createQuery(hql);
 			query.setParameter("productName" , "%"+productName.toLowerCase()+ "%");
@@ -240,7 +240,7 @@ public class ProductDaoImpl implements ProductDao {
 		// Integer customerId=customer.getCustomerId();
 		try {
 			tx = session.beginTransaction();
-			List products = session.createQuery("FROM Product").list();
+			List products = session.createQuery("FROM Product where approvalStatus = "+"1").list();
 			for (Iterator iterator = products.iterator(); iterator.hasNext();) {
 				Product product = (Product) iterator.next();
 				Customer customer = product.getCustomer();

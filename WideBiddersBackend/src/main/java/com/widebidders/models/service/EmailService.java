@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 	
 	public void sendEmail(String mailId, String messageToBeSent, String subject){
-    final String username = "widebidders2019@gmail.com";
+  /*
+		final String username = "widebidders2019@gmail.com";
     final String password = "Vishwanath@123";
 
     
@@ -24,7 +25,7 @@ public class EmailService {
 
     prop.put("mail", "mail");
 	prop.put("mail.smtp.host", "smtp.gmail.com");
-    prop.put("mail.smtp.port", "25");
+    prop.put("mail.smtp.port", "587");
     prop.put("mail.smtp.auth", "true");
     prop.put("mail.smtp.starttls.enable", "true"); //TLS
     
@@ -51,6 +52,6 @@ public class EmailService {
 
     }catch(MessagingException e) {
         e.printStackTrace();
-    }
+    }*/
   }
 }

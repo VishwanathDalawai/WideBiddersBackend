@@ -118,15 +118,10 @@ productId:any;
        {
         "customerId": this.custId,"productName": this.productName, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
        "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "approvalStatus": 1, "reportFlag": 0, 
-       "productImage":[{"productImage":this.Data[0]},{"productImage":this.Data[1]}
+       "productImage":[{"productImage":this.Data[1]},{"productImage":this.Data[2]}
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
       };
-
-    
-      
-    
-    console.log("image passed"+this.Data[0]);
    console.log(this.product);
      let obs1 =  this.http.post(this.url1,this.product);
        obs1.subscribe((response)=>{

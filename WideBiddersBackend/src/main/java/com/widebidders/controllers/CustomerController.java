@@ -47,6 +47,16 @@ public class CustomerController {
 	public Customer getCustomerById(@PathVariable int id) {
 		return customerService.getCustomerById(id);
 	}
+	
+	@RequestMapping(value = "/customerEmail/{email}")
+	public  Map<String, String>  getCustomerByEmail(@PathVariable String email) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("UserName",customerService.getCustomerByEmail(email));
+		logger.info("Inside Get Cust Mail Id "+ email+" "+customerService.getCustomerByEmail(email));
+		return map;
+		
+		
+	}
 
 	@RequestMapping(value = "/deletecustomer/{id}", method = RequestMethod.DELETE)
 	public void deleteCustomer(@PathVariable("id") int id) {
