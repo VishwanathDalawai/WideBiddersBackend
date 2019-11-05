@@ -102,7 +102,6 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		Calendar calendar = Calendar.getInstance();
 		Date currentDate = calendar.getTime();
         Date date = new Date(currentDate.getTime());
-        System.out.println("Hello VPD 1");
         
         System.out.println("date is"+date);
         System.out.println(currentDate);
@@ -110,8 +109,6 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 			logger.info("Bid starts for customer "+customerId);
 			tx = session.beginTransaction();
 			
-			
-
 			List<AuctionMaster> auctionMasterList = session.createQuery("FROM AuctionMaster AM where AM.productSoldStatus=" + 1).list();
 			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
 				auctionMaster = (AuctionMaster) iterator1.next();
@@ -122,21 +119,20 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 						auctionMaster.setFinalBidPrice(bid.getBidAmount());
 						bid.setAuctionMaster(auctionMaster);
 						bid.setDateTime(currentDate); 
+						bidderCustomer = customerDaoImpl.getCustomerById(customerId);
+						logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
+						bid.setBidderCustomer(bidderCustomer);
+						session.save(bid);
+						tx.commit();
 						return 0;
 					}
 					break;
 				}
 				logger.info("Auction id for the product is" + auctionMaster.getAuctionId());
 			}
-			bidderCustomer = customerDaoImpl.getCustomerById(customerId);
-			logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
-
-			bid.setBidderCustomer(bidderCustomer);
-			session.save(bid);
 			String subject = "Bid Placed!";
 			String message = "You have successfully placed bid on product "+ product.getProductName();
 			emailService.sendEmail(bidderCustomer.getEmailId(), message, subject);
-			tx.commit();
 			logger.info(" Auction record added successfully");
 			logger.info("Bid ends for customer "+customerId);
 		} catch (HibernateException e) {
