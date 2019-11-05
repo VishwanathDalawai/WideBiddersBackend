@@ -61,7 +61,7 @@ public class ProductController {
 		return ProductService.addProduct(product, customer);		
 	}
 
-	@RequestMapping(value = "/deleteproduct/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/deleteProduct/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable("id") int id) {
 		ProductService.deleteProduct(id);
 	}
