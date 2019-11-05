@@ -57,6 +57,7 @@
 
 <div class="container">
   <h1 style="align-items:center ;">Fresh Recommendations for you!!! </h1>
+  <br>
   <div class ="row">
      
 
@@ -74,7 +75,7 @@
     <br>
    {{item.value.productImage.productImage}}
   -->
-    <div class ="col-md-3">
+    <div class ="col-md-4">
     
     <img src="assets/images/mob1.jfif" class="img-thumbnail" alt="Mob image" width="170px" height="50px">
    
@@ -84,10 +85,10 @@
 
 
     <div id="timer">
-      <span id="days"></span><b>{{item.value.productBoughtYear}}&nbsp;</b>days
-      <span id="hours"></span><b>{{item.value.productDescription}}&nbsp;</b>hrs
-      <span id="minutes"></span><b>{{item.value.reportFlag}}&nbsp;</b>mins
-      <span id="seconds"></span><b>{{item.value.incrementPrice}}&nbsp;</b>secs
+      <span id="days"></span><b>{{item.value.dys}}&nbsp;</b>days
+      <span id="hours"></span><b>{{item.value.hrs}}&nbsp;</b>hrs
+      <span id="minutes"></span><b>{{item.value.mins}}&nbsp;</b>mins
+      <span id="seconds"></span><b>{{item.value.secs}}&nbsp;</b>secs
     </div> 
 
 <!--
@@ -114,8 +115,9 @@
 
        <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
 -->
-      
+      <br>
        <a [routerLink]="['product',item.value.productId]">View Product</a><br><br>
+       <br><br><br>
 
    
 

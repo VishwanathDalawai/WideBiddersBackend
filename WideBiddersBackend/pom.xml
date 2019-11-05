@@ -3,12 +3,32 @@
   <groupId>com.widebidders.backend</groupId>
   <artifactId>WideBiddersBackend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-    
+  <build>
+  <plugins>
+  <plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>exec-maven-plugin</artifactId>
+  <version>1.4</version>
+  <executions>
+    <execution>
+      <id>my-execution</id>
+      <phase>package</phase>
+      <goals>
+        <goal>java</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <mainClass>org.dhappy.test.NeoTraverse</mainClass>
+  </configuration>
+</plugin>
+  </plugins></build>
   <parent>
   		<groupId>org.springframework.boot</groupId>
   		<artifactId>spring-boot-starter-parent</artifactId>
   		<version>2.1.6.RELEASE</version>
   </parent>
+  
   
    <repositories> 
  	<repository> 

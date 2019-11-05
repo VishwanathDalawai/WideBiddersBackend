@@ -97,10 +97,10 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		Customer bidderCustomer = null;
 
 		try {
+			logger.info("Bid starts for customer "+customerId);
 			tx = session.beginTransaction();
 
 			List<AuctionMaster> auctionMasterList = session.createQuery("FROM AuctionMaster AM where AM.productSoldStatus=" + 1).list();
-
 			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
 				auctionMaster = (AuctionMaster) iterator1.next();
 				product = auctionMaster.getProduct();
@@ -108,8 +108,8 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 					if(auctionMaster.getFinalBidPrice()<bid.getBidAmount()){
 						logger.info("Final Bid Price is "+auctionMaster.getFinalBidPrice()+" "+"Bid amount id "+bid.getBidAmount());
 						auctionMaster.setFinalBidPrice(bid.getBidAmount());
+						bid.setAuctionMaster(auctionMaster);
 					}
-					bid.setAuctionMaster(auctionMaster);
 					break;
 				}
 				logger.info("Auction id for the product is" + auctionMaster.getAuctionId());
@@ -124,6 +124,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 			emailService.sendEmail(bidderCustomer.getEmailId(), message, subject);
 			tx.commit();
 			logger.info(" Auction record added successfully");
+			logger.info("Bid ends for customer "+customerId);
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();

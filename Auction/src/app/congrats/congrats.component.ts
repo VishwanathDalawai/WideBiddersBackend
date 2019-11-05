@@ -20,11 +20,11 @@ export class CongratsComponent implements OnInit {
     
     setTimeout(() => 
     {
-     
+      this.router.navigate(["home"]);
     },
-    5000);
+    4000);
 
-    this.router.navigate(["home"]);
+  //  this.router.navigate(["home"]);
     
 
   }

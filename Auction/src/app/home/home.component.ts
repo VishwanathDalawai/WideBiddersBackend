@@ -69,10 +69,10 @@ console.log(this.data);
          for(let item of this.data){
 
        
-          item.productDescription = "";
-          item.productBoughtYear = "";
-          item.reportFlag = "";
-          item.incrementPrice = "";
+          item.hrs = "";
+          item.dys = "";
+          item.mins = "";
+          item.secs = "";
           
            console.log("product from backend");
            console.log(item);
@@ -108,9 +108,9 @@ console.log(this.data);
 
 
 
-       item.approvalStatus = this.time.auctionStartDate;
-       item.fake = new Date(item.approvalStatus); 
-       item.fake.setDate( item.fake.getDate() + 7);
+       item.startDate = this.time.auctionStartDate;
+       item.endDate = new Date(item.startDate); 
+       item.endDate.setDate( item.endDate.getDate() + 7);
 
 
 
@@ -126,7 +126,7 @@ console.log(this.data);
      
      this.timer = setInterval(() => {
       console.log("inside function");
-      this.dateEntered = item.fake;
+      this.dateEntered = item.endDate;
     
       console.log("Entered date:" + this.dateEntered);
     
@@ -158,10 +158,10 @@ console.log(this.data);
         this.seconds %= 60;
 
 
-        item.productDescription = this.hours;
-        item.productBoughtYear = this.days;
-        item.reportFlag = this.minutes;
-        item.incrementPrice = this.seconds;
+        item.hrs = this.hours;
+        item.dys = this.days;
+        item.mins = this.minutes;
+        item.secs = this.seconds;
 
   // this.ngOnInit();
       } 

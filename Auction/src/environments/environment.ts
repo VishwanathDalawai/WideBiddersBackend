@@ -10,7 +10,7 @@ export const environment = {
 //http://192.168.2.23/
 //http://43.88.107.114/
 //192.168.2.10
-//192.168.2.18
+//192.168.2.14 
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
