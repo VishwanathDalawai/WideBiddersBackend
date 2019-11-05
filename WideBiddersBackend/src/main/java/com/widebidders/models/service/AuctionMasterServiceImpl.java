@@ -42,4 +42,10 @@ public class AuctionMasterServiceImpl implements AuctionMasterService {
 		return auctionMasterDaoImpl.getAuctionById(id);
 	}
 
+	public AuctionMaster getBidDates(int productId) {
+		return auctionMasterDaoImpl.getBidDates(productId);		
+	}
+
+	
+
 }

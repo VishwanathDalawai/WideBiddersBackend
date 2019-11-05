@@ -11,7 +11,7 @@ public class CustomerDto {
 	private String phoneNumber;
 	private String emailId;
 	private String password;
-	private String userType;
+	
 	private String userStatusActive;
 	private String userImage;
 	private Set<ProductDto> products;
@@ -24,18 +24,18 @@ public class CustomerDto {
 		this.phoneNumber = customer.getPhoneNumber();
 		this.emailId = customer.getEmailId();
 		this.password = customer.getPassword();
-		this.userType = customer.getUserType();
+		
 		this.userStatusActive = customer.getUserStatusActive();
 		this.userImage = customer.getUserImage();
 	}
 
-	public CustomerDto(String customerName, String phoneNumber, String emailId, String password, String userType,
+	public CustomerDto(String customerName, String phoneNumber, String emailId, String password, 
 			String userStatusActive, String userImage) {
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;
 		this.emailId = emailId;
 		this.password = password;
-		this.userType = userType;
+	
 		this.userStatusActive = userStatusActive;
 		this.userImage = userImage;
 	}
@@ -80,13 +80,7 @@ public class CustomerDto {
 		this.password = password;
 	}
 
-	public String getUserType() {
-		return userType;
-	}
 
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
 
 	public String getUserStatusActive() {
 		return userStatusActive;

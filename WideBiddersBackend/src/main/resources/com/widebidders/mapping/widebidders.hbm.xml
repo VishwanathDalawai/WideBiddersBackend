@@ -64,7 +64,6 @@
      <property name = "phoneNumber" column = "phone_Number" type="string"/>
      <property name = "emailId" column = "user_Email_Id" type="string"/>
      <property name = "password" column = "user_password" type="string"/>
-     <property name = "userType" column = "user_type" type="string"/>
      <property name = "userStatusActive" column = "user_Status_Active" type="string"/>
      <property name = "userImage" column = "user_Image" type="string"/>
      
@@ -84,8 +83,8 @@
      <property name = "finalBidPrice" column = "final_Bid_Price" type="double"/>
      <property name = "dateTime" column = "date_Time" type="string"/>
      <property name = "startingBidPrice" column = "starting_Bid_Price" type="double"/>
-     <property name = "auctionStartDate" column = "auction_Start_Date" type="string"/>
-     <property name = "auctionEndDate" column = "auction_End_Date" type="string"/>
+     <property name = "auctionStartDate" column = "auction_Start_Date" type="timestamp"/>
+     <property name = "auctionEndDate" column = "auction_End_Date" type="timestamp"/>
      <property name = "bidIncrement" column = "bid_Increament" type="double"/>
      <property name = "productSoldStatus" column = "product_Sold_Status" type="string"/>
      <property name = "auctionDescription" column = "auction_Description" type="string"/>
@@ -106,7 +105,7 @@
     
      <property name = "bidAmount" column = "bid_Amount" type="double"/>
      <property name = "dateTime" column = "date_Time" type="string"/>
-     <many-to-one name = "customer" column = "customer_ID" class="com.widebidders.models.entities.Customer" not-null="true"/>
+     <many-to-one name = "bidderCustomer" column = "customer_ID" class="com.widebidders.models.entities.Customer" not-null="true"/>
      <many-to-one name = "auctionMaster" column = "auction_id" class="com.widebidders.models.entities.AuctionMaster" not-null="true"/>
    </class>
 </hibernate-mapping>

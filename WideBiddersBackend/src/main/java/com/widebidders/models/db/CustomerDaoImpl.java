@@ -11,10 +11,12 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.LoginEntity;
+import com.widebidders.models.service.EmailService;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -22,6 +24,9 @@ public class CustomerDaoImpl implements CustomerDao {
 	private SessionFactory factory;
 	private static final Logger logger = LoggerFactory.getLogger(CustomerDaoImpl.class);
 
+	@Autowired
+	public EmailService emailService;
+	
 	public CustomerDaoImpl() {
 		try {
 			factory = new Configuration().configure().buildSessionFactory();
@@ -51,27 +56,46 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
+	private boolean isUserExists(Customer customer) {
+		Session session = factory.openSession();
+		List<Customer> customers = session.createQuery("FROM Customer").list();
+		for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+			Customer existingCustomer = (Customer) iterator1.next();
+			if (customer.getEmailId().equals(existingCustomer.getEmailId())) {
+				System.out.println("Already exists");
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
-	public void addCustomer(Customer customer) {
+	public int addCustomer(Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
+		List<Customer> customers = new ArrayList<Customer>();
+
+		if (isUserExists(customer))
+			return -1;
 
 		try {
 			tx = session.beginTransaction();
+			System.out.println("Saving customer");
 			session.save(customer);
 			tx.commit();
-			logger.info("Added Successfully");
-		} catch (HibernateException e) {
+			String subject = "Welcome "+customer.getCustomerName();
+			String message = "Thank you for registering on website Widebidders. We welcome you";
+			emailService.sendEmail(customer.getEmailId(), message, subject);
+		} catch(HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-
+		return 0;
 	}
 
-	@Override
 	public Customer getCustomerById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
@@ -85,9 +109,9 @@ public class CustomerDaoImpl implements CustomerDao {
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				logger.info("Inside getCustomerByID hello2");
 				Customer customer = (Customer) iterator1.next();
-				if (customer.getCustomerId()==id) {
+				if (customer.getCustomerId() == id) {
 					logger.info("Inside getCustomerByID hello3");
-					logger.info("Inside getCustomerById Success"+customer.getEmailId());
+					logger.info("Inside getCustomerById Success" + customer.getEmailId());
 					return customer;
 				}
 			}
@@ -122,9 +146,31 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public void updateCustomer(int id, Customer customer) {
-		// TODO Auto-generated method stub
+	public void updateCustomer(Customer customer) {
+		
+		Session session = factory.openSession();
+		Transaction tx = null;
+		 
+		try {
+			tx = session.beginTransaction();
+			Customer previousCustomer = (Customer) session.get(Customer.class, customer.getCustomerId());
+		
+			previousCustomer.setCustomerName(customer.getCustomerName());
+			previousCustomer.setUserImage(customer.getUserImage());
+			
+			session.evict(previousCustomer);
+			session.update(customer);
+			System.out.println(customer);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 
+		
 	}
 
 	public Customer loginAuthentication(LoginEntity login) {
@@ -139,7 +185,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				Customer customer = (Customer) iterator1.next();
 				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
 						&& (login.getPassword().equals(customer.getPassword()))) {
-					logger.info("Login Success"+login.getEmailId()+" "+login.getPassword());
+					logger.info("Login Success" + login.getEmailId() + " " + login.getPassword());
 					return customer;
 				}
 			}
@@ -163,7 +209,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
-				if ((id==customer.getCustomerId())) {
+				if ((id == customer.getCustomerId())) {
 					logger.info("Get mail id");
 					return customer.getEmailId();
 				}

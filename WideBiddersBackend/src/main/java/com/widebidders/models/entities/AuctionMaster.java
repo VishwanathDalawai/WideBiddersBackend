@@ -42,7 +42,7 @@ public class AuctionMaster {
 		this.auctionStartDate = auctionMaster.getAuctionStartDate();
 		this.auctionEndDate = auctionMaster.getAuctionEndDate();
 		this.bidIncrement =auctionMaster.getBidIncrement();
-		this.productSoldStatus =auctionMaster.getStatus();
+		this.productSoldStatus =auctionMaster.getproductSoldStatus();
 		this.auctionDescription = auctionMaster.getAuctionDescription();
 	}
 	public int getAuctionId() {
@@ -132,4 +132,4 @@ public class AuctionMaster {
 	public void setAuctionDescription(String auctionDescription) {
 		this.auctionDescription = auctionDescription;
 	}
-}	
+}

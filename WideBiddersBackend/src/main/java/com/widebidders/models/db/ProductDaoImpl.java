@@ -1,12 +1,11 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
+
 import java.util.Iterator;
-//github.com/Vishwanathpd/WideBiddersBackend.git
+
 import java.util.List;
 import java.util.Set;
-
-//github.com/Vishwanathpd/WideBiddersBackend.git
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,7 +20,7 @@ import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
 import com.widebidders.models.entities.ProductImage;
 
-@Repository
+@Repository("ProductDao")
 public class ProductDaoImpl implements ProductDao {
 
 	private SessionFactory factory;
@@ -80,16 +79,24 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public void updateProduct(int productId, Product Product) {
+	public void updateProduct(Product product) {
+		
 		Session session = factory.openSession();
 		Transaction tx = null;
 
+		int productId = product.getProductId();
+		System.out.println("Product id is "+productId);
+
 		try {
 			tx = session.beginTransaction();
-			List<Product> product = (List) session.get(Product.class, productId);
-			product.set(productId, Product);
-			session.update(product);
-			System.out.println(product);
+			Product previousProduct = (Product) session.get(Product.class, productId);
+			logger.info("productId");
+			//previousProduct.setCustomer(product.getCustomer());
+			previousProduct.setProductDescription(product.getProductDescription());
+			session.evict(product);
+			logger.info("inside update");
+			session.update(previousProduct);
+			logger.info("after everythning");
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -108,18 +115,10 @@ public class ProductDaoImpl implements ProductDao {
 		Transaction tx = null;
 		List products = null;
 		try {
-			
+
 			tx = session.beginTransaction();
-			products = session.createQuery("FROM Product ").list();
-		
-			/*
-			tx = session.beginTransaction();
-	         String sql = "SELECT * FROM PRODUCT";
-	         SQLQuery query = session.createSQLQuery(sql);
-	         query.addEntity(Product.class);
-	         data = query.list();
-	         */
-	         tx.commit();
+			products = session.createQuery("FROM Product").list();
+			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
@@ -140,11 +139,11 @@ public class ProductDaoImpl implements ProductDao {
 			for (Iterator iterator1 = products.iterator(); iterator1.hasNext();) {
 				logger.info("Inside getProductByID ");
 				Product product = (Product) iterator1.next();
-				if (product.getProductId()==id) {
+				if (product.getProductId() == id) {
 					return product;
 				}
 			}
-		}catch (HibernateException e) {
+		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
@@ -154,6 +153,8 @@ public class ProductDaoImpl implements ProductDao {
 		return null;
 	}
 
+	
+	
 	@Override
 	public void addImage(ProductImage productImage) {
 		logger.error("Inside add Image DAO " + productImage);
@@ -214,11 +215,10 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> results = new ArrayList<Product>();
 		try {
 			tx = session.beginTransaction();
-			String hql = "FROM Product WHERE productName = :productName";
+			String hql = "FROM Product WHERE lower(productName) like :productName";
 			System.out.println("productName is " + productName);
 			Query query = session.createQuery(hql);
-			query.setParameter("productName", productName);
-
+			query.setParameter("productName" , "%"+productName.toLowerCase()+ "%");
 			List<Product> list = query.list();
 			results.addAll(list);
 
@@ -237,27 +237,27 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Product> results = new ArrayList<Product>();
-		//Integer customerId=customer.getCustomerId();
+		// Integer customerId=customer.getCustomerId();
 		try {
 			tx = session.beginTransaction();
-			List products = session.createQuery("FROM Product").list(); 
-	         for (Iterator iterator = products.iterator(); iterator.hasNext();){
-	            Product product= (Product) iterator.next(); 
-	            Customer customer = product.getCustomer();
-	            if(customer.getCustomerId()==customerId){
-	            	results.add(product);
-	            }
-	        }
-			logger.info("list size is "+results.size());			
-		}
-		catch (HibernateException e) {
+			List products = session.createQuery("FROM Product").list();
+			for (Iterator iterator = products.iterator(); iterator.hasNext();) {
+				Product product = (Product) iterator.next();
+				Customer customer = product.getCustomer();
+				if (customer.getCustomerId() == customerId) {
+					results.add(product);
+				}
+			}
+			logger.info("list size is " + results.size());
+		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
+
 			e.printStackTrace();
-	 	} finally {
+		} finally {
 			session.close();
 		}
 		return results;
 	}
-			
+
 }

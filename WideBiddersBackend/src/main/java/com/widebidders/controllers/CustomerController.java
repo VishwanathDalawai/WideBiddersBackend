@@ -39,8 +39,8 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
-	public void addCustomer(@RequestBody Customer customer) {
-		customerService.addCustomer(customer);
+	public int addCustomer(@RequestBody Customer customer) {
+		return customerService.addCustomer(customer);
 	}
 
 	@RequestMapping(value = "/customerId/{id}")
@@ -54,8 +54,8 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customerUpdate/{id}", method = RequestMethod.PUT)
-	public void updateCustomer(@PathVariable("id") int id, @RequestBody Customer customer) {
-		customerService.updateCustomer(id, customer);
+	public void updateCustomer( @RequestBody Customer customer) {
+		customerService.updateCustomer(customer);
 	}
 
 	@RequestMapping(value = "/customerLogin", method = RequestMethod.POST)

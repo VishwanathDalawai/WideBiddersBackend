@@ -2,9 +2,6 @@ package com.widebidders.dto;
 
 import java.util.Date;
 
-import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.Product;
-
 public class AuctionMasterDto {
 	
 	private int auctionId;
@@ -14,7 +11,7 @@ public class AuctionMasterDto {
 	private Date auctionStartDate;
 	private Date auctionEndDate;
 	private double bidIncrement;
-	private String status;
+	private String productSoldStatus;
 	private String auctionDescription;
 	private int customerId;
 	private int productId;
@@ -24,7 +21,7 @@ public class AuctionMasterDto {
 	}
 
 	public AuctionMasterDto(int customerId, int productId, double finalBidPrice, Date dateTime, double startingBidPrice,
-			Date auctionStartDate, Date auctionEndDate, double bidIncrement, String status, String auctionDescription) {
+			Date auctionStartDate, Date auctionEndDate, double bidIncrement, String productSoldStatus, String auctionDescription) {
 		this.customerId = customerId;
 		this.productId = productId;
 		this.finalBidPrice = finalBidPrice;
@@ -33,7 +30,7 @@ public class AuctionMasterDto {
 		this.auctionStartDate = auctionStartDate;
 		this.auctionEndDate = auctionEndDate;
 		this.bidIncrement = bidIncrement;
-		this.status = status;
+		this.productSoldStatus = productSoldStatus;
 		this.auctionDescription = auctionDescription;
 	}
 	
@@ -109,12 +106,12 @@ public class AuctionMasterDto {
 		this.bidIncrement = bidIncrement;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getproductSoldStatus() {
+		return productSoldStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setproductSoldStatus(String productSoldStatus) {
+		this.productSoldStatus = productSoldStatus;
 	}
 
 	public String getAuctionDescription() {

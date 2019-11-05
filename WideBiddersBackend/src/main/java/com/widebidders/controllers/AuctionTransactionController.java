@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.widebidders.dto.AuctionTransactionDto;
 import com.widebidders.models.entities.AuctionTransaction;
+import com.widebidders.models.entities.Customer;
+import com.widebidders.models.entities.Product;
 import com.widebidders.models.service.AuctionTransactionServiceImpl;
 
 @RestController
@@ -31,13 +34,27 @@ public class AuctionTransactionController {
 			return auctionTransactionService.getBidById(id); 
 		} 
 
-		@RequestMapping(value = "/addBid", method = RequestMethod.POST)
-		public void addBid(@RequestBody AuctionTransaction auction) {
-			auctionTransactionService.addBid(auction);			
+		@RequestMapping(value = "/placeBid", method = RequestMethod.POST)
+		public void addBid(@RequestBody AuctionTransactionDto auctionTransactionDto) {
+			logger.error("Inside add Bid");
+			int productId = auctionTransactionDto.getProductId();
+			int customerId = auctionTransactionDto.getbidderCustomerId();
+			AuctionTransaction auctionTransaction = new AuctionTransaction(auctionTransactionDto);
+			auctionTransactionService.addBid(auctionTransaction, productId, customerId);			
 		}
 
 		@RequestMapping(value = "/deleteAuction/{id}", method = RequestMethod.DELETE)
 		public void deleteBid(@PathVariable("id") int id) {
 			auctionTransactionService.deleteAuction(id);
+		}
+		
+		@RequestMapping(value = "/getBidAmount/{id}")
+		public double getBidAmount(@PathVariable("id") int id) {
+			return auctionTransactionService.getBidAmount(id);	
+		}
+		
+		@RequestMapping(value = "/getBidDetailsByProductId/{productId}")
+		public List<AuctionTransaction> getBidDeatailsbyProductId(@PathVariable("productId") int productId) {
+			 return auctionTransactionService.getBidDeatailsbyProductId(productId);
 		}
 }

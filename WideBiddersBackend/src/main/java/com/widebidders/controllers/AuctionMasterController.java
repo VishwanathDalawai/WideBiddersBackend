@@ -63,6 +63,8 @@ public class AuctionMasterController {
 		auctionService.updateAuction(id, auctionrecord);
 	}
 	
-
-
+	@RequestMapping(value = "/getBidDates/{productId}")
+	public AuctionMaster getBidDates(@PathVariable("productId") int productId) {
+		return auctionService.getBidDates(productId);
+	}
 }

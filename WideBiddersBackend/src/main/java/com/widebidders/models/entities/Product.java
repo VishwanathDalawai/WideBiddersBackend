@@ -38,6 +38,7 @@ public class Product {
 	}
 	
 	public Product(ProductDto product) {
+		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();
@@ -128,6 +129,7 @@ public class Product {
 	public void setProductModel(String productModel) {
 		this.productModel = productModel;
 	}
+	
 
 	public Set<ProductImage> getProductImage() {
 		return productImage;

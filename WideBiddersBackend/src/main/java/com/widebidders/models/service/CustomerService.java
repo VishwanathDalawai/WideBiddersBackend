@@ -8,9 +8,9 @@ import com.widebidders.models.entities.LoginEntity;
   
 public interface CustomerService {
 	public List getCustomers();
-	public void addCustomer(Customer customer);
+	public int addCustomer(Customer customer);
 	public Customer getCustomerById(int id);
 	public void deleteCustomer(int id);
-	public void updateCustomer(int id, Customer customer);
+	public void updateCustomer(Customer customer);
 	public Customer loginAuthentication(LoginEntity login); 
 }

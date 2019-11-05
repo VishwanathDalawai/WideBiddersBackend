@@ -11,7 +11,7 @@ import com.widebidders.models.entities.ProductImage;
 public interface ProductService {
 	public int addProduct(Product product, Customer customer);
     public void deleteProduct(int productId);
-    public void updateProduct(int productId, Product Product);
+    public void updateProduct(Product Product);
     public List getProducts();
     public Product getProductById(int id);
     public List<Product> getProductByCategory(String category);
