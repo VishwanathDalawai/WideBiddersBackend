@@ -89,7 +89,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 	}
 
 	@Override
-	public void addBid(AuctionTransaction bid, int productId, int customerId) {
+	public int addBid(AuctionTransaction bid, int productId, int customerId) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		AuctionMaster auctionMaster = null;
@@ -99,7 +99,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		try {
 			logger.info("Bid starts for customer "+customerId);
 			tx = session.beginTransaction();
-
+			
 			List<AuctionMaster> auctionMasterList = session.createQuery("FROM AuctionMaster AM where AM.productSoldStatus=" + 1).list();
 			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
 				auctionMaster = (AuctionMaster) iterator1.next();
@@ -109,20 +109,22 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 						logger.info("Final Bid Price is "+auctionMaster.getFinalBidPrice()+" "+"Bid amount id "+bid.getBidAmount());
 						auctionMaster.setFinalBidPrice(bid.getBidAmount());
 						bid.setAuctionMaster(auctionMaster);
+						bidderCustomer = customerDaoImpl.getCustomerById(customerId);
+						logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
+
+						bid.setBidderCustomer(bidderCustomer);
+						session.save(bid);
+						tx.commit();
+						return 0;
 					}
 					break;
 				}
 				logger.info("Auction id for the product is" + auctionMaster.getAuctionId());
 			}
-			bidderCustomer = customerDaoImpl.getCustomerById(customerId);
-			logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
-
-			bid.setBidderCustomer(bidderCustomer);
-			session.save(bid);
+			
 			String subject = "Bid Placed!";
 			String message = "You have successfully placed bid on product "+ product.getProductName();
-			emailService.sendEmail(bidderCustomer.getEmailId(), message, subject);
-			tx.commit();
+			//emailService.sendEmail(bidderCustomer.getEmailId(), message, subject);
 			logger.info(" Auction record added successfully");
 			logger.info("Bid ends for customer "+customerId);
 		} catch (HibernateException e) {
@@ -132,7 +134,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 		} finally {
 			session.close();
 		}
-
+		return -1;
 	}
 
 	@Override
