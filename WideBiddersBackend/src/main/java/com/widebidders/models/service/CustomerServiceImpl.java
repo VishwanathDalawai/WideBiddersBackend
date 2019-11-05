@@ -56,4 +56,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public String getMailId(int id) {
 		return customerDboImpl.getMailId(id);
 	}
+	@Override
+	public String getCustomerByEmail(String email) {
+	
+		return customerDboImpl.getCustomerByEmail(email);
+	}
 }

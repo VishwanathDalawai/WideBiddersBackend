@@ -14,9 +14,18 @@ export class CongratsComponent implements OnInit {
   ngOnInit() {
     this.custId=this.customerService.getCustomer();
     console.log("inside congrats" + this.custId);
+    
   }
   goHome(){
+    
+    setTimeout(() => 
+    {
+     
+    },
+    5000);
+
     this.router.navigate(["home"]);
+    
 
   }
 

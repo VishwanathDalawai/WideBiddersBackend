@@ -11,4 +11,5 @@ public interface CustomerDao {
 	public Customer getCustomerById(int id);
 	public void deleteCustomer(int id);
 	public void updateCustomer(Customer customer);
+	public String getCustomerByEmail(String email);
 }

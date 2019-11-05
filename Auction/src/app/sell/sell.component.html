@@ -1,136 +1,120 @@
 <app-header></app-header>
+<div class ="container">
+  <div class="row">
+     <div class="col-10">
+        <div class ="jumbatron">
+          <form name ="form" [formGroup] ="form">
 
-    <div class="container">
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="product_name">Product Name</label>
-            <input type="text" class="form-control" [(ngModel)]="product_name" placeholder="Product Name" required>
-          </div>        
-        </div>
-   
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="product_category">Product Category</label>
-            <select class="form-control" [(ngModel)]="product_category">
-                    <option value="car">Car</option>
-                    <option value="furniture">Furniture</option>
-                    <option value="fashion">Fashion</option>
-                    <option value="bikes">Bikes</option>
-                    <option value="mobiles">Mobiles</option>
-                    <option value="books">Books</option>                
-                    <option value="electronics">Electronics</option>
-                    <option value="other">Others</option>
-             </select>
-                  
-          </div>        
-        </div>
-
-
-        <div class="form-group  col-md-12">
-            <label for="Product_type">Product Model</label>
-            <input type="text" class="form-control" [(ngModel)]="product_model" placeholder="Product Model" required>
-          </div>
-
-
-        <div class="form-group  col-md-12">
-          <label for="description">Product Description</label>
-          <textarea rows="3"  class="form-control" [(ngModel)]="product_desc" placeholder="Product Desription" required>
-              </textarea>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="year">Year</label>
-            <input type="tel" [(ngModel)]="year" class="form-control" name="year" pattern="([1]{1}[7-9]{1}[0-9]{2})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})" required>
-          </div>
-
-          <div class="form-group col-md-4">
-            <label for="minimum_price">Minimum Bid Price</label>
-            <input type="text" class="form-control"  [(ngModel)]="min_bid_price" placeholder="Minimum bid price" required>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="increment">Increment</label>
-            <input type="text" class="form-control"  [(ngModel)]="increment" placeholder="Increment" required>
-          </div>
-        </div>
-       
-<!--
-        <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="start_date">Start Date</label>
-                  <input type="date" class="form-control"  [(ngModel)]="start_date" required>
+            <div class="form-row">
+              <div class ="form-group col-md-6">
+                <label for ="productName">Product Name</label>
+                <input type ="text" class ="form-control" placeholder="Product Name" [(ngModel)]=" productName" formControlName ="productName" 
+                [ngClass] ="{'is-invalid': form.get('productName').touched && form.get('productName').invalid}"/>
+                <div *ngIf =" form.get('productName').touched && form.get('productName').invalid" class ="invalid-feedback">
+                  <small *ngIf =" form.get('productName').errors.required"  style="color:red;">Product Name is Required</small>
                 </div>
-      
-                <div class="form-group col-md-6">
-                  <label for="end_date">End Date</label>
-                  <input type="date" class="form-control" [(ngModel)]="end_date" required>
-                </div>
-                
+              </div>
+               
+              <div class="form-group col-md-6">
+                  <label for="product_category">Product Category</label>
+                      <select type ="text" class="form-control" [(ngModel)]=" product_category" formControlName="product_category"
+                      [ngClass] ="{'is-invalid': form.get('product_category').touched && form.get('product_category').invalid}">
+                              <option value="car">Car</option>
+                              <option value="furniture">Furniture</option>
+                              <option value="fashion">Fashion</option>
+                              <option value="bikes">Bikes</option>
+                              <option value="mobiles">Mobiles</option>
+                              <option value="books">Books</option>                
+                              <option value="electronics">Electronics</option>
+                              <option value="other">Others</option>
+                       </select> 
+                       <div *ngIf =" form.get('product_category').touched && form.get('product_category').invalid" class ="invalid-feedback">
+                        <small *ngIf =" form.get('product_category').errors.required"  style="color:red;">category is Required</small>
+                      </div>  
+                </div>     
+        </div>   
+             
+        
+        <div class="form-row">
+          <div class ="form-group col-md-12">
+              <label for ="product_model">Product Model</label>
+              <input type ="text" class ="form-control" [(ngModel)]="product_model" formControlName ="product_model" placeholder="product_model"
+              [ngClass] ="{'is-invalid': form.get('product_model').touched && form.get('product_model').invalid}"/>
+              <div *ngIf =" form.get('product_model').touched && form.get('product_model').invalid" class ="invalid-feedback">
+                <small *ngIf =" form.get('product_model').errors.required"  style="color:red;">Model is Required</small>
+              </div>
+            </div>
+      </div><br>
+            
+      <div class="form-row">
+        <div class="form-group col-md-12">
+           <label for="description">Product Description</label>
+           <textarea rows="3"  class="form-control" [(ngModel)]="product_desc"  formControlName ="product_desc" placeholder="Product Desription" 
+           [ngClass] ="{'is-invalid': form.get('product_desc').touched && form.get('product_desc').invalid}">  </textarea>
+              <div *ngIf =" form.get('product_desc').touched && form.get('product_desc').invalid" class ="invalid-feedback">
+                <small *ngIf =" form.get('product_desc').errors.required"  style="color:red;">Description is Required</small>
+              </div>
+             
          </div>
-  -->
+       </div> 
 
 
-
-  <div class="form-row"><br>
+       <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for ="year">year</label>
+            <input type ="text" class ="form-control" [(ngModel)]="year" placeholder="Model year" formControlName ="year" 
+            [ngClass] ="{'is-invalid': form.get('year').touched && form.get('year').invalid}"/>
+            <div *ngIf =" form.get('year').touched && form.get('year').invalid" class ="invalid-feedback">
+              <small *ngIf =" form.get('year').errors.pattern"  style="color:red;"> Fill the valid year of the model</small>
+            </div>
+          </div>
           
-    <div class="form-group col-md-2">
-        
-        
-    <b> <span>upload files..</span></b>
+        <div class="form-group col-md-4">
+            <label for ="min_bid_price">Minimum Bid Price</label>
+            <input type ="text" class ="form-control"  [(ngModel)]="min_bid_price" placeholder="Price" formControlName ="min_bid_price" 
+            [ngClass] ="{'is-invalid': form.get('min_bid_price').touched && form.get('min_bid_price').invalid}"/>
+            <div *ngIf =" form.get('min_bid_price').touched && form.get('min_bid_price').invalid" class ="invalid-feedback">
+              <small *ngIf =" form.get('min_bid_price').errors.required"  style="color:red;"> required</small>
+              <small *ngIf =" form.get('min_bid_price').errors.pattern"  style="color:red;"> Enter Valid Price</small>
+            </div>
+        </div>
 
-    <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg" required>
-    </div>      
-    <div class="form-group col-md-2">
-      <label></label>
-      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
-    </div>  
-    <div class="form-group col-md-2">
-     <label></label>
-      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg" >
+        <div class="form-group col-md-2">
+            <label for ="increment">Increment</label>
+            <input type ="text" class ="form-control" [(ngModel)]="increment" placeholder="Minimum price" formControlName ="increment" 
+            [ngClass] ="{'is-invalid': form.get('increment').touched && form.get('increment').invalid}"/>
+            <div *ngIf =" form.get('increment').touched && form.get('increment').invalid" class ="invalid-feedback">
+              <small *ngIf =" form.get('increment').errors.required"  style="color:red;">required</small>
+              <small *ngIf =" form.get('increment').errors.pattern"  style="color:red;">Enter valid increment price</small>
+            </div>
+        </div>
     </div>
-    <div class="form-group col-md-2">
-    <label></label>
-      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
-    </div>
-    <div class="form-group col-md-2">
-      <label></label>
-      <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
+<!--
+
+  <div class="form-row">
+      <div class="form-group  col-md-12">
+          
+              <input  class="form-check" type ="checkbox" class ="form-check-input" id="gridCheck" formControlName ="check" 
+              [ngClass] ="{'is-invalid': form.get('check').touched && form.get('check').invalid}"/>
+              <div *ngIf =" form.get('check').touched && form.get('check').invalid" class ="invalid-feedback">
+                <div *ngIf =" form.get('check').errors.required"></div>
+              </div>
+              <label for="gridCheck">&nbsp;I confirm</label>
+     </div>
+   </div>
+ -->
     
-    </div>
-    
-    
+   <div class="form-row" style="padding:0px 550px;">
+    <div class ="form-group col-md-12">
+        <button class ="btn btn-primary" [disabled] = "!form.valid" (click)="post()">Post Now</button> 
+    </div>   
    </div>
 
+</form>
+</div>
+</div>
+    
+  </div>
 
-
-
-
-
-
-
-         <div class="form-group  col-md-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                  <label class="form-check-label" for="gridCheck">&nbsp;
-                    I confirm
-                  </label>
-                </div>
-         </div>
-
-      
-      
-        <button (click)="post()" class="btn btn-primary  col-md-12">Post Now</button>
-    </div>
-  
-
-<!--
-    <button (click)="getProduct()" value="upload">GetImage</button>
-    <img *ngFor="let item of imageData"  src={{item}} alt="" id="img">
-
--->
-
-  <app-footer></app-footer>
-
-
-  
+</div>
+<app-footer></app-footer>

@@ -32,7 +32,7 @@
    
     <div class="fa fa-inr" style="font-size:24px">{{item.value.startingBidPrice}}</div>
     <br>
-   
+   <br>
    
   <!--
     <img *ngFor="let image of imageData"  src="{{image}}" alt="" id="img">
@@ -40,15 +40,61 @@
 
        <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
 -->
-      
-       <a [routerLink]="['product',item.value.productId]">View Product</a><br><br>
+     <!-- 
+       <a [routerLink]="['/product',item.value.productId]">View Product</a><br><br>
+       -->
+<!---->
+<a [routerLink]="['/product',item.value.productId]">View</a>&nbsp;&nbsp;&nbsp;
+<!--
+<a [routerLink]="['/product',item.value.productId]">Update Product</a><br><br>
+-->
+<button data-toggle="modal" style="color:#00AA9E;" data-target="#exampleModal"
+                        class="btn btn-link" (click)="update(item.value.productId)">Update</button>
+<button style="color:#00AA9E;" class="btn btn-link" (click)="delete(item.value.productId)">Delete</button>
+   <br><br><br><br><br>
 
-   
+  
 
-  </div>
-   </div>
-  </div>
 
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form #userInfo="ngForm">
+
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id=""><i class='fas fa-user-alt'></i></span>
+                                    </div>
+                                    <input type="text" #firstName="ngModel" [(ngModel)]="updatedDescription"
+                                        placeholder="Product Description" name="firstName"><br>
+
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="link" class="btn btn-primary" data-dismiss="modal" (click)="updateProduct()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+       </div>
   <!--
     <br>
     product_category:{{data.productCategoryName}}
