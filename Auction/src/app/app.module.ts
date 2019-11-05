@@ -61,7 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 1000
     }) // ToastrModule added
   ],
-  providers: [],
+  providers: [HomeComponent],
   bootstrap: [AppComponent]
 })
 

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-product',
@@ -51,7 +52,8 @@ now:any;
     private route: ActivatedRoute,
     private http: HttpClient,
     private router:Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private home:HomeComponent
    
   ) { }
 
@@ -227,11 +229,17 @@ bidPrice(){
 
    };
 let obs1 =  this.http.post(this.url1,this.bidDetails);
+this.toastr.info('please wait', 'your amount is being bid',{extendedTimeOut: 3000})
        obs1.subscribe((response)=>{
-
-           })
-    this.router.navigate(["bidplaced"]);
-
+            this.home.ngOnInit();
+            
+            this.router.navigate(["bidplaced"]);
+           } 
+           )
+           
+           ;
+           
+           
           }
           else{
             this.toastr.error('Your bid amount should be greater', 'Error');
