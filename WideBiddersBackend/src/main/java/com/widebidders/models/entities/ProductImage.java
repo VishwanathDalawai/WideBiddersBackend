@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class ProductImage {
 	
-	private byte[] productImage;
+	private String productImage;
 	private int productImageId;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductImage.class);
@@ -17,17 +17,17 @@ public class ProductImage {
 		
 	}
 
-	public ProductImage(byte[] productImage, int productImageId) throws IOException {
+	public ProductImage(String productImage, int productImageId) throws IOException {
 		this.productImage = productImage;
 		this.productImageId = productImageId;
 	}
 
-	public byte[] getProductImage() {
+	public String getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(byte[] productImage) {
-		System.out.println("Product Image"+productImage.toString());
+	public void setProductImage(String productImage) {
+		System.out.println("Product Image"+productImage);
 		this.productImage = productImage;
 	}
 
@@ -38,7 +38,6 @@ public class ProductImage {
 	public void setProductImageId(int productImageId) {
 		this.productImageId = productImageId;
 	}
-	
 
 	/*public boolean equals(Object obj) {
 		if (obj == null)

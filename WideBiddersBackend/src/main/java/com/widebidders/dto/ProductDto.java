@@ -36,13 +36,12 @@ public class ProductDto implements Serializable{
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
 		this.productBougthYear=product.getProductBoughtYear();
-		this.productImage = product.getProductImage();
 
 	}
 
 	public ProductDto(int productId, String productCategoryName, String productName, String productDescription,
 			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice,
-			String ProductBougthYear, String productModel, int customerId, Set<ProductImage> productImage) {
+			String ProductBougthYear, String productModel, int customerId) {
 		this.productId = productId;
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
@@ -53,7 +52,6 @@ public class ProductDto implements Serializable{
 		this.incrementPrice = incrementPrice;
 		this.productModel = productModel;
 		this.customerId = customerId;
-		this.productImage = productImage;
 	}
 
 	public int getProductId() {
