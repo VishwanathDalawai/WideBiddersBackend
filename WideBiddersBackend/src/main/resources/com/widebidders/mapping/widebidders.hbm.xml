@@ -45,7 +45,7 @@
          </generator>
       </id>
       
-     <property name = "productImage" column = "Product_Image" type="string"/>
+     <property name = "productImage" column = "Product_Image" type="java.io.File"/>
    
    </class>
    <class name = "com.widebidders.models.entities.Customer" table = "Customer">

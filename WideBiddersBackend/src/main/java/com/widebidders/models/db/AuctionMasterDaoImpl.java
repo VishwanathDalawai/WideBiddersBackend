@@ -63,8 +63,8 @@ public class AuctionMasterDaoImpl implements AuctionMasterService {
 			auctionMaster.setAuctionEndDate(endDate);			
 			session.save(auctionMaster);
 			String subject = "Product added!"; 
-			String message = "You added the product successfully, Woooo....Bidding for your product "+ product.getProductName()+" starts";
-			emailService.sendEmail(customer.getEmailId(), message, subject);
+			//String message = "You added the product successfully, Woooo....Bidding for your product "+ product.getProductName()+" starts";
+			//emailService.sendEmail(customer.getEmailId(), message, subject);
 			tx.commit();
 			logger.info(" Auction record added successfully");
 		} catch (HibernateException e) {

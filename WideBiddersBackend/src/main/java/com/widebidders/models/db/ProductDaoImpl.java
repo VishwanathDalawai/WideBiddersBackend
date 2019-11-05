@@ -157,7 +157,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public void addImage(ProductImage productImage) {
-		logger.error("Inside add Image DAO " + productImage);
+		//logger.error("Inside add Image DAO " + productImage);
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer productId = null;

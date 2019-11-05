@@ -1,5 +1,6 @@
 package com.widebidders.models.entities;
 
+import java.util.Iterator;
 import java.util.Set;
 
 import com.widebidders.dto.ProductDto;
@@ -24,7 +25,7 @@ public class Product {
 	}
 	
 	public Product(String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel, Customer customer) {
+			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel, Customer customer, Set<ProductImage> productImage) {
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -35,6 +36,7 @@ public class Product {
 		this.productModel = productModel;
 		this.productBoughtYear = productBoughtYear;
 		this.customer = customer;
+		this.productImage = productImage;
 	}
 	
 	public Product(ProductDto product) {
@@ -48,6 +50,7 @@ public class Product {
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
 		this.productBoughtYear = product.getProductBougthYear();
+		this.productImage= product.getProductImage();
 	}
 
 	public int getProductId() {
@@ -132,10 +135,17 @@ public class Product {
 	
 
 	public Set<ProductImage> getProductImage() {
+		System.out.println("Called Get product Image"+this.productImage.size());
 		return productImage;
 	}
 
 	public void setProductImage(Set<ProductImage> productImage) {
+		Iterator value = productImage.iterator(); 
+		
+        while (value.hasNext()) { 
+            ProductImage pro = (ProductImage) value.next();
+            //System.out.println("Length is........."+pro.getProductImage().length());
+        } 
 		this.productImage = productImage;
 	}
 

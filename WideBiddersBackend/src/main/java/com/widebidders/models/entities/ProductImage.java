@@ -1,18 +1,14 @@
 package com.widebidders.models.entities;
 
 import java.io.IOException;
-import java.sql.Blob;
-
-import javax.persistence.Lob;
 
 import org.slf4j.Logger;
-
 import org.slf4j.LoggerFactory;
 
 
 public class ProductImage {
 	
-	private String productImage;
+	private byte[] productImage;
 	private int productImageId;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ProductImage.class);
@@ -21,17 +17,17 @@ public class ProductImage {
 		
 	}
 
-	public ProductImage(String productImage, int productImageId) throws IOException {
+	public ProductImage(byte[] productImage, int productImageId) throws IOException {
 		this.productImage = productImage;
 		this.productImageId = productImageId;
 	}
 
-	public String getProductImage() {
+	public byte[] getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(String productImage) {
-		System.out.println("Product Image"+productImage);
+	public void setProductImage(byte[] productImage) {
+		System.out.println("Product Image"+productImage.toString());
 		this.productImage = productImage;
 	}
 
@@ -42,6 +38,7 @@ public class ProductImage {
 	public void setProductImageId(int productImageId) {
 		this.productImageId = productImageId;
 	}
+	
 
 	/*public boolean equals(Object obj) {
 		if (obj == null)
