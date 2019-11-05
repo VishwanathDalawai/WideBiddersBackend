@@ -41,7 +41,7 @@ public class AuctionMasterController {
 		return auctionService.getAuctionById(id); 
 	} 
 	
-	@RequestMapping(value = "/productId/{id}")
+	@RequestMapping(value = "/timerComplete/{id}")
 	public List getBidDetailsById(@PathVariable int id) {
 		return auctionService.getBidDetailsById(id); 
 	} 
