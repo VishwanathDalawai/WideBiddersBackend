@@ -104,7 +104,7 @@
       </id>
     
      <property name = "bidAmount" column = "bid_Amount" type="double"/>
-     <property name = "dateTime" column = "date_Time" type="string"/>
+     <property name = "dateTime" column = "date_Time" type="timestamp"/>
      <many-to-one name = "bidderCustomer" column = "customer_ID" class="com.widebidders.models.entities.Customer" not-null="true"/>
      <many-to-one name = "auctionMaster" column = "auction_id" class="com.widebidders.models.entities.AuctionMaster" not-null="true"/>
    </class>

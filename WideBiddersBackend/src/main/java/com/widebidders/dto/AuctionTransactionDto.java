@@ -1,72 +1,74 @@
 package com.widebidders.dto;
 
+import java.util.Date;
+
 import com.widebidders.models.entities.AuctionMaster;
-import com.widebidders.models.entities.Customer;
 
 public class AuctionTransactionDto {
-		private int bidId; 
-		private int productId;
-		private int bidderCustomerId;
-		private AuctionMaster auctionMaster;
-		private double bidAmount;
-		private String dateTime;
-		
-		public AuctionTransactionDto() {
-		}
-		
-		public AuctionTransactionDto(int productId, int bidderCustomerId, AuctionMaster auctionMaster, double bidAmount, String dateTime){
-			this.bidderCustomerId = bidderCustomerId;
-			this.auctionMaster = auctionMaster;
-			this.bidAmount = bidAmount;
-			this.dateTime = dateTime;
-		}
+	private int bidId;
+	private int productId;
+	private int bidderCustomerId;
+	private AuctionMaster auctionMaster;
+	private double bidAmount;
+	private Date dateTime;
 
-		public int getBidId() {
-			return bidId;
-		}
+	public AuctionTransactionDto() {
+	}
 
-		public void setBidId(int bidId) {
-			this.bidId = bidId;
-		}
+	public AuctionTransactionDto(int productId, int bidderCustomerId, AuctionMaster auctionMaster, double bidAmount,
+			Date dateTime) {
+		this.bidderCustomerId = bidderCustomerId;
+		this.auctionMaster = auctionMaster;
+		this.bidAmount = bidAmount;
+		this.dateTime = dateTime;
+	}
 
-		public int getProductId() {
-			return productId;
-		}
+	public int getBidId() {
+		return bidId;
+	}
 
-		public void setProductId(int productId) {
-			this.productId = productId;
-		}
+	public void setBidId(int bidId) {
+		this.bidId = bidId;
+	}
 
-		public int getbidderCustomerId() {
-			return bidderCustomerId;
-		}
+	public int getProductId() {
+		return productId;
+	}
 
-		public void setbidderCustomerId(int bidderCustomerId) {
-			this.bidderCustomerId = bidderCustomerId;
-		}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
 
-		public AuctionMaster getAuctionMaster() {
-			return auctionMaster;
-		}
+	public int getbidderCustomerId() {
+		return bidderCustomerId;
+	}
 
-		public void setAuctionMaster(AuctionMaster auctionMaster) {
-			this.auctionMaster = auctionMaster;
-		}
+	public void setbidderCustomerId(int bidderCustomerId) {
+		this.bidderCustomerId = bidderCustomerId;
+	}
 
-		public double getBidAmount() {
-			return bidAmount;
-		}
+	public AuctionMaster getAuctionMaster() {
+		return auctionMaster;
+	}
 
-		public void setBidAmount(double bidAmount) {
-			this.bidAmount = bidAmount;
-		}
+	public void setAuctionMaster(AuctionMaster auctionMaster) {
+		this.auctionMaster = auctionMaster;
+	}
 
-		public String getDateTime() {
-			return dateTime;
-		}
+	public double getBidAmount() {
+		return bidAmount;
+	}
 
-		public void setDateTime(String dateTime) {
-			this.dateTime = dateTime;
-		}
+	public void setBidAmount(double bidAmount) {
+		this.bidAmount = bidAmount;
+	}
+
+	public Date getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
+	}
 
 }

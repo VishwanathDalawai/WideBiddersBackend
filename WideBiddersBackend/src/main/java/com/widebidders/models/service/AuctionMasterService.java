@@ -12,4 +12,6 @@ public interface AuctionMasterService {
     public void updateAuction(int auctionId, AuctionMaster auctionRecord);
     public List<AuctionMaster> getAuction();
     public List<AuctionMaster> getAuctionById(int id);
+   
+	List getBidDetailsById(int productId);
 }
