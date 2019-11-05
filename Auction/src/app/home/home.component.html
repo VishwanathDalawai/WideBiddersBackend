@@ -6,6 +6,9 @@
     <app-header ></app-header>
 </div>
 -->
+
+
+<div class="div1">
 <app-header ></app-header>
 
  
@@ -20,25 +23,19 @@
       
           <!-- Wrapper for slides -->
           <div class="carousel-inner" >
-            <div class="item active" style="height:0%;">
-              <img class="img-responsive center-block" src="assets/images/g.jpg" alt="Los Angeles" style="width:880px;height:300px;">
+            <div class="item active" style="height:20%;">
+              <img class="img-responsive center-block" src="assets/images/banner1.jpeg" alt="Los Angeles" style="width:1150px;height:350px">
             </div>
       
             <div class="item">
-              <img  class="img-responsive center-block" src="assets/images/e.jpg" alt="Chicago" style="width:805px;height:300px;">
+              <img  class="img-responsive center-block" src="assets/images/banner22.jpeg" alt="Chicago" style="width:1150px;height:350px">
             </div>
             <div class="item">
-              <img class="img-responsive center-block" src="assets/images/m.jpg" alt="New york" style="width:880px;height:300px;">
+              <img class="img-responsive center-block" src="assets/images/banner3.jpeg" alt="New york" style="width:1150px;height:350px">
             </div>
-            <div class="item">
-              <img class="img-responsive center-block" src="assets/images/a.jpg" alt="New york" style="width:880px;height:300px;">
-            </div>
-            <div class="item">
-              <img class="img-responsive center-block" src="assets/images/l.jpg" alt="New york" style="width:880px;height:300px;">
-            </div>
-            <div class="item">
-              <img class="img-responsive center-block" src="assets/images/n.jpg" alt="New york" style="width:880px;height:300px;">
-            </div>
+           
+        
+          
           </div>
       
           <!-- Left and right controls -->
@@ -53,12 +50,13 @@
         </div>
       </div>
       
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
 <div class="container">
   <h1 style="align-items:center ;">Fresh Recommendations for you!!! </h1>
+  <br>
   <div class ="row">
      
 
@@ -83,6 +81,28 @@
     <br>
     <h3>{{item.value.productName}} {{item.value.productModel}}, {{item.value.productCategoryName}}</h3>
   
+
+
+    <div id="timer">
+      <span id="days"></span><b>{{item.value.dys}}&nbsp;</b>days
+      <span id="hours"></span><b>{{item.value.hrs}}&nbsp;</b>hrs
+      <span id="minutes"></span><b>{{item.value.mins}}&nbsp;</b>mins
+      <span id="seconds"></span><b>{{item.value.secs}}&nbsp;</b>secs
+    </div> 
+
+<!--
+
+    <div id="timer">
+      <span id="days"></span><b>{{days}}&nbsp;</b>days
+      <span id="hours"></span><b>{{hours}}&nbsp;</b>hrs
+      <span id="minutes"></span><b>{{minutes}}&nbsp;</b>mins
+      <span id="seconds"></span><b>{{seconds}}&nbsp;</b>secs
+    </div> 
+
+-->
+
+
+
    
     <div class="fa fa-inr" style="font-size:24px">{{item.value.startingBidPrice}}</div>
     <br>
@@ -94,8 +114,9 @@
 
        <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
 -->
-      
+      <br>
        <a [routerLink]="['product',item.value.productId]">View Product</a><br><br>
+       <br><br><br>
 
    
 
@@ -123,3 +144,5 @@
   </div>
 
 <app-footer></app-footer>
+
+</div>

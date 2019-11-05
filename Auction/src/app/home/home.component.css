@@ -1,0 +1,22 @@
+.div1{
+    background-color:#e4ebea;
+}
+
+.container {
+    background-color:white;
+    }
+
+    #timer {
+        font-family: Arial, sans-serif;
+       /* font-size: 20px;  */
+        color: rgb(45, 168, 14);
+    /*    letter-spacing: -1px; */
+      }
+      #timer span {
+    /*    font-size: 60px; */
+        color: rgb(47, 214, 25);
+   /*     margin: 0 3px 0 15px; */
+      }
+      #timer span:first-child {
+        margin-left: 0;
+      }
