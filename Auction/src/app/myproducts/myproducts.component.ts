@@ -100,7 +100,14 @@ delete(id:string){
 let obs9 = this.http.delete( this.url9 + id);
 obs9.subscribe((Response) => {
 console.log("product deleted");
+this.ngOnInit();
 })
+
+
+
+
+// this.router.navigate(['/delete']);
+
 
 }
 

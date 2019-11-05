@@ -91,9 +91,6 @@ this.timer = setInterval(() => {
   this.timeBetweenDates(this.deadline); 
 }, 1000);
 
-
-
-
    }
     )
 
