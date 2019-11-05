@@ -13,7 +13,15 @@ export class BidPlacedComponent implements OnInit {
   ngOnInit() {
   }
   goHome(){
-    this.router.navigate(["home"]);
+  
+
+    setTimeout(() =>
+    {
+      this.router.navigate(["home"]);
+     }, 2000);
+
+    
+
   }
 
 }

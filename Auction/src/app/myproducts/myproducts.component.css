@@ -9,3 +9,8 @@
     color: rgb(47, 214, 25);
 /*     margin: 0 3px 0 15px; */
   }
+
+  textarea{
+    width: 300%;
+margin: 10px;
+  }

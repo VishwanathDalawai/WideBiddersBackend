@@ -14,15 +14,17 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   url1=environment.apiBaseUrl + "customerLogin/";
+  url2=environment.apiBaseUrl + "customerEmail/";
 
   userName:string="ddd@gmail.com";
   password:string="dddddd";
  custId:any;
   data:any;
-
+loggedin:any;
 credential:any;
 
 status:boolean=true;
+  customerName: any;
   constructor(private router: Router,private http:HttpClient,private customerService:CustomerService,private toastr: ToastrService) { }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ this.credential = {
  //  this.customerService.clear();
 
 
-console.log(this.credential);
+// console.log(this.credential);
 
 let obs =  this.http.post(this.url1,this.credential);
 
@@ -52,6 +54,24 @@ this.data=response;
 
  // console.log(response);
      if(response!=-1){
+
+      let obs2 =  this.http.get(this.url2 + this.userName);
+
+      obs2.subscribe((response1)=>{
+        this.loggedin = response1;
+        console.log("login response");
+        console.log(this.loggedin.UserName);
+
+    //  this.customerName=response1;
+
+      sessionStorage.setItem('custId',this.data);
+      sessionStorage.setItem('emailId',this.userName);
+      sessionStorage.setItem('customerName',this.loggedin.UserName);
+
+      this.toastr.success('You have loggedin successfully', 'Sucess');
+ this.router.navigate([""]);
+
+      })
       
     //   if(response==true){
     //     this.status=true;
@@ -64,16 +84,14 @@ this.custId=this.customerService.getCustomer();
 */
 
 
-sessionStorage.setItem('custId',this.data);
-sessionStorage.setItem('emailId',this.userName);
+
 // console.log("customer id" + sessionStorage.getItem('custId'));
 
 
 // console.log(this.custId);
 
  //    this.router.navigate(["home",this.credential.emailId]);
- this.toastr.success('You have loggedin successfully', 'Sucess');
- this.router.navigate([""]);
+ 
 
  //      }
    /*    else{

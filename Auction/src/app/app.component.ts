@@ -7,11 +7,18 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 
+
 export class AppComponent {
+
+  
+
   param:any;
   constructor(private router:Router, private activate:ActivatedRoute){
   this.param=this.router.url;
 
   }
+
+
+
   
 }

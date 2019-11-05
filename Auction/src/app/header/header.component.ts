@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   emailId:string;
   data:any;
   Email:any;
-
+  customerName:any;
 
   // @Input() loggedIn:string;
   
@@ -48,6 +48,7 @@ console.log("header component" + this.custId);
     if(this.custId!=null){
    //   console.log("header component::::id:" + this.custId);
       this.emailId = sessionStorage.getItem('emailId');
+      this.customerName = sessionStorage.getItem('customerName');
    //   console.log("header component::::emailid:" + this.emailId);
       
       

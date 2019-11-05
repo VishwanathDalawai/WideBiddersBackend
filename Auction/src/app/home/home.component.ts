@@ -54,16 +54,18 @@ email:any;
 
 
   constructor(private http:HttpClient,private activate:ActivatedRoute) { }
+  
+
 
   ngOnInit() {
   //  console.log("product image1");
   //  this.email = this.activate.snapshot.paramMap.get('email');
     let obs =  this.http.get(this.url1);
     obs.subscribe((response)=>{
-        
+      
          this.data = response;
-console.log("passing object");
-console.log(this.data);
+//console.log("passing object");
+//console.log(this.data);
          for(let item of this.data){
 
        
@@ -72,12 +74,12 @@ console.log(this.data);
           item.mins = "";
           item.secs = "";
           
-           console.log("product from backend");
-           console.log(item);
-           console.log(item.productId);
+         //  console.log("product from backend");
+       //    console.log(item);
+        //   console.log(item.productId);
            let obs6 = this.http.get(this.url5 + item.productId);
          obs6.subscribe((response1) => {
-       console.log("updated" + response1);
+      // console.log("updated" + response1);
            this.currentBidPrice = response1;
            if(this.currentBidPrice == 0){
              this.currentBidPrice = item.startingBidPrice;
