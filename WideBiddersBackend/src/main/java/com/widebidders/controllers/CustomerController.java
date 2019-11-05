@@ -54,6 +54,7 @@ public class CustomerController {
 		map.put("UserName",customerService.getCustomerByEmail(email));
 		logger.info("Inside Get Cust Mail Id "+ email+" "+customerService.getCustomerByEmail(email));
 		return map;
+		
 	}
 
 	@RequestMapping(value = "/deletecustomer/{id}", method = RequestMethod.DELETE)
