@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { HomeComponent } from '../home/home.component';
 
+
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -47,6 +49,7 @@ now:any;
   hours:any;
   days:any;
   dateEntered:any;
+  dateTime:any;
 
   constructor(
     private route: ActivatedRoute,
@@ -110,16 +113,22 @@ this.timer = setInterval(() => {
 
     let obs2 = this.http.get(this.url3 + this.productId);
     obs2.subscribe((response) => {
-console.log("printing history");
+// console.log("printing history");
       this.history = response;
-      
-      console.log(this.history);
+
+      for(let item of this.history){
+
+       
+        item.hrs = "";
+        item.hrs = new Date( item.dateTime);
+      }
+  //    console.log(this.history);
       
      // console.log("history details" + this.history);
-      console.log(this.history);
-      console.log("bid amount" + this.history[0].bidAmount);
-      console.log("Customer Name" + this.history[0].bidderCustomer.customerName);
-      console.log("Date Time" + this.history[0].dateTime);
+  //    console.log(this.history);
+ //     console.log("bid amount" + this.history[0].bidAmount);
+  //    console.log("Customer Name" + this.history[0].bidderCustomer.customerName);
+   //   console.log("Date Time" + this.history[0].dateTime);
       
    //  console.log(this.history.bidderCustomerId);
   //   this.bidderCustId = this.history.bidderCustomerId;
@@ -144,16 +153,16 @@ console.log("printing history");
 
 
   timeBetweenDates(toDate) {
-    console.log("inside function");
+ //   console.log("inside function");
     this.dateEntered = toDate;
   
     console.log("Entered date:" + this.dateEntered);
   
     this.now = new Date();
   
-    console.log("current date:" + this.now);
+  //  console.log("current date:" + this.now);
     this.difference = this.dateEntered.getTime() - this.now.getTime();
-  console.log("difference is" + this.difference);
+//  console.log("difference is" + this.difference);
     if (this.difference <= 0) {
  // console.log("inside if");
       // Timer done
@@ -168,8 +177,8 @@ console.log("printing history");
   
   
   
-  console.log("seconds" + this.seconds);
-  console.log("hours" + this.hours);
+ // console.log("seconds" + this.seconds);
+ // console.log("hours" + this.hours);
   
   
       this.hours %= 24;
@@ -220,27 +229,44 @@ bidPrice(){
       if(this.bidAmount >= this.nextBidPrice)
       {
 
-
-
+/*
+this.dateTime = new Date();
+this.dateTime = new Date(this.dateTime);
+*/
     this.bidDetails = 
     {
      "productId": this.productId,"bidderCustomerId": this.custId,
-      "bidAmount": this.bidAmount , "dateTime": "dateTime"
+      "bidAmount": this.bidAmount 
 
    };
 let obs1 =  this.http.post(this.url1,this.bidDetails);
 this.toastr.info('please wait', 'your amount is being bid',{extendedTimeOut: 3000})
        obs1.subscribe((response)=>{
-            this.home.ngOnInit();
-            
+        
+console.log("response for the bid" + response);
+        if(response == -1){
+          this.toastr.error('The bid amount has changed..Please reload the page..', 'Error');
+        }
+
+         else{
+          setTimeout(() =>
+          {
             this.router.navigate(["bidplaced"]);
-           } 
-           )
-           
-           ;
-           
-           
+           }, 1000);
+  
           }
+         
+           })
+
+         
+          }
+
+
+
+
+
+
+
           else{
             this.toastr.error('Your bid amount should be greater', 'Error');
 

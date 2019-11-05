@@ -13,4 +13,5 @@ public interface AuctionMasterDao {
     public void updateAuction(int auctionId, AuctionMaster auctionRecord);
     public List getAuction();
     public List<AuctionMaster> getAuctionById(int id);
+    List getBidDetailsById(int productId);
 }

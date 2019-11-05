@@ -1,5 +1,7 @@
 package com.widebidders.models.entities;
 
+import java.util.Date;
+
 import com.widebidders.dto.AuctionTransactionDto;
 import com.widebidders.models.db.AuctionTransactionDao;
 
@@ -9,12 +11,12 @@ public class AuctionTransaction {
 	private Customer bidderCustomer;
 	private AuctionMaster auctionMaster;
 	private double bidAmount;
-	private String dateTime;
+	private Date dateTime;
 	
 	public AuctionTransaction() {
 	}
 	
-	public AuctionTransaction(Customer bidderCustomer, AuctionMaster auctionMaster, double bidAmount, String dateTime){
+	public AuctionTransaction(Customer bidderCustomer, AuctionMaster auctionMaster, double bidAmount, Date dateTime){
 		this.bidderCustomer = bidderCustomer;
 		this.auctionMaster = auctionMaster;
 		this.bidAmount = bidAmount;
@@ -59,11 +61,11 @@ public class AuctionTransaction {
 		this.bidAmount = bidAmount;
 	}
 
-	public String getDateTime() {
+	public Date getDateTime() {
 		return dateTime;
 	}
 
-	public void setDateTime(String dateTime) {
+	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}	
 }

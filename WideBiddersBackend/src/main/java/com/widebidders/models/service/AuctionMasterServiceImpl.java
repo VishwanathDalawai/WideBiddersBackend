@@ -45,6 +45,11 @@ public class AuctionMasterServiceImpl implements AuctionMasterService {
 	public AuctionMaster getBidDates(int productId) {
 		return auctionMasterDaoImpl.getBidDates(productId);		
 	}
+	@Override
+	public List getBidDetailsById(int productId) {
+		
+		return auctionMasterDaoImpl.getBidDetailsById(productId);	
+	}
 
 	
 

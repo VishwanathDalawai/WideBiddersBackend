@@ -4,7 +4,8 @@
 
 
 <div class="container">
-  <h1 style="align-items:center ;">My Products!!! </h1>
+  <h3 style="align-items:center ;"><u>My Products!! </u></h3>
+  <br><br>
   <div class ="row">
      
 
@@ -70,11 +71,9 @@
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="modal-header" style="background-color :#dde5ed">
+                            <h3 class="modal-title" id="exampleModalLabel" style="text-align:center;"><b>Update Details</b></h3>
+                           
                         </div>
                         <div class="modal-body">
 
@@ -83,23 +82,25 @@
                                 <div class="form-group input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id=""><i class='fas fa-user-alt'></i></span>
-                                    </div>
-                                    <input type="text" #firstName="ngModel" [(ngModel)]="updatedDescription"
+                                    </div><br>
+                                    <textarea rows ="5" #firstName="ngModel" [(ngModel)]="updatedDescription"
                                         placeholder="Product Description" name="firstName"><br>
-
+                                    </textarea>
                                 </div>
 
 
                             </form>
 
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <div class="modal-header" style="background-color:#dde5ed">
+                            <div class="modal-footer" >
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                             <button type="link" class="btn btn-primary" data-dismiss="modal" (click)="updateProduct()">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
+          </div>
           </div>
         </div>
        </div>

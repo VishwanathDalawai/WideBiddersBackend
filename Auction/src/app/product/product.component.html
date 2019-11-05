@@ -36,7 +36,7 @@
 
 
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
           <div class="well"><b><h3>Images</h3></b>
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
             
@@ -79,11 +79,11 @@
 
 
 
-      <div class="col-md-4">
+      <div class="col-md-5">
          
-          <div class="well"><b><h3>Product</h3></b>
-               <b>Name:</b>{{data.productName}}
-             <br/>
+          <div class="well"><b><h3>{{data.productName | titlecase}}</h3></b>
+              
+            
               <br/>  <b>Basic Price: </b><div class="fa fa-inr" style="font-size:14px"></div> {{data.startingBidPrice}}
               <br/>
               <br/>   <b>Model:</b> {{data.productModel}}
@@ -107,7 +107,7 @@
     </div> <!--end of row-->
     
     <div class="row">
-         <div class="col-md-8">
+         <div class="col-md-7">
           <div class="well"><b><h3>Description</h3></b>
               <br/>  {{data.productDescription}}
               <br/>
@@ -118,7 +118,7 @@
               <br/>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
         
              <div class="well"><b><h3>Seller Description</h3></b>
               <br/> 
@@ -140,7 +140,31 @@
   </div> <!--nf if data-->
 
 
+  <div class="row">
+    <div class="col-md-12">
+        <div class="well"><b><h3>Bid History</h3></b>
+          <div *ngIf="data">
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Date and Time</th>
+              </tr>
+         
+              <tr *ngFor="let item of history">
+                <td>{{item.bidderCustomer.customerName}}</td>
+                <td>{{item.bidAmount}}</td>
+                <td>{{item.hrs}}</td>
+              </tr>   
+      
+           </table>   
+         </div>   
+        </div>
+      </div>
+    </div>
 
+
+<!--
 
   <div class="row">
     <div class="col-md-12">
@@ -152,7 +176,7 @@
           
           <br/>&nbsp;&nbsp;{{item.bidderCustomer.customerName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {{item.bidAmount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       
-          {{item.dateTime}}
+          {{item.hrs}}
           <br>
         </div>   
         </div>
@@ -160,6 +184,8 @@
     </div>
   </div>
 
+
+  -->
 <!--
   days: {{days}}<br>
   hour {{hours}}<br>

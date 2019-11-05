@@ -193,7 +193,8 @@ console.log("hours" + this.hours);
 delete(id:string){
 let obs9 = this.http.delete( this.url9 + id);
 obs9.subscribe((Response) => {
-console.log("product deleted");
+//console.log("product deleted");
+this.toastr.success('Product deleted successfully..', 'Sucess');
 this.ngOnInit();
 })
 

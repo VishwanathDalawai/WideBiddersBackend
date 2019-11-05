@@ -12,3 +12,24 @@
   #timer span:first-child {
     margin-left: 0;
   }
+
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    width : 500px;
+  }
+
+  .main {
+    background-color:#e7ecea ;
+  }
+  
+  .well {
+    background-color: white;
+  }

@@ -1,6 +1,8 @@
 package com.widebidders.models.db;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -91,15 +93,28 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 	@Override
 	public int addBid(AuctionTransaction bid, int productId, int customerId) {
 		Session session = factory.openSession();
+		System.out.println("Hello VPD 1");
 		Transaction tx = null;
 		AuctionMaster auctionMaster = null;
 		Product product = null;
 		Customer bidderCustomer = null;
-
+		
+		Calendar calendar = Calendar.getInstance();
+		Date currentDate = calendar.getTime();
+        Date date = new Date(currentDate.getTime());
+        System.out.println("Hello VPD 1");
+        
+        System.out.println("date is"+date);
+        System.out.println(currentDate);
 		try {
 			logger.info("Bid starts for customer "+customerId);
 			tx = session.beginTransaction();
 			
+<<<<<<< HEAD
+=======
+			
+
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 			List<AuctionMaster> auctionMasterList = session.createQuery("FROM AuctionMaster AM where AM.productSoldStatus=" + 1).list();
 			for (Iterator iterator1 = auctionMasterList.iterator(); iterator1.hasNext();) {
 				auctionMaster = (AuctionMaster) iterator1.next();
@@ -109,6 +124,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 						logger.info("Final Bid Price is "+auctionMaster.getFinalBidPrice()+" "+"Bid amount id "+bid.getBidAmount());
 						auctionMaster.setFinalBidPrice(bid.getBidAmount());
 						bid.setAuctionMaster(auctionMaster);
+<<<<<<< HEAD
 						bidderCustomer = customerDaoImpl.getCustomerById(customerId);
 						logger.info("The bidder customer is" + bidderCustomer.getCustomerId());
 
@@ -116,6 +132,9 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 						session.save(bid);
 						tx.commit();
 						return 0;
+=======
+						bid.setDateTime(currentDate); 
+>>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
 					}
 					break;
 				}
@@ -217,7 +236,7 @@ public class AuctionTransactionDaoImpl implements AuctionTransactionDao {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		} finally {
+		} finally {	
 			session.close();
 		}
 		return finalAuctionId;
