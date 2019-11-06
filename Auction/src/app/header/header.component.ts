@@ -25,9 +25,6 @@ export class HeaderComponent implements OnInit {
   Email:any;
   customerName:any;
 
-  // @Input() loggedIn:string;
-  
-   //  static counter:number=0;
   constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService,private http:HttpClient, private toastr: ToastrService){
   this.param=this.router.url;
 
@@ -35,63 +32,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
-    /* important
-    this.custId=this.customerService.getCustomer();
-    console.log("customerId:" + this.custId);
-  
-*/
-
  this.custId = sessionStorage.getItem('custId');
 
-console.log("header component" + this.custId);
-
     if(this.custId!=null){
-   //   console.log("header component::::id:" + this.custId);
+  
       this.emailId = sessionStorage.getItem('emailId');
       this.customerName = sessionStorage.getItem('customerName');
-   //   console.log("header component::::emailid:" + this.emailId);
-      
-      
-// let obs =  this.http.get(this.url1 + this.custId);
-/* important important
-this.http.post(this.url1 , this.custId).subscribe((Response)=>{
-  console.log("hey");
-  console.log(Response);
-  this.data=Response['MailID'];
-
-this.emailId=this.data;
-
-
-  console.log(this.data);
-  
-    })  */
    }
 
+}
 
-
-    
-  //  console.log(HeaderComponent.counter);
-   /* if(HeaderComponent.counter == 0){
-
-    console.log("illi");
-    this.email = this.route.snapshot.paramMap.get('email');
-    HeaderComponent.counter++;
-    
-    if(this.email != null){
-    console.log("from headfer");
-    console.log(this.email);
-    this.router.navigate(['home']);
-  /* this.userName = this.user.getEmail();
-   if(this.userName==""){
-     console.log("not logged in");
-   }
-   else{
-     console.log(this.userName);
-   } 
-    }
-  }  */
-  }
-  sell(){
+sell(){
 
     if(this.custId!=null){
       this.router.navigate(["sell"]);
@@ -111,7 +62,14 @@ this.emailId=this.data;
 
 
 search(){
+
+if(this.product_name == ""){
+  this.toastr.error('Please enter the product name', 'Error');
+}
+else{
   this.router.navigate(['productName',this.product_name]);
+}
+
 }
 
 
@@ -159,10 +117,7 @@ search(){
   }
   clear(){
     sessionStorage.clear();
- //   console.log("header component::::id:" + this.custId);
- //  console.log("header component::::emailid:" + this.emailId);
+    this.ngOnInit();
   }
-
-
 
 }

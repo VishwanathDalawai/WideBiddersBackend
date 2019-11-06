@@ -1,202 +1,266 @@
 <app-header></app-header>
-<!--
-<br><br>
-<div class="container">
-
- 
-          <br>
-        <div *ngIf="data">
-          <br>
-          product_ID:{{data.productId}}
-          <br>
-          product_Name:{{data.productName}}
-          <br>
-          product_category:{{data.productCategoryName}}
-          <br>
-          product_model:{{data.productModel}}
-          <br>
-          product_desc:{{data.productDescription}}
-          <br>
-          year:{{data.productBoughtYear}}
-          <br>
-          min_bid_price:{{data.startingBidPrice}}
-          <br>
-          increment:{{data.incrementPrice}},
-          <br><br>
-    
-          <br><br><br>
-          <button (click)="placed()">Place Bid</button>
-
-        </div>
-          
-</div>
--->
+<body style="background-color: #f4f3ef;margin-top: -1%;margin-bottom:-30%;">
+  <br>
+  <br>
 <div class ="container">
     <div *ngIf="data">
 
-
-    <div class="row">
-      <div class="col-md-7">
-          <div class="well"><b><h3>Images</h3></b>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            
-                <!-- Indicators -->
-          <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-              <li data-target="#myCarousel" data-slide-to="2"></li>
-          </ol>
-            
-          
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner" >
-              <div class="item active" style="height:20%;">
-                <img class="img-responsive center-block" src="assets/images/mob1.jfif" alt="Los Angeles" style="width:580px;height:300px;">
-              </div>
+        <div class="row" style="margin-left: 5%;margin-right: -12%;">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-body ">
+                  <div class="row">
+                    <div class="col-5 col-md-4">
+                      <div class="icon-big text-center icon-warning">
+                        <i class="nc-icon nc-globe text-warning"></i>
+                      </div>
+                    </div>
+                    <div class="col-7 col-md-8">
+                      <div class="numbers">
+                        <p class="card-category">Current Bid price :</p>
+                        
+    
+                       <div class="fa fa-inr" style="font-size:14px"></div> {{currentBidPrice}}
+                        <p class="card-title">
+                          <p>
         
-              <div class="item">
-                <img class="img-responsive center-block" src="assets/images/mob1.jfif" alt="Chicago" style="width:580px;height:300px;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer ">
+                  <hr>
+                  <div class="stats">
+                      <a (click)="refresh()"><i class="fa fa-refresh"></i> Refresh</a>
+                  </div>
+                </div>
               </div>
-            
-              <div class="item">
-                <img class="img-responsive center-block" src="assets/images/mob1.jfif" alt="New york" style="width:580px;height:300px;">
+            </div>
+     
+
+
+            <div class="col-md-4" style="padding-left: 2%;">
+                <div class="card ">
+                  <div class="card-header ">
+                      <h4><p class="card-category">Time remaining  <i class="fa fa-clock-o"></i> </p> </h4>
+                    
+                  </div>
+                  <div class="card-body ">
+                
+                      <div id="timer" style="margin-top: -7%;">
+                          <span id="days"></span><b>{{days}}&nbsp;</b>days
+                          <span id="hours"></span><b>{{hours}}&nbsp;</b>hrs
+                          <span id="minutes"></span><b>{{minutes}}&nbsp;</b>mins
+                          <span id="seconds"></span><b>{{seconds}}&nbsp;</b>secs
+                        </div> 
+                  </div>
+        
+                </div>
+              </div>
+
+
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-body ">
+                  
+                    <div class="numbers">
+                        <p class="card-category">Bid</p>
+                        <p class="card-title">
+                          <p>
+                      </div>
+<p></p>
+                    <input type="text" [(ngModel)]="bidAmount" placeholder="Enter price">
+                  <div class="row">
+                    <div class="col-16 col-md-2">
+                    
+                    </div>
+                   
+                    
+                  </div>
+                  
+                </div>
+                <div class="card-footer ">
+                  <hr>
+                  <div class="stats">
+                    <button type="button" (click)="placeBid()">Place bid</button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Left and right controls -->
-          <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right"></span>
-              <span class="sr-only">Next</span>
-            </a>
-            
-          </div>
-         </div> 
-      </div> <!--end of col-md-8-->
 
 
 
-      <div class="col-md-5">
-         
-          <div class="well"><b><h3>{{data.productName | titlecase}}</h3></b>
+
               
-            
-              <br/>  <b>Basic Price: </b><div class="fa fa-inr" style="font-size:14px"></div> {{data.startingBidPrice}}
-              <br/>
-              <br/>   <b>Model:</b> {{data.productModel}}
-              <br/>
-              <br/>    <b>Minimum Bid increment price : </b><div class="fa fa-inr" style="font-size:14px"></div>{{data.incrementPrice}}
-              <br/>
-              <br/>    <b>Current Bid price : </b> <div class="fa fa-inr" style="font-size:14px"></div> {{currentBidPrice}}
-              <br/>
-              <br/>    <input type="text" [(ngModel)]="bidAmount" placeholder="Enter price">  <button type="button" (click)="placeBid()">Place bid</button>
-                <div id="timer">
-                <span id="days"></span><b>{{days}}&nbsp;</b>days
-                <span id="hours"></span><b>{{hours}}&nbsp;</b>hrs
-                <span id="minutes"></span><b>{{minutes}}&nbsp;</b>mins
-                <span id="seconds"></span><b>{{seconds}}&nbsp;</b>secs
-              </div> 
-              
-              
+       
           </div>
           
-      </div> <!--end of col-md-4-->
-    </div> <!--end of row-->
+
+    <div class="row" style="margin-left: 9%;margin-right: -32%;">
+
+   
+      <div class="col-md-4">
+          <div class="card ">
+            <div class="card-header ">
+            
+            </div>
+            <div class="card-body ">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            
+                    <!-- Indicators -->
+              <ol class="carousel-indicators">
+                  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#myCarousel" data-slide-to="1"></li>
+                  <li data-target="#myCarousel" data-slide-to="2"></li>
+              </ol>
+                
+              
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                  <div class="item active" style="height:20%;">
+                    <img class="img-responsive center-block img-fluid" src="assets/images/mob1.jfif" alt="Los Angeles" style="width:380px;height:300px;">
+                  </div>
+            
+                  <div class="item">
+                    <img class="img-responsive center-block" src="assets/images/mob1.jfif" alt="Chicago" style="width:380px;height:300px;">
+                  </div>
+                
+                  <div class="item">
+                    <img class="img-responsive center-block" src="assets/images/mob1.jfif" alt="New york" style="width:380px;height:300px;">
+                  </div>
+                </div>
     
-    <div class="row">
-         <div class="col-md-7">
-          <div class="well"><b><h3>Description</h3></b>
-              <br/>  {{data.productDescription}}
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
+                <!-- Left and right controls -->
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+                
+              </div>
+            </div>
+  
           </div>
         </div>
-        <div class="col-md-5">
-        
-             <div class="well"><b><h3>Seller Description</h3></b>
-              <br/> 
-              <br/>  <b>Name: </b>{{data.customer.customerName}}
-              <br/>  <b>Email Id: </b>{{data.customer.emailId}}
-              <br/>
-              <br/>   
-              <br/>
-              <br/>
-          </div>
+
+      <div class="col-md-4">
+          <div class="card ">
+            <div class="card-header ">
+             <b><h3 class="card-title">{{data.productName | titlecase}}</h3></b>
+              <p class="card-category">.</p>
+            </div>
+            <div class="card-body ">
           
-       </div>  <!--col-md-4-->
-  </div> <!--row-->
+                <br/>  <b>Basic Price: </b><div class="fa fa-inr" style="font-size:14px"></div> {{data.startingBidPrice}}
+                <br/>
+                <br/>   <b>Model:</b> {{data.productModel}}
+                <br/>
+                <br/>    <b>Minimum Bid increment price : </b><div class="fa fa-inr" style="font-size:14px"></div>{{data.incrementPrice}}
+                <br/>
+                <br/>    
+                <br/>
+                <br/>   
+             
+            <br>
+            <br>
+            </div>
   
+          </div>
+        </div>
+
+      <div>
+         
+        <div >
+            
+  
+    </div> <!--end of row-->
     
- 
-  
+   
+    </div>
+   
+    
+</div> <!--end of col-md-4-->
+
+    <div class="row">
+        <div class="col-md-8">
+          <div class="well"><b><h3>Description</h3></b>
+            <br/>  {{data.productDescription}}
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+
+          </div>
+
+
+
+      <div class="col-md-4">
+        <div class="card ">
+          <div class="card-header ">
+            <h3 class="card-title">Seller Description</h3>
+            <p class="card-category"></p>
+          </div>
+          <div class="card-body ">
+        
+           <b>Name: </b>{{data.customer.customerName}}
+              <br/> <i class="fa fa-email"></i> <b>Email Id: </b>{{data.customer.emailId}}
+              <br/>
+              <br/>
+              <br/>
+              
+            
+          <br/>
+          <br>
+          <br>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
  
   </div> <!--nf if data-->
 
 
-  <div class="row">
-    <div class="col-md-12">
-        <div class="well"><b><h3>Bid History</h3></b>
-          <div *ngIf="data">
-            <table>
-              <tr>
-                <th>Name</th>
-                <th>Amount</th>
-                <th>Date and Time</th>
-              </tr>
-         
-              <tr *ngFor="let item of history">
-                <td>{{item.bidderCustomer.customerName}}</td>
-                <td>{{item.bidAmount}}</td>
-                <td>{{item.hrs}}</td>
-              </tr>   
+    <div class="panel panel-info">
+      <div class="panel-heading"><b style="font-size: 18px;">Bid History</b></div>
+      <div class="panel-body">
+        <div *ngIf="data">
+            
+         <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Date and Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of history">
+              <td>{{item.bidderCustomer.customerName}}</td>
+              <td>{{item.bidAmount}}</td>
+              <td>{{item.hrs}}</td>
+            </tr>  
+          </tbody>
+        </table>
       
-           </table>   
-         </div>   
-        </div>
+
+       </div>   
+        
       </div>
     </div>
-
-
-<!--
-
-  <div class="row">
-    <div class="col-md-12">
-        <div class="well"><b><h3>Bid History</h3></b>
-          <div *ngIf="data">
-            <br>
-           <b><h4>Customer Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bid Price&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date&Time</h4></b>
-      <div *ngFor="let item of history">
-          
-          <br/>&nbsp;&nbsp;{{item.bidderCustomer.customerName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          {{item.bidAmount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       
-          {{item.hrs}}
-          <br>
-        </div>   
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  -->
-<!--
-  days: {{days}}<br>
-  hour {{hours}}<br>
-  min {{minutes}}<br>
-  second {{seconds}}<br>
--->
-
-
   
 
   
   </div> <!--container end -->
-
+</body>
 <app-footer></app-footer>
