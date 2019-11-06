@@ -24,9 +24,9 @@ export class SellComponent implements OnInit {
     product_desc :  new FormControl('',Validators.required),
     year : new FormControl('',Validators.pattern("([1]{1}[7-9]{1}[0-9]{2})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})")),
     min_bid_price : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
-    increment : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")])
+    increment : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
    // check : new FormControl('',Validators.required)
-   
+ //  image : new FormControl('',Validators.required),
   })
 
 
@@ -122,6 +122,7 @@ productId:any;
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
       };
+   console.log("passing product");   
    console.log(this.product);
      let obs1 =  this.http.post(this.url1,this.product);
        obs1.subscribe((response)=>{

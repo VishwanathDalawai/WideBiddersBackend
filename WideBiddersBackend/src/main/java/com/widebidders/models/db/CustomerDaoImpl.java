@@ -35,13 +35,79 @@ public class CustomerDaoImpl implements CustomerDao {
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
+	
+	@Override
+	public Customer loginAuthentication(LoginEntity login) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Customer> customers = new ArrayList<Customer>();
+		logger.info("Authenticating for user with username "+login.getEmailId());
+		try {
+			tx = session.beginTransaction();
+			customers = session.createQuery("FROM Customer").list();
+			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+				Customer customer = (Customer) iterator1.next();
+				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
+						&& (login.getPassword().equals(customer.getPassword()))) {
+					logger.info("Login Success for " + login.getEmailId());
+					return customer;
+				}
+			}
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+
+	@Override
+	public String getMailId(int id) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		List<Customer> customers = new ArrayList<Customer>();
+		try {
+			tx = session.beginTransaction();
+			customers = session.createQuery("FROM Customer").list();
+			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+				Customer customer = (Customer) iterator1.next();
+				if ((id == customer.getCustomerId())) {
+					logger.info("Get mail id");
+					return customer.getEmailId();
+				}
+			}
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return null;
+	}
+	
+	private boolean isUserExists(Customer customer) {
+		logger.info("Checking if user exists");
+		Session session = factory.openSession();
+		List<Customer> customers = session.createQuery("FROM Customer").list();
+		for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+			Customer existingCustomer = (Customer) iterator1.next();
+			if (customer.getEmailId().equals(existingCustomer.getEmailId())) {
+				logger.info("Already exists");
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public List getCustomers() {
-		logger.info("Inside Cusromer Dao ");
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List customers = null;
+		logger.info("Getting list of customers");
 		try {
 			tx = session.beginTransaction();
 			customers = session.createQuery("FROM Customer ").list();
@@ -56,31 +122,16 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
-	private boolean isUserExists(Customer customer) {
-		Session session = factory.openSession();
-		List<Customer> customers = session.createQuery("FROM Customer").list();
-		for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
-			Customer existingCustomer = (Customer) iterator1.next();
-			if (customer.getEmailId().equals(existingCustomer.getEmailId())) {
-				System.out.println("Already exists");
-				return true;
-			}
-		}
-		return false;
-	}
-
 	@Override
 	public int addCustomer(Customer customer) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Customer> customers = new ArrayList<Customer>();
-
+		logger.info("Adding for customer");
 		if (isUserExists(customer))
 			return -1;
-
 		try {
 			tx = session.beginTransaction();
-			System.out.println("Saving customer");
 			session.save(customer);
 			tx.commit();
 			String subject = "Welcome "+customer.getCustomerName();
@@ -96,11 +147,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		return 0;
 	}
 
+	@Override
 	public Customer getCustomerById(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Customer> customers = new ArrayList<Customer>();
-
+		logger.info("Getting cutomer details for id "+id);
 		try {
 			tx = session.beginTransaction();
 			logger.info("Inside getCustomerByID hello1");
@@ -124,12 +176,15 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		return null;
 	}
+	/**
+	 * For admin purposes
+	 */
 
 	@Override
 	public void deleteCustomer(int id) {
 		Session session = factory.openSession();
 		Transaction tx = null;
-
+		logger.info("Deleting customer with id "+id);
 		try {
 			tx = session.beginTransaction();
 			Customer customer = (Customer) session.get(Customer.class, id);
@@ -147,20 +202,17 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void updateCustomer(Customer customer) {
-		
 		Session session = factory.openSession();
 		Transaction tx = null;
-		 
+		logger.info("Updating customer "+customer.getCustomerName());
 		try {
 			tx = session.beginTransaction();
 			Customer previousCustomer = (Customer) session.get(Customer.class, customer.getCustomerId());
-		
 			previousCustomer.setCustomerName(customer.getCustomerName());
 			previousCustomer.setUserImage(customer.getUserImage());
 			
 			session.evict(previousCustomer);
 			session.update(customer);
-			System.out.println(customer);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
@@ -169,76 +221,19 @@ public class CustomerDaoImpl implements CustomerDao {
 		} finally {
 			session.close();
 		}
-
-		
 	}
 
-	public Customer loginAuthentication(LoginEntity login) {
-		Session session = factory.openSession();
-		Transaction tx = null;
-		List<Customer> customers = new ArrayList<Customer>();
-
-		try {
-			tx = session.beginTransaction();
-			customers = session.createQuery("FROM Customer").list();
-			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
-				Customer customer = (Customer) iterator1.next();
-				if ((login.getEmailId().equalsIgnoreCase(customer.getEmailId()))
-						&& (login.getPassword().equals(customer.getPassword()))) {
-					logger.info("Login Success" + login.getEmailId() + " " + login.getPassword());
-					return customer;
-				}
-			}
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
-	public String getMailId(int id) {
-		Session session = factory.openSession();
-		Transaction tx = null;
-		List<Customer> customers = new ArrayList<Customer>();
-
-		try {
-			tx = session.beginTransaction();
-			customers = session.createQuery("FROM Customer").list();
-			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
-				Customer customer = (Customer) iterator1.next();
-				if ((id == customer.getCustomerId())) {
-					logger.info("Get mail id");
-					return customer.getEmailId();
-				}
-			}
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return null;
-	}
-
+	@Override
 	public String getCustomerByEmail(String email) {
-		logger.info("Get mail id");
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Customer> customers = new ArrayList<Customer>();
-
 		try {
 			tx = session.beginTransaction();
 			customers = session.createQuery("FROM Customer").list();
 			for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
 				Customer customer = (Customer) iterator1.next();
-				System.out.println(customer.getEmailId());
-				System.out.println(email);
 				if ((email.equals(customer.getEmailId()))) {
-				System.out.println(customer.getCustomerName());
 					return customer.getCustomerName();
 				}
 			}

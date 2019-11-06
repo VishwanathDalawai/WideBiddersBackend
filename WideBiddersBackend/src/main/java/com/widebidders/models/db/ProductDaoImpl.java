@@ -36,10 +36,11 @@ public class ProductDaoImpl implements ProductDao {
 		}
 	}
 
+	@Override
 	public int addProduct(Product product, Customer customer) {
-		// logger.error("Inside add product DAO "+product.getProductImage());
 		Session session = factory.openSession();
 		Transaction tx = null;
+		logger.info("Adding product "+product.getProductName());
 		try {
 			tx = session.beginTransaction();
 			product.setCustomer(customer);
@@ -58,10 +59,9 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public void deleteProduct(int productId) {
-
 		Session session = factory.openSession();
 		Transaction tx = null;
-
+		logger.info("Deleting product for product id "+productId);
 		try {
 			tx = session.beginTransaction();
 			Product product = (Product) session.get(Product.class, productId);
@@ -75,18 +75,14 @@ public class ProductDaoImpl implements ProductDao {
 		} finally {
 			session.close();
 		}
-
 	}
 
 	@Override
 	public void updateProduct(Product product) {
-		
 		Session session = factory.openSession();
 		Transaction tx = null;
-
 		int productId = product.getProductId();
-		System.out.println("Product id is "+productId);
-
+		logger.info("Updating product for product with id "+product.getProductId());
 		try {
 			tx = session.beginTransaction();
 			Product previousProduct = (Product) session.get(Product.class, productId);
@@ -108,14 +104,13 @@ public class ProductDaoImpl implements ProductDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List getProducts() {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List products = null;
+		logger.info("Getting all products");
 		try {
-
 			tx = session.beginTransaction();
 			products = session.createQuery("FROM Product where approvalStatus = "+"1").list();
 			tx.commit();
@@ -134,6 +129,7 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Product> products = new ArrayList<Product>();
+		logger.info("Getting products for product id "+id);
 		try {
 			products = session.createQuery("FROM Product where approvalStatus = "+"1").list();
 			for (Iterator iterator1 = products.iterator(); iterator1.hasNext();) {
@@ -152,16 +148,13 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return null;
 	}
-
-	
 	
 	@Override
 	public void addImage(ProductImage productImage) {
-		//logger.error("Inside add Image DAO " + productImage);
 		Session session = factory.openSession();
 		Transaction tx = null;
 		Integer productId = null;
-
+		logger.info("Adding images");
 		try {
 			tx = session.beginTransaction();
 			// productId = (Integer) session.save(product);
@@ -183,14 +176,13 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Override
 	public List getProductByCategory(String category) {
-
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Product> results = new ArrayList<Product>();
+		logger.info("Getting product with category "+category);
 		try {
 			tx = session.beginTransaction();
 			String hql = "FROM Product WHERE productCategoryName = :category and approvalStatus = "+"1";
-			System.out.println("category is " + category);
 			Query query = session.createQuery(hql);
 			query.setParameter("category", category);
 
@@ -216,7 +208,6 @@ public class ProductDaoImpl implements ProductDao {
 		try {
 			tx = session.beginTransaction();
 			String hql = "FROM Product WHERE lower(productName) like :productName and approvalStatus = "+"1";
-			System.out.println("productName is " + productName);
 			Query query = session.createQuery(hql);
 			query.setParameter("productName" , "%"+productName.toLowerCase()+ "%");
 			List<Product> list = query.list();
@@ -237,7 +228,7 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = factory.openSession();
 		Transaction tx = null;
 		List<Product> results = new ArrayList<Product>();
-		// Integer customerId=customer.getCustomerId();
+		logger.info("Getting product, which is uploaded by customer with id "+customerId);
 		try {
 			tx = session.beginTransaction();
 			List products = session.createQuery("FROM Product where approvalStatus = "+"1").list();

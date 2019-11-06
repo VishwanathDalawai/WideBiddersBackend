@@ -34,7 +34,6 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/customer")
 	public List getCustomers() {
-		logger.info("Inside get customers of CustomerController");
 		return customerService.getCustomers();
 	}
 
@@ -52,10 +51,7 @@ public class CustomerController {
 	public  Map<String, String>  getCustomerByEmail(@PathVariable String email) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("UserName",customerService.getCustomerByEmail(email));
-		logger.info("Inside Get Cust Mail Id "+ email+" "+customerService.getCustomerByEmail(email));
 		return map;
-		
-		
 	}
 
 	@RequestMapping(value = "/deletecustomer/{id}", method = RequestMethod.DELETE)
@@ -79,16 +75,6 @@ public class CustomerController {
 		loggedInUsers.setNoOfUserLoggedIn(++noOfUsersLoggedIn);
 		
 		int[] customerId = loggedInUsers.getCustomerId();
-		logger.info("Customer id is "+customer.getCustomerId());
-		//customerId[noOfUsersLoggedIn]=customer.getCustomerId();
-		//loggedInUsers.setCustomerId(customerId);
-		
-		logger.info("customer added is "+customerId);
-		logger.info("no of users logged in"+noOfUsersLoggedIn);
-//		httpSession.setMaxInactiveInterval(0);
-//		httpSession.setAttribute("customer", customer);
-		
-		logger.info("CustomerId is "+ customer);
 		return customer.getCustomerId();
 	}
 	
@@ -96,7 +82,6 @@ public class CustomerController {
 	public Map<String, String> getMailID(@RequestBody int id) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("MailID",customerService.getMailId(id));
-		logger.info("Inside Get Cust Mail Id "+ id+" "+customerService.getMailId(id));
 		return map;
 	}
 }

@@ -33,7 +33,6 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao {
 
 	@Override
 	public void addOrder(CustomerOrdersService order) {
-	
 		Session session = factory.openSession();
 		Transaction tx = null;
 		try {
@@ -97,8 +96,6 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao {
 
 	@Override
 	public void deleteOrder(int id) {
-		
-
 		Session session = factory.openSession();
 		Transaction tx = null;
 
@@ -124,5 +121,4 @@ public class CustomerOrderDaoImpl implements CustomerOrderDao {
 		// TODO Auto-generated method stub
 
 	}
-
 }

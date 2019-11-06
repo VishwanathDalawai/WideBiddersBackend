@@ -49,8 +49,6 @@ public class ProductController {
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public int addProduct(@RequestBody ProductDto productDto) {
-		logger.error("Inside add product"+productDto);
-		
 		int customerId = productDto.getCustomerId();
 		if(customerId==0){
 			logger.info("User not logged in");
@@ -69,8 +67,6 @@ public class ProductController {
 	@RequestMapping(value = "/productUpdate", method = RequestMethod.PUT)
 	public void updateProduct( @RequestBody ProductDto productDto) {
 		Product product = new Product(productDto);
-		System.out.println("Product desc is "+product.getProductDescription());
-		System.out.println("Product desc is "+product.getProductId());
 		ProductService.updateProduct(product);
 	}
 	

@@ -23,8 +23,6 @@ public class CustomerAdressServiceImpl implements CustomerAdressService {
 	@Autowired
 	private CustomerAdressDaoImpl adressDboImpl;
 
-
-
 	@Override
 	public void deleteAdress(int id) {
 		adressDboImpl.deleteAdress(id);
@@ -32,12 +30,11 @@ public class CustomerAdressServiceImpl implements CustomerAdressService {
 
 	@Override
 	public List getAdressById(int id) {
-				return adressDboImpl.getAdressById(id);
+		return adressDboImpl.getAdressById(id);
 	}
 
 	@Override
 	public List getAdress() {
-		
 		return adressDboImpl.getAdress();
 	}
 
@@ -50,8 +47,6 @@ public class CustomerAdressServiceImpl implements CustomerAdressService {
 	@Override
 	public void updateAdress(int id, CustomerAddress customer) {
 		adressDboImpl.updateAdress(id, customer);
-		
-
 	}
 
 }

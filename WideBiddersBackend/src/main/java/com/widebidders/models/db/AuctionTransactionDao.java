@@ -10,4 +10,5 @@ public interface AuctionTransactionDao {
 	public int addBid(AuctionTransaction auction, int productId, int customerId);
 	public void deleteAuction(int id);
 	public List<AuctionTransaction> getBidDeatailsbyProductId(int productId);
+	public double getBidAmount(int productId);
 }

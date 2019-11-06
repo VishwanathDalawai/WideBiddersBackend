@@ -28,7 +28,7 @@
       <property name = "approvalStatus" column = "approvalStatus" type = "string"/>
       <property name = "reportFlag" column = "reportFlag" type = "string"/>
       <property name = "incrementPrice" column = "incrementPrice" type = "double"/>
-      <property name = "productBoughtYear" column = "ProductBougthYear" type = "string"/>
+      <property name = "productBoughtYear" column = "ProductBoughtYear" type = "string"/>
       <property name = "productModel" column = "productModel" type = "string"/>
       <many-to-one name = "customer" column = "customer" class="com.widebidders.models.entities.Customer" not-null="true"/>
       
@@ -45,7 +45,7 @@
          </generator>
       </id>
       
-     <property name = "productImage" column = "Product_Image" type="java.io.File"/>
+     <property name = "productImage" column = "Product_Image" type="string"/>
    
    </class>
    <class name = "com.widebidders.models.entities.Customer" table = "Customer">

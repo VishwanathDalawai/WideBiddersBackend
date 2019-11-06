@@ -4,9 +4,8 @@ import java.util.Set;
 
 import com.widebidders.dto.ProductDto;
 
-
 public class Product {
-	
+
 	private int productId;
 	private String productCategoryName;
 	private String productName;
@@ -19,12 +18,13 @@ public class Product {
 	private String productModel;
 	private Set<ProductImage> productImage;
 	private Customer customer;
-	
+
 	public Product() {
 	}
-	
-	public Product(String productCategoryName, String productName, String productDescription,
-			double startingBidPrice, String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,String productModel, Customer customer) {
+
+	public Product(String productCategoryName, String productName, String productDescription, double startingBidPrice,
+			String approvalStatus, String reportFlag, double incrementPrice, String productBoughtYear,
+			String productModel, Customer customer, Set<ProductImage> productImage) {
 		this.productCategoryName = productCategoryName;
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -35,8 +35,9 @@ public class Product {
 		this.productModel = productModel;
 		this.productBoughtYear = productBoughtYear;
 		this.customer = customer;
+		// this.productImage = productImage;
 	}
-	
+
 	public Product(ProductDto product) {
 		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
@@ -47,8 +48,8 @@ public class Product {
 		this.reportFlag = product.getReportFlag();
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
-		this.productBoughtYear = product.getProductBougthYear();
-		this.productImage = product.getProductImage();
+		this.productBoughtYear = product.getProductBoughtYear();
+		// this.productImage = product.getProductImage();
 	}
 
 	public int getProductId() {

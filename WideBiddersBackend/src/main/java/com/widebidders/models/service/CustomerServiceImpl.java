@@ -23,13 +23,11 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List getCustomers() {
-		logger.info("Inside Customer Service get customers");
 		return customerDboImpl.getCustomers();
 	}
 
 	@Override
 	public int addCustomer(Customer customer) {
-		logger.error("Inside add Customer Service class" + customer);
 		return customerDboImpl.addCustomer(customer);
 	}
 
@@ -53,12 +51,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDboImpl.loginAuthentication(login);
 	}
 
+	@Override
 	public String getMailId(int id) {
 		return customerDboImpl.getMailId(id);
 	}
+	
 	@Override
 	public String getCustomerByEmail(String email) {
-	
 		return customerDboImpl.getCustomerByEmail(email);
 	}
 }

@@ -22,7 +22,6 @@ public class ProductServiceImpl implements ProductService{
     private ProductDaoImpl productDboImpl;
 	
 	public ProductServiceImpl() {
-		
 	}
 
 	@Override
@@ -33,7 +32,6 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public int addProduct(Product product, Customer customer) {
-		logger.error("Inside add product Service class"+product);
 		return productDboImpl.addProduct(product, customer);
 	}
 
@@ -65,14 +63,12 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public List<Product> getProductByCategory(String category) {
-
-	 return productDboImpl.getProductByCategory(category);
+		return productDboImpl.getProductByCategory(category);
 	}
 
 	@Override
 	public List<Product> getProductByProductName(String productName) {
-		
-	  return productDboImpl.getProductProductName(productName);
+		return productDboImpl.getProductProductName(productName);
 	}
 
 
@@ -80,7 +76,4 @@ public class ProductServiceImpl implements ProductService{
 	public List getProductByCustomerId(int customerId) {
 		return  productDboImpl.getProductByCustomerId(customerId);
 	}
-
-	
-	
 }
