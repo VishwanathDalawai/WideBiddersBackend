@@ -13,6 +13,7 @@ export class CategoryDetailsComponent implements OnInit {
   url2=environment.apiBaseUrl + "productByCategory/";
   url5=environment.apiBaseUrl + "getBidAmount/";
   url8=environment.apiBaseUrl + "getBidDates/";
+  url9=environment.apiBaseUrl + "timerComplete/";
 data:any;
 categoty:any;
 currentBidPrice: any;
@@ -97,10 +98,14 @@ fetchData(){
 
 
 
-
+/*
  item.startDate = this.time.auctionStartDate;
  item.endDate = new Date(item.startDate); 
  item.endDate.setDate( item.endDate.getDate() + 7);
+*/
+
+item.productEndDate = this.time.auctionEndDate;
+item.endDate = new Date(item.productEndDate); 
 
 
 this.timer = setInterval(() => {
@@ -116,6 +121,16 @@ this.difference = this.dateEntered.getTime() - this.now.getTime();
 if (this.difference <= 0) {
 
   clearInterval(this.timer);
+
+/*
+  let obs9 =  this.http.get(this.url9 + item.productId);
+  console.log("product id: " + item.productId);
+
+  obs9.subscribe(()=>{
+     
+    }) */
+
+
 
 } else {
   this.seconds = Math.floor(this.difference / 1000);

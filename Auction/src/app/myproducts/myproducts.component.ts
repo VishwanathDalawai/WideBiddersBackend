@@ -88,10 +88,13 @@ dateEntered:any;
    obs8.subscribe((response) => {
     
      this.time = response;
- 
+ /*
  item.startDate = this.time.auctionStartDate;
  item.endDate = new Date(item.startDate); 
  item.endDate.setDate( item.endDate.getDate() + 7);
+*/
+item.productEndDate = this.time.auctionEndDate;
+item.endDate = new Date(item.productEndDate); 
 
 
 this.timer = setInterval(() => {

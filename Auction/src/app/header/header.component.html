@@ -46,8 +46,70 @@
                 data-toggle="dropdown" href="#">Hello,  {{customerName}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a routerLink="/myproduct">My Products</a></li>
-                  <li><a (click)="clear()" routerLink="/home">LogOut</a></li>               
+                  <li data-toggle="modal" style="color:#00AA9E;" data-target="#exampleModal"
+                        class="btn btn-link" (click)="update(item.value.productId)">Change Passowrd</li>
+                  <li><a (click)="clear()" routerLink="/home">LogOut</a></li>
+
                 </ul></li>
+
+
+
+
+
+
+
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color :#dde5ed">
+                            <h3 class="modal-title" id="exampleModalLabel" style="text-align:center;"><b>Change Your Password</b></h3>
+                           
+                        </div>
+                        <div class="modal-body">
+
+                            <form #userInfo="ngForm">
+
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id=""><i class='fas fa-user-alt'></i></span>
+                                    </div><br>
+                                    <input type="text" #firstName="ngModel" [(ngModel)]="currentPassword"
+                                    placeholder="Current Passowrd" name="currentPassword"><br>
+                                    <input type="text" #firstName="ngModel" [(ngModel)]="newPassword"
+                                    placeholder="New Passowrd" name="newPassword"><br>
+                                    <input type="text" #firstName="ngModel" [(ngModel)]="confirmPassword"
+                                    placeholder="Confirm Passowrd" name="confirmPassword"><br>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                        <div class="modal-header" style="background-color:#dde5ed">
+                            <div class="modal-footer" >
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="link" class="btn btn-primary" data-dismiss="modal" (click)="updateProduct()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
           </ul> 
           </div> 
           

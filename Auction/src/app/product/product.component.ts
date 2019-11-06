@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   url5=environment.apiBaseUrl + "getBidAmount/";
 
   url8=environment.apiBaseUrl + "getBidDates/";
+  url9=environment.apiBaseUrl + "timerComplete/";
   
   custId:any;
   productId: any;
@@ -38,7 +39,7 @@ export class ProductComponent implements OnInit {
   nextBidPrice:any;
   incrementPrice:any;
 time:any;
-productAddedDate:any;
+productEndDate:any;
 deadline:any;
 timer:any;
 now:any;
@@ -84,9 +85,18 @@ dateTime:any;
     let obs8 = this.http.get(this.url8 + this.productId);
     obs8.subscribe((response) => {
       this.time = response;
+/*
 this.productAddedDate = this.time.auctionStartDate;
+
 this.deadline = new Date(this.productAddedDate); 
+
 this.deadline.setDate(this.deadline.getDate() + 7);
+
+*/
+this.productEndDate = this.time.auctionEndDate;
+this.deadline = new Date(this.productEndDate); 
+
+console.log("Product End dae" + this.deadline);
 
 this.timer = setInterval(() => {
   this.timeBetweenDates(this.deadline); 
@@ -122,6 +132,16 @@ this.timer = setInterval(() => {
     this.difference = this.dateEntered.getTime() - this.now.getTime();
     if (this.difference <= 0) {
       clearInterval(this.timer);
+console.log("inside clear");
+/*
+      let obs9 =  this.http.get(this.url9 + this.productId);
+      console.log("product id: " + this.productId);
+ 
+      obs9.subscribe(()=>{
+         
+        }) 
+*/
+
     
     } else {
       this.seconds = Math.floor(this.difference / 1000);
@@ -158,8 +178,6 @@ bidPrice(){
 
   placeBid(){
 
-    console.log("inside place bid");
-
     this.custId=sessionStorage.getItem('custId');
 
    
@@ -178,8 +196,7 @@ bidPrice(){
    };
 let obs1 =  this.http.post(this.url1,this.bidDetails);
        obs1.subscribe((response)=>{
-         console.log("inside post");
-        console.log("response is" + response);
+        
         if(response == -1){
           this.toastr.error('The bid amount has changed..Please reload the page..', 'Error');
         }

@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 
   url8=environment.apiBaseUrl + "getBidDates/";
 
+  url9=environment.apiBaseUrl + "timerComplete/";
+
 
 data:any;
 name:any;
@@ -74,10 +76,15 @@ dateEntered:any;
          let obs8 = this.http.get(this.url8 + item.productId);
          obs8.subscribe((response) => {   
            this.time = response;
-
+/*
        item.startDate = this.time.auctionStartDate;
        item.endDate = new Date(item.startDate); 
        item.endDate.setDate( item.endDate.getDate() + 7);
+      */
+     item.productEndDate = this.time.auctionEndDate;
+     item.endDate = new Date(item.productEndDate); 
+    
+
      
      this.timer = setInterval(() => {
       this.dateEntered = item.endDate;
@@ -89,6 +96,13 @@ dateEntered:any;
       if (this.difference <= 0) {
  
         clearInterval(this.timer);
+/*
+        let obs9 =  this.http.get(this.url9 + item.productId);
+        console.log("product id: " + item.productId);
+   
+        obs9.subscribe(()=>{
+           
+          })  */
       
       } else {
    
