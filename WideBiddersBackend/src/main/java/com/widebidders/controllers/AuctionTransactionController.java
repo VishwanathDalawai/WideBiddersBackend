@@ -35,12 +35,12 @@ public class AuctionTransactionController {
 		} 
 
 		@RequestMapping(value = "/placeBid", method = RequestMethod.POST)
-		public void addBid(@RequestBody AuctionTransactionDto auctionTransactionDto) {
+		public int addBid(@RequestBody AuctionTransactionDto auctionTransactionDto) {
 			logger.error("Inside add Bid");
 			int productId = auctionTransactionDto.getProductId();
 			int customerId = auctionTransactionDto.getbidderCustomerId();
 			AuctionTransaction auctionTransaction = new AuctionTransaction(auctionTransactionDto);
-			auctionTransactionService.addBid(auctionTransaction, productId, customerId);			
+			return auctionTransactionService.addBid(auctionTransaction, productId, customerId);			
 		}
 
 		@RequestMapping(value = "/deleteAuction/{id}", method = RequestMethod.DELETE)

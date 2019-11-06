@@ -26,7 +26,7 @@ public class ProductDto implements Serializable{
 	}
 
 	public ProductDto(Product product) {
-
+		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();
@@ -36,7 +36,6 @@ public class ProductDto implements Serializable{
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
 		this.productBougthYear=product.getProductBoughtYear();
-
 	}
 
 	public ProductDto(int productId, String productCategoryName, String productName, String productDescription,

@@ -25,8 +25,8 @@ public class AuctionTransactionServiceImpl implements AuctionTransactionService{
 	}
 
 	@Override
-	public void addBid(AuctionTransaction auction,int productId, int customerId) {
-		auctionTransactionDaoImpl.addBid(auction, productId, customerId);
+	public int addBid(AuctionTransaction auction,int productId, int customerId) {
+		return auctionTransactionDaoImpl.addBid(auction, productId, customerId);
 	}
 
 	@Override

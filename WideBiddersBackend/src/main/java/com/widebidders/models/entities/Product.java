@@ -38,6 +38,7 @@ public class Product {
 	}
 	
 	public Product(ProductDto product) {
+		this.productId = product.getProductId();
 		this.productCategoryName = product.getProductCategoryName();
 		this.productName = product.getProductName();
 		this.productDescription = product.getProductDescription();
@@ -47,6 +48,7 @@ public class Product {
 		this.incrementPrice = product.getIncrementPrice();
 		this.productModel = product.getProductModel();
 		this.productBoughtYear = product.getProductBougthYear();
+		this.productImage = product.getProductImage();
 	}
 
 	public int getProductId() {

@@ -7,7 +7,7 @@ import com.widebidders.models.entities.AuctionTransaction;
 public interface AuctionTransactionDao {
 	public List getAllBids();
 	public List getBidById(int id);
-	public void addBid(AuctionTransaction auction, int productId, int customerId);
+	public int addBid(AuctionTransaction auction, int productId, int customerId);
 	public void deleteAuction(int id);
 	public List<AuctionTransaction> getBidDeatailsbyProductId(int productId);
 }
