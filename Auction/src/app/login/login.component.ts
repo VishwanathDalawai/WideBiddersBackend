@@ -38,31 +38,18 @@ this.credential = {
 };
 
 
-
- //  this.customerService.add("16");
- //  this.customerService.clear();
-
-
-// console.log(this.credential);
-
 let obs =  this.http.post(this.url1,this.credential);
 
 obs.subscribe((response)=>{
   
 this.data=response;
-//  this.status=false;
 
- // console.log(response);
      if(response!=-1){
 
       let obs2 =  this.http.get(this.url2 + this.userName);
 
       obs2.subscribe((response1)=>{
         this.loggedin = response1;
-        console.log("login response");
-        console.log(this.loggedin.UserName);
-
-    //  this.customerName=response1;
 
       sessionStorage.setItem('custId',this.data);
       sessionStorage.setItem('emailId',this.userName);
@@ -73,31 +60,6 @@ this.data=response;
 
       })
       
-    //   if(response==true){
-    //     this.status=true;
-
-
-/* important
-
-    this.customerService.setCustomer(this.data);
-this.custId=this.customerService.getCustomer();
-*/
-
-
-
-// console.log("customer id" + sessionStorage.getItem('custId'));
-
-
-// console.log(this.custId);
-
- //    this.router.navigate(["home",this.credential.emailId]);
- 
-
- //      }
-   /*    else{
-         this.status=false;
-         this.router.navigate(["login"]);
-       } */
      }
      else{
       this.toastr.error('Incorrect Username/Password', 'Error');
@@ -108,14 +70,5 @@ this.custId=this.customerService.getCustomer();
 
    
   }
-  /* public getEmail():string{
-    if(this.status==true){
-     // this.credential.stroreData();
-     return this.credential.userName;
-    }
-    else{
-      return "";
-    }
-  } */
 
 }

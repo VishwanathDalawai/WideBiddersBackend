@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CustomerService } from '../customer.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-
-
 
 
 @Component({
@@ -24,11 +20,9 @@ export class SellComponent implements OnInit {
     product_desc :  new FormControl('',Validators.required),
     year : new FormControl('',Validators.pattern("([1]{1}[7-9]{1}[0-9]{2})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})")),
     min_bid_price : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
-    increment : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")])
-   // check : new FormControl('',Validators.required)
+    increment : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
    
   })
-
 
 url1=environment.apiBaseUrl + "addproduct/";
 url2=environment.apiBaseUrl + "addAuctionMaster/";
@@ -71,11 +65,11 @@ productId:any;
   
       reader.onload = this.handleReaderLoaded.bind(this);
       this.a= reader.readAsBinaryString(file);
-      console.log("Read as binary String "+this.a);
+     
     }
   }
   handleReaderLoaded(e) {
- //   this.Data = btoa(e.target.result);
+ 
  this.Data.push(btoa(e.target.result));
   }
   
@@ -101,7 +95,7 @@ productId:any;
     {"productImage":this.Data[4]}
     ];
 */
-    //[{"productImage":"hey"}]
+   
     this.custId=sessionStorage.getItem('custId');
   this.cid =  JSON.stringify(this.custId);
     const httpOptions = {
@@ -113,7 +107,6 @@ productId:any;
     httpOptions.headers =
     httpOptions.headers.set('customerId', this.cid);
 
-    console.log("inside sell" + this.custId);
    this.product = 
        {
         "customerId": this.custId,"productName": this.productName, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
@@ -122,38 +115,15 @@ productId:any;
        //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
       ]
       };
-   console.log(this.product);
      let obs1 =  this.http.post(this.url1,this.product);
        obs1.subscribe((response)=>{
-           console.log("response" + response);
+          
             this.productId = response;
-            console.log("product id:" +this.productId);
+          
             this.auction();
 
            })
 
-           console.log("hey");
-
-console.log("product" + this.productId);
-
-
-
-
-/*
-           this.auctionMaster =
-           {
-           "productId":this.productId,"customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
-             "productSoldStatus": 1,"auctionDescription":"First Product", "auctionStartDate":this.startDate, "auctionEndDate":this.endDate 
-           };
-
-
-console.log(this.auctionMaster);
-           let obs2 =  this.http.post(this.url2,this.auctionMaster);
-           console.log("calling auctionMaster ");
-       obs2.subscribe(()=>{
-            
-           })
-  */
 
            this.router.navigate(["congrats"]);
 
@@ -167,10 +137,9 @@ auction(){
 "productSoldStatus":"1","auctionDescription":"First Product"  //, "auctionStartDate":"this.startDate", "auctionEndDate":"this.endDate" 
   };
 
-     console.log(this.auctionMaster.productSoldStatus);
-  console.log(this.auctionMaster);
+    
   let obs2 =  this.http.post(this.url2,this.auctionMaster);
-  console.log("calling auctionMaster ");
+ 
 obs2.subscribe(()=>{
    
   })

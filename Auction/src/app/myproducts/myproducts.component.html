@@ -1,28 +1,12 @@
 
 <app-header></app-header>
 
-
-
 <div class="container">
   <h3 style="align-items:center ;"><u>My Products!! </u></h3>
   <br><br>
   <div class ="row">
      
-
   <div *ngFor="let item of data | keyvalue">
-    <!--  {{item.key}}:{{item.value.productName}} 
-    <br>
-    product_ID:{{item.value.productId}}
-
-     product_desc:{{item.value.description}}
-    <br>
-    year:{{item.value.year}}
-    <br>
-     increment:{{item.value.incrementPrice}},
-    <br>
-    <br>
-   {{item.value.productImage.productImage}}
-  -->
     <div class ="col-md-4">
     
     <img src="assets/images/mob1.jfif" class="img-thumbnail" alt="Mob image" width="170px" height="50px">
@@ -43,29 +27,12 @@
     <br>
    <br>
    
-  <!--
-    <img *ngFor="let image of imageData"  src="{{image}}" alt="" id="img">
-      
-
-       <img src="{{'data:image/png;base64,' + item.value.productImage[0].productImage}}" /> 
--->
-     <!-- 
-       <a [routerLink]="['/product',item.value.productId]">View Product</a><br><br>
-       -->
-<!---->
 <a [routerLink]="['/product',item.value.productId]">View</a>&nbsp;&nbsp;&nbsp;
-<!--
-<a [routerLink]="['/product',item.value.productId]">Update Product</a><br><br>
--->
+
 <button data-toggle="modal" style="color:#00AA9E;" data-target="#exampleModal"
                         class="btn btn-link" (click)="update(item.value.productId)">Update</button>
 <button style="color:#00AA9E;" class="btn btn-link" (click)="delete(item.value.productId)">Delete</button>
    <br><br><br><br><br>
-
-  
-
-
-
 
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -104,22 +71,6 @@
           </div>
         </div>
        </div>
-  <!--
-    <br>
-    product_category:{{data.productCategoryName}}
-    <br>
-    product_model:{{data.productModel}}
-    <br>
-    product_desc:{{data.description}}
-    <br>
-    year:{{data.year}}
-    <br>
-    min_bid_price:{{data.startingBidPrice}}
-    <br>
-    increment:{{data.incrementPrice}}
-
--->
-
    
   </div>
 
