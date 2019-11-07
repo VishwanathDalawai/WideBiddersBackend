@@ -18,7 +18,7 @@ public class ProductDto implements Serializable{
 	private double incrementPrice;
 	private String productBoughtYear;
 	private String productModel;
-	private Set<ProductImage> productImage;
+	private ProductImageDto productImage;
 	private int customerId;
 
 	public ProductDto() {
@@ -53,7 +53,7 @@ public class ProductDto implements Serializable{
 		this.productModel = productModel;
 		this.customerId = customerId;
 		this.productBoughtYear = productBoughtYear;
-		//this.productImage = productImage;
+		// this.productImage = productImage;
 	}
 
 	public int getProductId() {
@@ -144,12 +144,21 @@ public class ProductDto implements Serializable{
 		this.productModel = productModel;
 	}
 
-	public Set<ProductImage> getProductImage() {
+	public ProductImageDto getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(Set<ProductImage> productImage) {
+	public void setProductImage(ProductImageDto productImage) {
 		this.productImage = productImage;
 	}
+	
+	
 
+//	public Set<ProductImageDto> getProductImage() {
+//		return productImage;
+//	}
+//
+//	public void setProductImage(Set<ProductImageDto> productImage) {
+//		this.productImage = productImage;
+//	}
 }

@@ -36,6 +36,20 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 	}
 	
+	private boolean isUserExists(Customer customer) {
+		logger.info("Checking if user exists");
+		Session session = factory.openSession();
+		List<Customer> customers = session.createQuery("FROM Customer").list();
+		for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
+			Customer existingCustomer = (Customer) iterator1.next();
+			if (customer.getEmailId().equals(existingCustomer.getEmailId())) {
+				logger.info("Already exists");
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public Customer loginAuthentication(LoginEntity login) {
 		Session session = factory.openSession();
@@ -86,20 +100,6 @@ public class CustomerDaoImpl implements CustomerDao {
 			session.close();
 		}
 		return null;
-	}
-	
-	private boolean isUserExists(Customer customer) {
-		logger.info("Checking if user exists");
-		Session session = factory.openSession();
-		List<Customer> customers = session.createQuery("FROM Customer").list();
-		for (Iterator iterator1 = customers.iterator(); iterator1.hasNext();) {
-			Customer existingCustomer = (Customer) iterator1.next();
-			if (customer.getEmailId().equals(existingCustomer.getEmailId())) {
-				logger.info("Already exists");
-				return true;
-			}
-		}
-		return false;
 	}
 
 	@Override

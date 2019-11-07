@@ -90,32 +90,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-  <div class="form-row">
-      <div class="form-group  col-md-12">
-          
-              <input  class="form-check" type ="checkbox" class ="form-check-input" id="gridCheck" formControlName ="check" 
-              [ngClass] ="{'is-invalid': form.get('check').touched && form.get('check').invalid}"/>
-              <div *ngIf =" form.get('check').touched && form.get('check').invalid" class ="invalid-feedback">
-                <div *ngIf =" form.get('check').errors.required"></div>
-              </div>
-              <label for="gridCheck">&nbsp;I confirm</label>
-     </div>
-   </div>
- -->
-
-
- <br><br><br><br><br>
-
- <div class ="form-row" style=" margin-top: 200px;">
-    <br><br><br>
-    <div class="form-group col-md-2">
-        <label for ="files">Upload images..</label>
-        <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
-      </div>
- <!--
- <label for ="files">Upload images..</label> -->
-=======
  <br><br><br><br><br>
 
  <div class ="form-row" style=" margin-top: 200px;">
@@ -125,7 +99,6 @@
         <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">
       </div>
 
->>>>>>> branch 'master' of https://github.com/Vishwanathpd/WideBiddersBackend.git
  <div class="form-group col-md-2">
   <label></label>
   <input type="file" (change)="onUploadChange($event)" class="form-control" name="file" accept=".png, .jpg, .jpeg">

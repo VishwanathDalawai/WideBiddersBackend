@@ -16,7 +16,7 @@ public class Product {
 	private double incrementPrice;
 	private String productBoughtYear;
 	private String productModel;
-	private Set<ProductImage> productImage;
+	private ProductImage productImage;
 	private Customer customer;
 
 	public Product() {
@@ -132,11 +132,11 @@ public class Product {
 		this.productModel = productModel;
 	}
 
-	public Set<ProductImage> getProductImage() {
+	public ProductImage getProductImage() {
 		return productImage;
 	}
 
-	public void setProductImage(Set<ProductImage> productImage) {
+	public void setProductImage(ProductImage productImage) {
 		this.productImage = productImage;
 	}
 

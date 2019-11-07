@@ -20,23 +20,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.widebidders.dto.ProductDto;
+import com.widebidders.dto.ProductImageDto;
 import com.widebidders.models.db.CustomerDao;
 import com.widebidders.models.db.CustomerDaoImpl;
 import com.widebidders.models.entities.Customer;
 import com.widebidders.models.entities.Product;
+import com.widebidders.models.entities.ProductImage;
 import com.widebidders.models.service.ProductServiceImpl;
 
 @RestController
 public class ProductController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
-	
+
 	@Autowired
 	public ProductServiceImpl ProductService;
-	
+
 	@Autowired
 	public CustomerDaoImpl customerDaoImpl;
-	
+
 	@RequestMapping(value = "/products")
 	public List getProducts() {
 		return ProductService.getProducts();
@@ -44,8 +46,8 @@ public class ProductController {
 
 	@RequestMapping(value = "/productId/{id}")
 	public Product getProductById(@PathVariable int id) {
-		return ProductService.getProductById(id); 
-	} 
+		return ProductService.getProductById(id);
+	}
 
 	@RequestMapping(value = "/addproduct", method = RequestMethod.POST)
 	public int addProduct(@RequestBody ProductDto productDto) {
@@ -54,7 +56,10 @@ public class ProductController {
 			logger.info("User not logged in");
 			return -1;
 		}
+		
 		Product product = new Product(productDto);
+		ProductImage productimage = new ProductImage(productDto.getProductImage());
+		product.setProductImage(productimage);
 		Customer customer = (Customer) customerDaoImpl.getCustomerById(customerId);
 		return ProductService.addProduct(product, customer);		
 	}
@@ -65,22 +70,23 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/productUpdate", method = RequestMethod.PUT)
-	public void updateProduct( @RequestBody ProductDto productDto) {
+	public void updateProduct(@RequestBody ProductDto productDto) {
 		Product product = new Product(productDto);
 		ProductService.updateProduct(product);
 	}
-	
+
 	@RequestMapping(value = "/productByCategory/{category}")
 	public List getProductByCategory(@PathVariable("category") String category) {
-		 return ProductService.getProductByCategory(category);
+		return ProductService.getProductByCategory(category);
 	}
+
 	@RequestMapping(value = "/productByCustomerId/{id}")
-	public List getProductByCustomerId(@PathVariable int id ) {
-		 return ProductService.getProductByCustomerId(id);
+	public List getProductByCustomerId(@PathVariable int id) {
+		return ProductService.getProductByCustomerId(id);
 	}
-	
+
 	@RequestMapping(value = "/productByProductName/{productName}")
 	public List getProductByProductName(@PathVariable("productName") String productName) {
-		 return ProductService.getProductByProductName(productName);
+		return ProductService.getProductByProductName(productName);
 	}
 }
