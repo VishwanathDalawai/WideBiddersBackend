@@ -21,6 +21,7 @@ export class SellComponent implements OnInit {
     year : new FormControl('',Validators.pattern("([1]{1}[7-9]{1}[0-9]{2})|([2]{1}[0]{1}[0-1]{1}[0-9]{1})")),
     min_bid_price : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
     increment : new FormControl('',[Validators.required,Validators.pattern("[0-9]*")]),
+    image : new FormControl('',Validators.required)
    
   })
 
@@ -56,7 +57,7 @@ productId:any;
   constructor(private http:HttpClient,private router:Router,private customerService:CustomerService){
   }
 
-
+// to upload the file/image
   onUploadChange(evt: any) {
     const file = evt.target.files[0];
   
@@ -65,6 +66,7 @@ productId:any;
   
       reader.onload = this.handleReaderLoaded.bind(this);
       this.a= reader.readAsBinaryString(file);
+      console.log("Read as binary String "+this.a);
      
     }
   }
@@ -73,28 +75,7 @@ productId:any;
  this.Data.push(btoa(e.target.result));
   }
   
-/*
-  getProduct(){
-    let observable = this.http.get("http://localhost/productss");      //get method of request
-        observable.subscribe( (response)=>{
-            console.log("getProduct ", response[4].img);
-            this.imageData.push('data:image/png;base64,' +response[4].img);
-        })
-    }
-*/
-
-
   post(){
-
-/*
-    this.ProductImages=[
-    {"productImage":this.Data[0]},
-    {"productImage":this.Data[1]},
-     {"productImage":this.Data[2]},
-    {"productImage":this.Data[3]},
-    {"productImage":this.Data[4]}
-    ];
-*/
    
     this.custId=sessionStorage.getItem('custId');
   this.cid =  JSON.stringify(this.custId);
@@ -111,9 +92,8 @@ productId:any;
        {
         "customerId": this.custId,"productName": this.productName, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
        "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "approvalStatus": 1, "reportFlag": 0, 
-       "productImage":[{"productImage":this.Data[1]},{"productImage":this.Data[2]}
-       //,{"productImage":this.Data[1]},{"productImage":this.Data[2]},{"productImage":this.Data[3]},{"productImage":this.Data[4]}
-      ]
+       "productImage":{"productImage":this.Data[0],"productImage2":this.Data[1], "productImage3":this.Data[2],"productImage4":this.Data[3],"productImage5":this.Data[4]}//,{"productImage3":this.Data[2]},{"productImage4":this.Data[3]},{"productImage5":this.Data[4]}
+       
       };
      let obs1 =  this.http.post(this.url1,this.product);
        obs1.subscribe((response)=>{
@@ -124,28 +104,22 @@ productId:any;
 
            })
 
-
            this.router.navigate(["congrats"]);
-
      }
-
 
 auction(){
   this.auctionMaster =
   {
   "productId":this.productId,"customerId": this.custId,"startingBidPrice": this.min_bid_price ,"finalBidPrice": this.min_bid_price , "bidIncrement":this.increment,
-"productSoldStatus":"1","auctionDescription":"First Product"  //, "auctionStartDate":"this.startDate", "auctionEndDate":"this.endDate" 
+"productSoldStatus":"1","auctionDescription":"First Product" 
   };
-
-    
+  
   let obs2 =  this.http.post(this.url2,this.auctionMaster);
  
 obs2.subscribe(()=>{
    
   })
 }
-
-
 
   ngOnInit() {
   }

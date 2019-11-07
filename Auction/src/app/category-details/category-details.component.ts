@@ -28,6 +28,7 @@ minutes:any;
 hours:any;
 days:any;
 dateEntered:any;
+empty:any;
 
 
   constructor(
@@ -37,40 +38,35 @@ dateEntered:any;
   ) { }
 
   ngOnInit() {
-    
-
+    /* for same url navigation */
     this.route.queryParamMap.subscribe((paramMap: ParamMap) => {
       const refresh = paramMap.get('refresh');
       if (refresh) {
         this.fetchData();
       }
     });
-
-
-
-
    
 }
 
 fetchData(){
-  this.categoty = this.route.snapshot.paramMap.get('category');
+  this.categoty = this.route.snapshot.paramMap.get('category'); //search by category
   
     let obs = this.http.get(this.url2 + this.categoty);
     obs.subscribe((response) => {
 
       this.data = response;
      
+      if(this.data[0] == null){
+        this.empty =true;  //if there is no products  
+        
+      }
+     /* for countdown timer and highest bid price*/
       for(let item of this.data){
-
-
         item.hrs = "";
         item.dys = "";
         item.mins = "";
         item.secs = "";
-        
-
-       
-        
+                
         let obs6 = this.http.get(this.url5 + item.productId);
       obs6.subscribe((response1) => {
     
@@ -83,54 +79,28 @@ fetchData(){
           this.currentBidPrice = response1;
         }
         item.startingBidPrice = this.currentBidPrice;
-      
-     
-      
+          
      }
       )
    
-
    let obs8 = this.http.get(this.url8 + item.productId);
    obs8.subscribe((response) => {
     
      this.time = response;
  
-
-
-
-/*
- item.startDate = this.time.auctionStartDate;
- item.endDate = new Date(item.startDate); 
- item.endDate.setDate( item.endDate.getDate() + 7);
-*/
-
 item.productEndDate = this.time.auctionEndDate;
 item.endDate = new Date(item.productEndDate); 
-
 
 this.timer = setInterval(() => {
 
 this.dateEntered = item.endDate;
 
-
-
 this.now = new Date();
 
-
-this.difference = this.dateEntered.getTime() - this.now.getTime();
+this.difference = this.dateEntered.getTime() - this.now.getTime(); //difference between end date time and current date time
 if (this.difference <= 0) {
 
   clearInterval(this.timer);
-
-/*
-  let obs9 =  this.http.get(this.url9 + item.productId);
-  console.log("product id: " + item.productId);
-
-  obs9.subscribe(()=>{
-     
-    }) */
-
-
 
 } else {
   this.seconds = Math.floor(this.difference / 1000);
@@ -141,7 +111,6 @@ if (this.difference <= 0) {
   this.hours %= 24;
   this.minutes %= 60;
   this.seconds %= 60;
-
 
   item.hrs = this.hours;
   item.dys = this.days;
@@ -154,19 +123,12 @@ if (this.difference <= 0) {
   }
    )
 
+  } // end of for loop
 
+  }
 
-
-
-      } // end of for loop
-
-    }
-
-    )
-
+)
 
 }
-
-
 
 }

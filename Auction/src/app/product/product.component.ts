@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { formatDate } from '@angular/common';
+import { stringify } from '@angular/compiler/src/util';
 
 
 
@@ -85,18 +87,9 @@ dateTime:any;
     let obs8 = this.http.get(this.url8 + this.productId);
     obs8.subscribe((response) => {
       this.time = response;
-/*
-this.productAddedDate = this.time.auctionStartDate;
 
-this.deadline = new Date(this.productAddedDate); 
-
-this.deadline.setDate(this.deadline.getDate() + 7);
-
-*/
 this.productEndDate = this.time.auctionEndDate;
 this.deadline = new Date(this.productEndDate); 
-
-console.log("Product End dae" + this.deadline);
 
 this.timer = setInterval(() => {
   this.timeBetweenDates(this.deadline); 
@@ -116,6 +109,7 @@ this.timer = setInterval(() => {
       
         item.hrs = "";
         item.hrs = new Date( item.dateTime);
+       item.hrs =  formatDate(item.hrs, "dd/MM/yyyy HH:mm:ss" ,"en-IN",null );
       }
 
    }
@@ -132,16 +126,6 @@ this.timer = setInterval(() => {
     this.difference = this.dateEntered.getTime() - this.now.getTime();
     if (this.difference <= 0) {
       clearInterval(this.timer);
-console.log("inside clear");
-/*
-      let obs9 =  this.http.get(this.url9 + this.productId);
-      console.log("product id: " + this.productId);
- 
-      obs9.subscribe(()=>{
-         
-        }) 
-*/
-
     
     } else {
       this.seconds = Math.floor(this.difference / 1000);
@@ -166,15 +150,13 @@ bidPrice(){
     if(this.currentBidPrice == 0){
       this.currentBidPrice = this.startingProductPrice;
     }
-  
+
+   this.nextBidPrice = this.currentBidPrice + this.incrementPrice;
   
  }
   )
 
 }
-
-
-
 
   placeBid(){
 
@@ -226,10 +208,7 @@ let obs1 =  this.http.post(this.url1,this.bidDetails);
             this.router.navigate(["login"]);
           }
 
-
   }
-
-
 
   refresh(){
     this.ngOnInit();

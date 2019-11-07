@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HeaderComponent implements OnInit {
   url1=environment.apiBaseUrl + "getCustEmail/";
+  url2=environment.apiBaseUrl + "customerUpdate/";
+  url3=environment.apiBaseUrl + "customerId/";
   
 
   param:any;
@@ -25,6 +27,13 @@ export class HeaderComponent implements OnInit {
   Email:any;
   customerName:any;
 
+  currentPassword:any;
+  newPassword:any;
+  confirmPassword:any;
+  passwordDetails:any;
+  oldPassword:any;
+  customerDetail:any;
+
   constructor(private router:Router, private activate:ActivatedRoute, private route: ActivatedRoute,private customerService:CustomerService,private http:HttpClient, private toastr: ToastrService){
   this.param=this.router.url;
 
@@ -34,7 +43,7 @@ export class HeaderComponent implements OnInit {
 
  this.custId = sessionStorage.getItem('custId');
 
-    if(this.custId!=null){
+    if(this.custId!=null){ //if the customer is loggedin
   
       this.emailId = sessionStorage.getItem('emailId');
       this.customerName = sessionStorage.getItem('customerName');
@@ -72,13 +81,9 @@ else{
 
 }
 
-
-
-
-
   car(){
     this.router.navigate(['categoryDetails','car'],{
-      queryParams: {refresh: new Date().getTime()}
+      queryParams: {refresh: new Date().getTime()}  //navigation to same url
    });
   }
   mobile(){
@@ -120,4 +125,52 @@ else{
     this.ngOnInit();
   }
 
+  changePassword(){
+    this.custId = sessionStorage.getItem('custId');
+
+    let obs4 =  this.http.get(this.url3 + this.custId);
+ 
+    obs4.subscribe((response)=>{
+    
+      this.customerDetail = response;
+       this.oldPassword = this.customerDetail.password;
+      if(this.currentPassword == this.oldPassword){  //if the password entered is correct
+        this.proceed();
+      }
+      else{
+        this.toastr.error('Check your current password','error');
+      }
+
+      })
+    }
+
+proceed(){
+
+
+    if(this.newPassword == this.confirmPassword){ //checking for password mismatch
+
+    this.passwordDetails = 
+    {
+      "customerId":this.custId, "password":this.newPassword, "customerName":this.customerDetail.customerName,"emailId":this.customerDetail.emailId ,"phoneNumber": this.customerDetail.phoneNumber
+
+    }
+
+    let obs2 =  this.http.put(this.url2,this.passwordDetails);
+ 
+    obs2.subscribe(()=>{
+       
+      })
+
+    this.clear();
+
+    this.router.navigate(["/home"]);
+    
+    this.toastr.success('You password is changed successfully...Please login again', 'success',{timeOut:3000});
+  }
+  else{
+    this.toastr.error('password mismatch','error');
+  }
 }
+  }
+
+

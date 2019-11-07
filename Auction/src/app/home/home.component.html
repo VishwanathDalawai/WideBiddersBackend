@@ -44,20 +44,18 @@
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br>
 
-
-
 <div class="container">
   <hr>
   <h3 style="align-items:center ;">Fresh Recommendations for you!!! </h3>
   <hr>
   <br>
-  <div class ="row">
+  <div class ="row" style="margin-left: 20px;">
      
-
   <div *ngFor="let item of data | keyvalue">
-    <div class ="col-md-4">
     
-    <img src="assets/images/mob1.jfif" class="img-thumbnail" alt="Mob image" width="170px" height="50px">
+    <div class ="col-md-4" style="height:400px;">
+    
+ <img src="{{'data:image/png;base64,' + item.value.productImage['productImage']}}" class="img-thumbnail" alt="Mob image"  style="width: 170px;height: 230px;" />
    
     <br>
     <h3>{{item.value.productName}} {{item.value.productModel}}, {{item.value.productCategoryName}}</h3>
@@ -70,13 +68,14 @@
     </div> 
 <br>   
     <div class="fa fa-inr" style="font-size:24px">{{item.value.startingBidPrice}}</div>
-    <br>
+    
    
-      <br>
-       <a [routerLink]="['product',item.value.productId]">View Product</a><br><br>
-       <br><br>
+     &nbsp;&nbsp;
+       <button class="btn btn-primary" [routerLink]="['product',item.value.productId]">View</button><br><br>
+       <br><br><br><br><br>
   </div>
    </div>
+   
   </div>
   
   </div>
@@ -84,3 +83,6 @@
 <app-footer></app-footer>
 
 </div>
+
+
+

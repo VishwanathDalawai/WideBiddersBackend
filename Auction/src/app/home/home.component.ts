@@ -39,6 +39,8 @@ minutes:any;
 hours:any;
 days:any;
 dateEntered:any;
+custId:any;
+wishListDetail:any;
 
 
   constructor(private http:HttpClient,private activate:ActivatedRoute) { }
@@ -50,6 +52,7 @@ dateEntered:any;
     let obs =  this.http.get(this.url1);
     obs.subscribe((response)=>{      
          this.data = response;
+
          for(let item of this.data){
       
           item.hrs = "";
@@ -61,7 +64,7 @@ dateEntered:any;
          obs6.subscribe((response1) => {
      
            this.currentBidPrice = response1;
-           if(this.currentBidPrice == 0){
+           if(this.currentBidPrice == 0){ //if the response is zero
              this.currentBidPrice = item.startingBidPrice;
             
            }
@@ -76,16 +79,10 @@ dateEntered:any;
          let obs8 = this.http.get(this.url8 + item.productId);
          obs8.subscribe((response) => {   
            this.time = response;
-/*
-       item.startDate = this.time.auctionStartDate;
-       item.endDate = new Date(item.startDate); 
-       item.endDate.setDate( item.endDate.getDate() + 7);
-      */
+
      item.productEndDate = this.time.auctionEndDate;
      item.endDate = new Date(item.productEndDate); 
-    
-
-     
+       
      this.timer = setInterval(() => {
       this.dateEntered = item.endDate;
        
@@ -96,13 +93,6 @@ dateEntered:any;
       if (this.difference <= 0) {
  
         clearInterval(this.timer);
-/*
-        let obs9 =  this.http.get(this.url9 + item.productId);
-        console.log("product id: " + item.productId);
-   
-        obs9.subscribe(()=>{
-           
-          })  */
       
       } else {
    
@@ -126,13 +116,8 @@ dateEntered:any;
         }
          )
 
+ } //end of for
 
-
-
-         } //end of for
-
-
-        })
-  }
-
+})
+}
 }

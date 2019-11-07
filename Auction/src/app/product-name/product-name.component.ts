@@ -28,7 +28,7 @@ export class ProductNameComponent implements OnInit {
   hours:any;
   days:any;
   dateEntered:any;
-
+  empty:any;
   
   constructor(
     private route: ActivatedRoute,
@@ -37,13 +37,17 @@ export class ProductNameComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.productName = this.route.snapshot.paramMap.get('name');
+    this.productName = this.route.snapshot.paramMap.get('name'); //name of the product
  
     let obs = this.http.get(this.url2 + this.productName);
     obs.subscribe((response) => {
 
       this.data = response;
 
+      if(this.data[0] == null){
+        this.empty =true;
+        
+      }
 
       for(let item of this.data){
 
@@ -68,39 +72,22 @@ export class ProductNameComponent implements OnInit {
      }
       )
   
-
     let obs8 = this.http.get(this.url8 + item.productId);
     obs8.subscribe((response) => {
     
       this.time = response;
-/*
-  item.startDate = this.time.auctionStartDate;
-  item.endDate = new Date(item.startDate); 
-  item.endDate.setDate( item.endDate.getDate() + 7);
-*/
-item.productEndDate = this.time.auctionEndDate;
+item.productEndDate = this.time.auctionEndDate; //auction end date 
 item.endDate = new Date(item.productEndDate); 
-
 
 this.timer = setInterval(() => {
 
  this.dateEntered = item.endDate;
-
-
  this.now = new Date();
 
  this.difference = this.dateEntered.getTime() - this.now.getTime();
  if (this.difference <= 0) {
    clearInterval(this.timer);
-   /*
-   let obs9 =  this.http.get(this.url9 + item.productId);
-   console.log("product id: " + item.productId);
-
-   obs9.subscribe(()=>{
-      
-     }) */
-
- 
+   
  } else {
 
    this.seconds = Math.floor(this.difference / 1000);
@@ -124,18 +111,11 @@ this.timer = setInterval(() => {
    }
     )
 
-
-
-
-
-      } //end of for loop
+ } //end of for loop
      
- 
-
     }
 
     )
-
 
 }
 

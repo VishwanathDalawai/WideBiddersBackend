@@ -18,6 +18,7 @@ import { ProductNameComponent } from './product-name/product-name.component';
 
 
 
+
 const routes: Routes = [
   {path:"", component:HomeComponent},
   {path:"home", component:HomeComponent},
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path:"faq", component:FaqComponent},
   {path:"categoryDetails/:category", component:CategoryDetailsComponent},
   {path:"productName/:name", component:ProductNameComponent}
+  
   
   
   

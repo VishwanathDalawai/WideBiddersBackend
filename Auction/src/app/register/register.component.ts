@@ -55,23 +55,16 @@ form = new FormGroup({
   }
 
 
-  ngOnInit() {
-    
+  ngOnInit() {  
   }
 
-
-
-  register(){
-
-
-    
+  register(){ 
     this.user = 
        {
        "customerName": this.fullName, "phoneNumber": this.phoneNumber , "emailId": this.email ,
        "password": this.password1
       };
-      
-     
+          
        let obs =  this.http.post(this.url1,this.user);
        obs.subscribe((response)=>{
             this.response = response;
@@ -81,7 +74,7 @@ form = new FormGroup({
   
               this.router.navigate(["/home"]);
              }
-             else if (this.response == -1){
+             else if (this.response == -1){ //if the email id already exists
               this.toastr.error('Email id already exists..', 'Error');
              }
             
@@ -89,6 +82,4 @@ form = new FormGroup({
            })
 
   }
-
-
 }

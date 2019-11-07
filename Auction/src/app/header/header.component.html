@@ -9,7 +9,7 @@
               data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
                     
               <ul class="dropdown-menu">
-                
+           <!--categories-->     
                 <li><button style="width:150px;border: none;background: none;" type="submit" (click)="car()" class="btn btn-default">Car</button></li>
                 <li><button style="width:150px;border: none;background: none;" type="submit" (click)="mobile()" class="btn btn-default">Mobile</button></li>
                 <li><button style="width:150px;border: none;background: none;" type="submit" (click)="furniture()" class="btn btn-default">Furniture</button></li>
@@ -34,81 +34,25 @@
           <ul class="nav navbar-nav navbar-right" style="margin:0px 40px 0px 0px">
             <li><button class="btn btn-danger navbar-btn" (click)="sell()">Sell</button></li>
             </ul>
-         <div *ngIf="!emailId"> 
+         <div *ngIf="!emailId"> <!--if user has not loggedIn-->
            <ul class="nav navbar-nav navbar-right" style="margin:0px 50px 0px 0px;">
          <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-user" (click) ="signup()">SignUp</button></li>
             <li><button class="btn btn-danger navbar-btn glyphicon glyphicon-log-in" (click) ="login()">Login</button></li>
           </ul>
           </div> 
-          <div *ngIf="emailId">
+          <div *ngIf="emailId"> <!--if the user has logged in-->
             <ul class="nav navbar-nav navbar-right" style="margin:0px 50px 0px 0px;">
+              
               <li class="dropdown"><a class="dropdown-toggle"
                 data-toggle="dropdown" href="#">Hello,  {{customerName}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a routerLink="/myproduct">My Products</a></li>
-                  <li data-toggle="modal" style="color:#00AA9E;" data-target="#exampleModal"
-                        class="btn btn-link" (click)="update(item.value.productId)">Change Passowrd</li>
-                  <li><a (click)="clear()" routerLink="/home">LogOut</a></li>
+                  <li><a data-toggle="modal" style="color:#141413;" data-target="#headerModal"
+                        class="btn btn-link" >Change Passowrd</a></li>
+                   
+                  <li><a (click)="clear()" routerLink="/home"> &nbsp;LogOut</a></li>
 
                 </ul></li>
-
-
-
-
-
-
-
-
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header" style="background-color :#dde5ed">
-                            <h3 class="modal-title" id="exampleModalLabel" style="text-align:center;"><b>Change Your Password</b></h3>
-                           
-                        </div>
-                        <div class="modal-body">
-
-                            <form #userInfo="ngForm">
-
-                                <div class="form-group input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id=""><i class='fas fa-user-alt'></i></span>
-                                    </div><br>
-                                    <input type="text" #firstName="ngModel" [(ngModel)]="currentPassword"
-                                    placeholder="Current Passowrd" name="currentPassword"><br>
-                                    <input type="text" #firstName="ngModel" [(ngModel)]="newPassword"
-                                    placeholder="New Passowrd" name="newPassword"><br>
-                                    <input type="text" #firstName="ngModel" [(ngModel)]="confirmPassword"
-                                    placeholder="Confirm Passowrd" name="confirmPassword"><br>
-                                </div>
-
-
-                            </form>
-
-                        </div>
-                        <div class="modal-header" style="background-color:#dde5ed">
-                            <div class="modal-footer" >
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                            <button type="link" class="btn btn-primary" data-dismiss="modal" (click)="updateProduct()">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
                 
           </ul> 
           </div> 
@@ -117,4 +61,43 @@
       </nav>
     </div>
     <br><br><br>
+
+    <div class="modal fade" id="headerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color :#dde5ed">
+                <h3 class="modal-title" id="exampleModalLabel" style="text-align:center;"><b>Change Your Password</b></h3>
+               
+            </div>
+            <div class="modal-body">
+
+                <form #userInfo="ngForm">
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id=""><i class='fas fa-user-alt'></i></span>
+                        </div><br>
+                        <input type="text" size = "40" #firstName="ngModel" [(ngModel)]="currentPassword"
+                        placeholder="Current Passowrd" name="currentPassword"><br><br>
+                        <input type="text" size = "40" #firstName="ngModel" [(ngModel)]="newPassword"
+                        placeholder="New Passowrd" name="newPassword"><br><br>
+                        <input type="text" size = "40" #firstName="ngModel" [(ngModel)]="confirmPassword"
+                        placeholder="Confirm Passowrd" name="confirmPassword"><br>
+                    </div>
+
+
+                </form>
+
+            </div>
+            <div class="modal-header" style="background-color:#dde5ed">
+                <div class="modal-footer" >
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                <button type="link" class="btn btn-primary" data-dismiss="modal" (click)="changePassword()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
     

@@ -30,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { ToastrModule } from 'ngx-toastr';
     FaqComponent,
     CategoryDetailsComponent,
     ProductNameComponent
+  
   ],
   imports: [
     BrowserModule,
