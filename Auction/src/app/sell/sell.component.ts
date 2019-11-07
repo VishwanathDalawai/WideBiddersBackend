@@ -73,6 +73,8 @@ productId:any;
   handleReaderLoaded(e) {
  
  this.Data.push(btoa(e.target.result));
+ console.log("image");
+ console.log(this.Data);
   }
   
   post(){
@@ -92,9 +94,10 @@ productId:any;
        {
         "customerId": this.custId,"productName": this.productName, "productCategoryName": this.product_category , "productModel": this.product_model , "productDescription":this.product_desc,
        "productBoughtYear": this.year, "startingBidPrice": this.min_bid_price , "incrementPrice":this.increment, "approvalStatus": 1, "reportFlag": 0, 
-       "productImage":{"productImage":this.Data[0],"productImage2":this.Data[1], "productImage3":this.Data[2],"productImage4":this.Data[3],"productImage5":this.Data[4]}//,{"productImage3":this.Data[2]},{"productImage4":this.Data[3]},{"productImage5":this.Data[4]}
+       "productImage":{"productImage":this.Data[0],"productImage2":this.Data[1], "productImage3":this.Data[2],"productImage4":this.Data[3],"productImage5":this.Data[4]}
        
       };
+      console.log(this.product)
      let obs1 =  this.http.post(this.url1,this.product);
        obs1.subscribe((response)=>{
           
@@ -116,7 +119,7 @@ auction(){
   
   let obs2 =  this.http.post(this.url2,this.auctionMaster);
  
-obs2.subscribe(()=>{
+obs2.subscribe(()=>{  
    
   })
 }

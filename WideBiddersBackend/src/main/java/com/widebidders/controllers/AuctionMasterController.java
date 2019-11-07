@@ -42,13 +42,12 @@ public class AuctionMasterController {
 	} 
 	
 	@RequestMapping(value = "/timerComplete/{id}")
-	public List getBidDetailsById(@PathVariable int id) {
-		return auctionService.getBidDetailsById(id); 
+	public void getBidDetailsById(@PathVariable int id) {
+		auctionService.getBidDetailsById(id); 
 	} 
 
 	@RequestMapping(value = "/addAuctionMaster", method = RequestMethod.POST)
 	public void addAuction(@RequestBody AuctionMasterDto auctionMasterDto) {
-		logger.info("Inside Add Auction Master Controller");
 		int customerId = auctionMasterDto.getCustomerId();
 		int productId = auctionMasterDto.getProductId();
 		AuctionMaster auctionMaster = new AuctionMaster(auctionMasterDto);

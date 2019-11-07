@@ -3,11 +3,11 @@ package com.widebidders.models.entities;
 public class LoggedInUsers {
 	private static int noOfUserLoggedIn;
 	private static int customerId[];
-	
+
 	public LoggedInUsers() {
 	}
-	
-	public LoggedInUsers(int noOfUserLoggedIn, int customerId[] ){
+
+	public LoggedInUsers(int noOfUserLoggedIn, int customerId[]) {
 		this.noOfUserLoggedIn = noOfUserLoggedIn;
 		this.customerId = customerId;
 	}

@@ -26,11 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 import { ToastrModule } from 'ngx-toastr';
 
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

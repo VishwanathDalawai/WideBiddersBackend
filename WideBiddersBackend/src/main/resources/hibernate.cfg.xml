@@ -15,6 +15,7 @@
 		<property name="hbm2ddl.auto">create-drop</property>
 		
 		<mapping resource="com/widebidders/mapping/widebidders.hbm.xml"></mapping>
+		<mapping class="com.widebidders.models.entities.ProductImage"/>
 		
 	</session-factory>
 </hibernate-configuration>

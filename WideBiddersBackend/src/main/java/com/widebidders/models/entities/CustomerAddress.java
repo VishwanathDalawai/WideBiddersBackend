@@ -4,6 +4,9 @@ public class CustomerAddress {
 
 	private int adressId;
 	private int customerId;
+	private String streetName;
+	private int pincode;
+	private String preferredAddress;
 
 	public int getCustomerId() {
 		return customerId;
@@ -81,8 +84,5 @@ public class CustomerAddress {
 		this.preferredAddress = preferredAddress;
 	}
 
-	private String streetName;
-	private int pincode;
-	private String preferredAddress;
 
 }

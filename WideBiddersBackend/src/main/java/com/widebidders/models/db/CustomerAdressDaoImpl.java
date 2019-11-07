@@ -92,9 +92,8 @@ public class CustomerAdressDaoImpl implements CustomerAdressDao {
 			session.close();
 		}
 		return adress;
-
 	}
-
+	
 	@Override
 	public void updateAdress(int id, CustomerAddress adress) {
 		// TODO Auto-generated method stub

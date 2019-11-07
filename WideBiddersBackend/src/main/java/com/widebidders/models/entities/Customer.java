@@ -33,7 +33,6 @@ public class Customer {
 		this.phoneNumber = customer.getPhoneNumber();
 		this.emailId = customer.getEmailId();
 		this.password = customer.getPassword();
-
 		this.userStatusActive = customer.getUserStatusActive();
 		this.userImage = customer.getUserImage();
 	}

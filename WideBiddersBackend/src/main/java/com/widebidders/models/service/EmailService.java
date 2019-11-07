@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 	
 	public void sendEmail(String mailId, String messageToBeSent, String subject){
-  /*
 		final String username = "widebidders2019@gmail.com";
     final String password = "Vishwanath@123";
 
@@ -52,6 +51,6 @@ public class EmailService {
 
     }catch(MessagingException e) {
         e.printStackTrace();
-    }*/
+    }
   }
 }

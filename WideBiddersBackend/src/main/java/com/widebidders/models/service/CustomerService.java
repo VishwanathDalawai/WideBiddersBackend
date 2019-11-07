@@ -14,4 +14,5 @@ public interface CustomerService {
 	public void updateCustomer(Customer customer);
 	public Customer loginAuthentication(LoginEntity login);
 	public String getCustomerByEmail(String email);
+	public String getMailId(int id);
 }
