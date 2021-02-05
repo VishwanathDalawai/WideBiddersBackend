@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.widebidders.models.db;
 
 import java.util.List;
@@ -17,23 +16,3 @@ public interface CustomerDao {
 	public Customer loginAuthentication(LoginEntity login);
 	public String getMailId(int id);
 }
-=======
-package com.widebidders.models.db;
-
-import java.util.List;
-import java.util.Map;
-
-import com.widebidders.models.entities.Customer;
-import com.widebidders.models.entities.LoginEntity;
-
-public interface CustomerDao {
-	public List getCustomers();
-	public int addCustomer(Customer customer);
-	public Customer getCustomerById(int id);
-	public void deleteCustomer(int id);
-	public void updateCustomer(Customer customer);
-	public String getCustomerByEmail(String email);
-	public Customer loginAuthentication(LoginEntity login);
-	public String getMailId(int id);
-}
->>>>>>> 3c6820757d04c2a0e46684bcb8857b89d63569b1
