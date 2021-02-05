@@ -1,0 +1,72 @@
+<div class="register">
+  <form name="form" [formGroup]="form">
+    <div class="container body">
+      <h1>Register</h1>
+      <p>Please fill in this form to create an account.</p>
+      <hr>
+
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" placeholder="Enter Full name" [(ngModel)]="fullName" formControlName="fullName"
+          [ngClass]="{'is-invalid': form.get('fullName').touched && form.get('fullName').invalid}" />
+        <div *ngIf=" form.get('fullName').touched && form.get('fullName').invalid" class="invalid-feedback">
+          <small *ngIf=" form.get('fullName').errors.required" style="color:red;">Name is Required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" placeholder="abc@xyz" [(ngModel)]="email" formControlName="email"
+          [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}" />
+        <div *ngIf=" form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+          <small *ngIf=" form.get('email').errors.required" style="color:red">Email is Required</small>
+          <small *ngIf=" form.get('email').errors.email" style="color:red">Email must be a valid Email Address</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">phoneNumber</label>
+        <input type="text" placeholder="Mobile no" [(ngModel)]="phoneNumber" formControlName="phoneNumber"
+          [ngClass]="{'is-invalid': form.get('phoneNumber').touched && form.get('phoneNumber').invalid}" />
+        <div *ngIf=" form.get('phoneNumber').touched && form.get('phoneNumber').invalid" class="invalid-feedback">
+          <small *ngIf=" form.get('phoneNumber').errors.required" style="color:red">Mobile Number is Required</small>
+          <small *ngIf=" form.get('phoneNumber').errors.pattern" style="color:red">Enter valid mobile number</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" placeholder="password" [(ngModel)]="password1"
+          [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}" />
+        <div *ngIf=" form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
+          <small *ngIf=" form.get('password').errors.required" style="color:red">Password is Required</small>
+          <small *ngIf=" form.get('password').errors.minlength" style="color:red">Password must be atleast 6
+            characters</small>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="password">Confirm Password</label>
+        <input type="password" formControlName="cnfpass" placeholder="Repeat password" [(ngModel)]="password2"
+          [ngClass]="{'is-invalid': form.get('cnfpass').touched && form.get('cnfpass').invalid}" />
+        <div *ngIf=" form.get('cnfpass').touched && form.get('cnfpass').invalid" class="invalid-feedback">
+          <small *ngIf=" form.get('cnfpass').errors.required" style="color:red">Password is Required</small><br>
+          <small *ngIf="form.controls.cnfpass.invalid" style="color:red">Password should match</small>
+        </div>
+      </div>
+
+      <hr>
+      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+
+      <div class="form-group" style="padding:0px 400px;">
+        <button type="submit" class="btn btn-primary" [disabled]="!form.valid" (click)="register()">Register</button>
+      </div>
+    </div>
+
+    <div class="container signin body">
+      <p>Already have an account? <a routerLink="/login">Sign in</a>.</p>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,13 @@
+.body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    box-align:center; 
+    width:70%;
+    padding:0px 0px 0px 0px;
+    
+  }
+
+  .container {
+    padding: 16px;
+    background-color: white;
+  }

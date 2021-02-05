@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div *ngIf='!empty'>
+  <div class="container">
+    <h3 style="align-items:center ;"><u>Showing results for "{{categoty}}"!!! </u></h3>
+    <br><br>
+    <div class="row" style="margin-left: 20px;">
+
+
+      <div *ngFor="let item of data | keyvalue">
+        <div class="col-md-4" style="height:400px;">
+
+          <img src="{{'data:image/png;base64,' + item.value.productImage['productImage']}}" class="img-thumbnail"
+            alt="Mob image" style="width: 170px;height: 230px;" />
+
+          <br>
+          <h3>{{item.value.productName}} {{item.value.productModel}}, {{item.value.productCategoryName}}</h3>
+
+          <div id="timer">
+            <span id="days"></span><b>{{item.value.dys}}&nbsp;</b>days
+            <span id="hours"></span><b>{{item.value.hrs}}&nbsp;</b>hrs
+            <span id="minutes"></span><b>{{item.value.mins}}&nbsp;</b>mins
+            <span id="seconds"></span><b>{{item.value.secs}}&nbsp;</b>secs
+          </div>
+
+          <br>
+          <div class="fa fa-inr" style="font-size:24px">{{item.value.startingBidPrice}}</div>
+          &nbsp;&nbsp;
+
+          <button class="btn btn-primary" [routerLink]="['/product',item.value.productId]">View</button><br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf='empty' class="text-center" style="padding-top: 30px;">
+  <h1>Oops!!!No Results Found...</h1>
+
+</div>
+
+<app-footer></app-footer>

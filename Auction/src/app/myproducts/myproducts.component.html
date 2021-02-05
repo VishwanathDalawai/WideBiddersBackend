@@ -1,0 +1,91 @@
+<app-header></app-header>
+
+<div *ngIf='!empty'>
+
+    <div class="container">
+        <h3 style="align-items:center ;"><u>My Products!! </u></h3>
+        <br><br>
+        <div class="row" style="margin-left: 20px;">
+
+            <div *ngFor="let item of data | keyvalue">
+                <div class="col-md-4" style="height:450px;">
+
+                    <img src="{{'data:image/png;base64,' + item.value.productImage['productImage']}}"
+                        class="img-thumbnail" alt="Mob image" style="width: 170px;height: 230px;" />
+
+                    <br>
+                    <h3>{{item.value.productName}} {{item.value.productModel}}, {{item.value.productCategoryName}}</h3>
+
+                    <div id="timer">
+                        <span id="days"></span><b>{{item.value.dys}}&nbsp;</b>days
+                        <span id="hours"></span><b>{{item.value.hrs}}&nbsp;</b>hrs
+                        <span id="minutes"></span><b>{{item.value.mins}}&nbsp;</b>mins
+                        <span id="seconds"></span><b>{{item.value.secs}}&nbsp;</b>secs
+                    </div>
+
+                    <br>
+                    <div class="fa fa-inr" style="font-size:24px">{{item.value.startingBidPrice}}</div>
+                    <br>
+
+
+                    <button class="btn btn-primary"
+                        [routerLink]="['/product',item.value.productId]">View</button>&nbsp;&nbsp;&nbsp;
+
+                    <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary"
+                        (click)="update(item.value.productId)">Update</button>&nbsp;
+                    <button class="btn btn-primary" (click)="delete(item.value.productId)">Delete</button>
+                    <br><br><br><br><br>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color :#dde5ed">
+                                    <h3 class="modal-title" id="exampleModalLabel" style="text-align:center;"><b>Update
+                                            Details</b></h3>
+
+                                </div>
+                                <div class="modal-body">
+
+                                    <form #userInfo="ngForm">
+
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id=""><i
+                                                        class='fas fa-user-alt'></i></span>
+                                            </div><br>
+                                            <textarea rows="5" #firstName="ngModel" [(ngModel)]="updatedDescription"
+                                                placeholder="Product Description" name="firstName"><br>
+                                    </textarea>
+                                        </div>
+
+
+                                    </form>
+
+                                </div>
+                                <div class="modal-header" style="background-color:#dde5ed">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="link" class="btn btn-primary" data-dismiss="modal"
+                                            (click)="updateProduct()">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div *ngIf='empty' class="text-center" style="padding-top: 30px;">
+    <!--if there is no products-->
+    <h1>Oops!!!No Results Found...</h1>
+
+</div>
+
+<app-footer></app-footer>
